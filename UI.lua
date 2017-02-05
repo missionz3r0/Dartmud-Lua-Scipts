@@ -3,7 +3,7 @@ UI = {}
 local triggers = {}
 
 local topBorder = 164
-local bottomBorder = 30
+local bottomBorder = 0
 
 local chat_border = nil
 local chat_container = nil
@@ -12,34 +12,48 @@ local updateDisplayListenerName = "updateDisplay"
 local updateChatBoxListenerName = "updateChatBox"
 local improveBoxListenerName = "improveBox"
 
+local chatBoxMinSize = 700
+local altBoxMaxSize = 500
+
 local function updateDisplay(evt, x, y)
     local mainWidth, mainHeight = getMainWindowSize()
     x = mainWidth
     y = mainHeight
-    local width = (x + 15) / 2
+
+    local chatWidth = 0
+    local altWidth = 0
+
+    if(x <= chatBoxMinSize) then
+      chatWidth = x
+      altWidth = 0
+    elseif (x > chatBoxMinSize and x < (chatBoxMinSize+altBoxMaxSize)) then
+      chatWidth = chatBoxMinSize
+      altWidth = x-chatBoxMinSize
+    else
+      chatWidth = x - altBoxMaxSize
+      altWidth = altBoxMaxSize
+    end
+    setBorderRight(altWidth)
+
     local height = 160
     local fontSize = 10
     local fontWidth = calcFontSize(fontSize)
-    local wrap = width/fontWidth
+    local chatWrap = chatWidth/fontWidth
+    local altWrap = altWidth/fontWidth
+
+    if alt_border then
+      alt_border:resize(altWidth, 164)
+      alt_border:move(chatWidth,0)
+      alt_border:setStyleSheet([[border:2px solid white;background-color: black]])
+      alt_container:resize(altWidth,160)
+    end
+
   	if chat_border then
-  		chat_border:resize(width, 164)
+  		chat_border:resize(chatWidth, 164)
   		chat_border:move(0, 0)
-  		chat_container:resize(width-4,160)
-  		setWindowWrap("ChatBox", wrap)
-  		return
+  		chat_container:resize(chatWidth-4,160)
+  		setWindowWrap("ChatBox", chatWrap)
   	end
-
-    chat_border = Geyser.Label:new({x=width+4,y=0,width=width+4,height=height+4})
-    chat_border:setStyleSheet([[border:2px solid white;background-color: black]])
-
-    chat_container = Geyser.MiniConsole:new({
-        name="ChatBox",
-        x=2, y=2,
-        fontSize=fontSize,
-        width=width, height=height,
-        color="black"
-    }, chat_border)
-    setWindowWrap("ChatBox", wrap)
 end
 
 local function onChat(event, text)
@@ -75,25 +89,50 @@ local function load()
   local mainWidth, mainHeight = getMainWindowSize()
   x = mainWidth
   y = mainHeight
-  local width = (x + 15) / 2
+
+  local chatWidth = 0
+  local altWidth = 0
+
+  if(x <= chatBoxMinSize) then
+    chatWidth = x
+    altWidth = 0
+  elseif (x > chatBoxMinSize and x < (chatBoxMinSize+altBoxMaxSize)) then
+    chatWidth = chatBoxMinSize
+    altWidth = x-chatBoxMinSize
+  else
+    chatWidth = x - altBoxMaxSize
+    altWidth = altBoxMaxSize
+  end
+  setBorderRight(altWidth)
+
   local height = 160
   local fontSize = 10
   local fontWidth = calcFontSize(fontSize)
-  local wrap = width/fontWidth
+  local chatWrap = chatWidth/fontWidth
+  local altWrap = altWidth/fontWidth
 
-  chat_border = Geyser.Label:new({x=width+4,y=0,width=width+4,height=height+4})
+  alt_border = Geyser.Label:new({x=chatWidth,y=0,width=altWidth+4,height=height+4})
+  alt_border:setStyleSheet([[border:2px solid white;background-color: black]])
+
+  alt_container = Geyser.MiniConsole:new({
+    name="AltBox",
+    x=2, y=2,
+    fontSize=fontSize,
+    width=altWidth-4, height=height,
+    color="black"
+  }, skill_border)
+
+  chat_border = Geyser.Label:new({x=0,y=0,width=chatWidth+4,height=height+4})
   chat_border:setStyleSheet([[border:2px solid white;background-color: black]])
 
   chat_container = Geyser.MiniConsole:new({
       name="ChatBox",
       x=2, y=2,
       fontSize=fontSize,
-      width=width, height=height,
+      width=chatWidth, height=height,
       color="black"
   }, chat_border)
-  setWindowWrap("ChatBox", wrap)
-
-  display(updateDisplay)
+  setWindowWrap("ChatBox", chatWrap)
 
   Handlers.addwindowResizeListener(updateDisplayListenerName, updateDisplay)
   Handlers.addchatListener(updateChatBoxListenerName, onChat)
