@@ -755,6 +755,7 @@ registerAnonymousEventHandler("skillMistakeEvent", "Handlers.skillMistakeHandler
     end
   end
 
+--UI Events
 registerAnonymousEventHandler("sysWindowResizeEvent", "Handlers.windowResizeHandler")
   local windowResizeListeners = {}
   function Handlers.addwindowResizeListener(listenerName, functionToAdd)
@@ -782,7 +783,7 @@ registerAnonymousEventHandler("chatEvent", "Handlers.chatHandler")
   end
 
   function Handlers.chatHandler(event, text)
-    for l,v in pairs(chatListeners) do
+    for k,v in pairs(chatListeners) do
       v(event, text)
     end
   end
