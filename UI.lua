@@ -80,7 +80,7 @@ end
 local function onImprove(event, who, skill)
   local ts = getTime(true, "hh:mm:ss")
 
-  imp_container:echo(ts.." ".. who .. " ".. skill)
+  imp_container:echo(ts.." ".. who .. " ".. skill.."\n")
 end
 
 local function load()
