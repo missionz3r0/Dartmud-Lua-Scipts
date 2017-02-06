@@ -127,7 +127,7 @@ registerAnonymousEventHandler("concEvent", "Handlers.concEventHandler")
     end
   end
 
-registerAnonymousEventHandler("BEBTconcEvent", "Handlers.BEBTconcHandler")
+registerAnonymousEventHandler("BEBTconcEvent", "Handlers.BEBTconcEventHandler")
   local BEBTconcEventListeners = {}
   function Handlers.addBEBTconcEventListener(listenerName, functionToAdd)
     BEBTconcEventListeners[listenerName] = functionToAdd
@@ -143,7 +143,7 @@ registerAnonymousEventHandler("BEBTconcEvent", "Handlers.BEBTconcHandler")
     end
   end
 
-registerAnonymousEventHandler("BOBconcEvent", "Handlers.BOBconcHandler")
+registerAnonymousEventHandler("BOBconcEvent", "Handlers.BOBconcEventHandler")
   local BOBconcEventListeners = {}
   function Handlers.addBOBconcEventListener(listenerName, functionToAdd)
     BOBconcEventListeners[listenerName] = functionToAdd
@@ -159,7 +159,7 @@ registerAnonymousEventHandler("BOBconcEvent", "Handlers.BOBconcHandler")
     end
   end
 
-registerAnonymousEventHandler("SDconcEvent", "Handlers.SDconcHandler")
+registerAnonymousEventHandler("SDconcEvent", "Handlers.SDconcEventHandler")
   local SDconcEventListeners = {}
   function Handlers.addSDconcEventListener(listenerName, functionToAdd)
     SDconcEventListeners[listenerName] = functionToAdd
@@ -175,7 +175,7 @@ registerAnonymousEventHandler("SDconcEvent", "Handlers.SDconcHandler")
     end
   end
 
-registerAnonymousEventHandler("OBconcEvent", "Handlers.OBconcHandler")
+registerAnonymousEventHandler("OBconcEvent", "Handlers.OBconcEventHandler")
   local OBconcEventListeners = {}
   function Handlers.addOBconcEventListener(listenerName, functionToAdd)
     OBconcEventListeners[listenerName] = functionToAdd
@@ -191,7 +191,7 @@ registerAnonymousEventHandler("OBconcEvent", "Handlers.OBconcHandler")
     end
   end
 
-registerAnonymousEventHandler("DAOBconcEvent", "Handlers.DAOBconcHandler")
+registerAnonymousEventHandler("DAOBconcEvent", "Handlers.DAOBconcEventHandler")
   local DAOBconcEventListeners = {}
   function Handlers.addDAOBconcEventListener(listenerName, functionToAdd)
     DAOBconcEventListeners[listenerName] = functionToAdd
@@ -207,7 +207,7 @@ registerAnonymousEventHandler("DAOBconcEvent", "Handlers.DAOBconcHandler")
     end
   end
 
-registerAnonymousEventHandler("SHOTconcEvent", "Handlers.SHOTconcHandler")
+registerAnonymousEventHandler("SHOTconcEvent", "Handlers.SHOTconcEventHandler")
   local SHOTconcEventListeners = {}
   function Handlers.addSHOTconcEventListener(listenerName, functionToAdd)
     SHOTconcEventListeners[listenerName] = functionToAdd
@@ -223,7 +223,7 @@ registerAnonymousEventHandler("SHOTconcEvent", "Handlers.SHOTconcHandler")
     end
   end
 
-registerAnonymousEventHandler("TCTRNconcEvent", "Handlers.TCTRNconcHandler")
+registerAnonymousEventHandler("TCTRNconcEvent", "Handlers.TCTRNconcEventHandler")
   local TCTRNconcEventListeners = {}
   function Handlers.addTCTRNconcEventListener(listenerName, functionToAdd)
     TCTRNconcEventListeners[listenerName] = functionToAdd
@@ -733,9 +733,9 @@ registerAnonymousEventHandler("skillImproveEvent", "Handlers.skillImproveHandler
     skillImproveListeners[listenerName] = nil
   end
 
-  function Handlers.skillImproveHandler(who, skill)
+  function Handlers.skillImproveHandler(evt, who, skill)
     for l,v in pairs(skillImproveListeners) do
-      v(who, skill)
+      v(evt, who, skill)
     end
   end
 
@@ -758,6 +758,7 @@ registerAnonymousEventHandler("skillMistakeEvent", "Handlers.skillMistakeHandler
 --UI Events
 registerAnonymousEventHandler("sysWindowResizeEvent", "Handlers.windowResizeHandler")
   local windowResizeListeners = {}
+  local count = 0
   function Handlers.addwindowResizeListener(listenerName, functionToAdd)
     windowResizeListeners[listenerName] = functionToAdd
   end
@@ -767,6 +768,8 @@ registerAnonymousEventHandler("sysWindowResizeEvent", "Handlers.windowResizeHand
   end
 
   function Handlers.windowResizeHandler(event, x, y)
+    count = count + 1
+    cecho(count.."\n")
     for k,v in pairs(windowResizeListeners) do
       v(event, x, y)
     end

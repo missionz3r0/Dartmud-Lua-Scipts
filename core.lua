@@ -1,3 +1,5 @@
 require("Handlers")
+require("Status")
 require("UI")
+Status.load()
 UI.load()

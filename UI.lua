@@ -6,7 +6,12 @@ local topBorder = 164
 local bottomBorder = 0
 
 local chat_border = nil
+local alt_border = nil
+
 local chat_container = nil
+local imp_container = nil
+local alt_container = nil
+local alt_containers = {}
 
 local updateDisplayListenerName = "updateDisplay"
 local updateChatBoxListenerName = "updateChatBox"
@@ -15,13 +20,15 @@ local improveBoxListenerName = "improveBox"
 local chatBoxMinSize = 700
 local altBoxMaxSize = 500
 
+local chatWidth = 0
+local altWidth = 0
+
 local function updateDisplay(evt, x, y)
     local mainWidth, mainHeight = getMainWindowSize()
-    x = mainWidth
-    y = mainHeight
+    local x = mainWidth
+    local y = mainHeight
 
-    local chatWidth = 0
-    local altWidth = 0
+    local previousAltWidth = altWidth
 
     if(x <= chatBoxMinSize) then
       chatWidth = x
@@ -33,7 +40,10 @@ local function updateDisplay(evt, x, y)
       chatWidth = x - altBoxMaxSize
       altWidth = altBoxMaxSize
     end
-    setBorderRight(altWidth)
+
+    if previousAltWidth ~= altWidth then
+      setBorderRight(altWidth)
+    end
 
     local height = 160
     local fontSize = 10
@@ -68,6 +78,9 @@ local function onChat(event, text)
 end
 
 local function onImprove(event, who, skill)
+  local ts = getTime(true, "hh:mm:ss")
+
+  imp_container:echo(ts.." ".. who .. " ".. skill)
 end
 
 local function load()
@@ -87,11 +100,8 @@ local function load()
   setBorderBottom(bottomBorder)
 
   local mainWidth, mainHeight = getMainWindowSize()
-  x = mainWidth
-  y = mainHeight
-
-  local chatWidth = 0
-  local altWidth = 0
+  local x = mainWidth
+  local y = mainHeight
 
   if(x <= chatBoxMinSize) then
     chatWidth = x
@@ -114,13 +124,13 @@ local function load()
   alt_border = Geyser.Label:new({x=chatWidth,y=0,width=altWidth+4,height=height+4})
   alt_border:setStyleSheet([[border:2px solid white;background-color: black]])
 
-  alt_container = Geyser.MiniConsole:new({
-    name="AltBox",
+  imp_container = Geyser.MiniConsole:new({
+    name="ImpBox",
     x=2, y=2,
     fontSize=fontSize,
     width=altWidth-4, height=height,
     color="black"
-  }, skill_border)
+  }, alt_border)
 
   chat_border = Geyser.Label:new({x=0,y=0,width=chatWidth+4,height=height+4})
   chat_border:setStyleSheet([[border:2px solid white;background-color: black]])
@@ -137,6 +147,9 @@ local function load()
   Handlers.addwindowResizeListener(updateDisplayListenerName, updateDisplay)
   Handlers.addchatListener(updateChatBoxListenerName, onChat)
   Handlers.addskillImproveListener(improveBoxListenerName, onImprove)
+
+  alt_container = imp_container
+  alt_containers["imp_container"] = imp_container
 
   triggers = tempTriggers
 end
@@ -162,3 +175,5 @@ UI = {
   unload = unload,
   reload = reload
 }
+
+return UI

@@ -1,4 +1,4 @@
-status = {}
+Status = {}
 local triggers = {}
 
 --[[
@@ -27,7 +27,6 @@ local function load()
                         local youthfullness = matches[3]
                         raiseEvent("nameEvent", name)
                         raiseEvent("youthfullnessEvent", youthfullness)
-                        deleteLine()
                       ]])
   --Soul's Age
   tempTriggers.SoulAge =
@@ -36,7 +35,6 @@ local function load()
                         local years = matches[2]
                         local months = matches[3]
                         raiseEvent("ageEvent", years, months)
-                        deleteLine()
                       ]])
 
   --Hunger & Thirst, doesn't raise hunger specific events because
@@ -49,7 +47,6 @@ local function load()
                         local thirst = matches[3]
                         raiseEvent("hungerEvent", hunger)
                         raiseEvent("thirstEvent", thirst)
-                        deleteLine()
                       ]])
 
 
@@ -58,7 +55,6 @@ local function load()
                      ,[[
                         local hunger = matches[2]
                         raiseEvent("hungerEvent", hunger)
-                        deleteLine()
                       ]])
 
   tempTriggers.SlightlyHungry =
@@ -66,7 +62,6 @@ local function load()
                      ,[[
                         local hunger = matches[2]
                         raiseEvent("hungerEvent", hunger)
-                        deleteLine()
                       ]])
 
   tempTriggers.Hungry =
@@ -74,7 +69,6 @@ local function load()
                      ,[[
                         local hunger = matches[2]
                         raiseEvent("hungerEvent", hunger)
-                        deleteLine()
                       ]])
 
   tempTriggers.Famished =
@@ -82,7 +76,6 @@ local function load()
                      ,[[
                         local hunger = matches[2]
                         raiseEvent("hungerEvent", hunger)
-                        deleteLine()
                       ]])
 
   tempTriggers.FaintFromHunger =
@@ -90,7 +83,6 @@ local function load()
                      ,[[
                         local hunger = matches[2]
                         raiseEvent("hungerEvent", hunger)
-                        deleteLine()
                       ]])
 
   tempTriggers.Starving =
@@ -98,7 +90,6 @@ local function load()
                      ,[[
                         local hunger = matches[2]
                         raiseEvent("hungerEvent", hunger)
-                        deleteLine()
                       ]])
 
   tempTriggers.NotThirsty =
@@ -106,7 +97,6 @@ local function load()
                      ,[[
                         local thirst = matches[2]
                         raiseEvent("thirstEvent", thirst)
-                        deleteLine()
                       ]])
 
   tempTriggers.SlightlyThirsty =
@@ -114,7 +104,6 @@ local function load()
                      ,[[
                         local thirst = matches[2]
                         raiseEvent("thirstEvent", thirst)
-                        deleteLine()
                       ]])
 
   tempTriggers.Thirsty =
@@ -122,7 +111,6 @@ local function load()
                      ,[[
                         local thirst = matches[2]
                         raiseEvent("thirstEvent", thirst)
-                        deleteLine()
                       ]])
 
   tempTriggers.Parched =
@@ -130,7 +118,6 @@ local function load()
                      ,[[
                         local thirst = matches[2]
                         raiseEvent("thirstEvent", thirst)
-                        deleteLine()
                       ]])
 
   tempTriggers.FaintFromThirst =
@@ -138,7 +125,6 @@ local function load()
                      ,[[
                         local thirst = matches[2]
                         raiseEvent("thirstEvent", thirst)
-                        deleteLine()
                       ]])
 
   tempTriggers.CompletelyDehydrated =
@@ -146,7 +132,6 @@ local function load()
                      ,[[
                         local thirst = matches[2]
                         raiseEvent("thirstEvent", thirst)
-                        deleteLine()
                       ]])
 
   tempTriggers.DyingOfThirst =
@@ -154,7 +139,6 @@ local function load()
                      ,[[
                         local thirst = matches[2]
                         raiseEvent("thirstEvent", thirst)
-                        deleteLine()
                       ]])
 
   --Encumberance, this isn't set up like conc or aura because I
@@ -165,7 +149,6 @@ local function load()
                      ,[[
                         local encumbrance = matches[2]
                         raiseEvent("encumbranceEvent", encumbrance)
-                        deleteLine()
                       ]])
 
   --Concentration triggers
@@ -175,7 +158,6 @@ local function load()
                         local conc = matches[2]
                         raiseEvent("BEBTconcEvent", conc)
                         raiseEvent("concEvent", conc)
-                        deleteLine()
                       ]])
   tempTriggers.BOB =
     tempRegexTrigger("^(?:> )?(You're a bit off balance\\.)"
@@ -183,7 +165,6 @@ local function load()
                         local conc = matches[2]
                         raiseEvent("BOBconcEvent", conc)
                         raiseEvent("concEvent", conc)
-                        deleteLine()
                       ]])
   tempTriggers.SD =
     tempRegexTrigger("^(?:> )?(You're somewhat distracted\\.)"
@@ -191,7 +172,6 @@ local function load()
                         local conc = matches[2]
                         raiseEvent("SDconcEvent", conc)
                         raiseEvent("concEvent", conc)
-                        deleteLine()
                       ]])
   tempTriggers.OB =
     tempRegexTrigger("^(?:> )?(You're off balance\\.)"
@@ -199,7 +179,6 @@ local function load()
                         local conc = matches[2]
                         raiseEvent("OBconcEvent", conc)
                         raiseEvent("concEvent", conc)
-                        deleteLine()
                       ]])
   tempTriggers.DAOB =
     tempRegexTrigger("^(?:> )?(You're distracted and off balance\\.)"
@@ -207,7 +186,6 @@ local function load()
                         local conc = matches[2]
                         raiseEvent("DAOBconcEvent", conc)
                         raiseEvent("concEvent", conc)
-                        deleteLine()
                       ]])
   tempTriggers.SHOT =
     tempRegexTrigger("^(?:> )?(Your concentration is shot to hell\\.)"
@@ -215,7 +193,6 @@ local function load()
                         local conc = matches[2]
                         raiseEvent("SHOTconcEvent", conc)
                         raiseEvent("concEvent", conc)
-                        deleteLine()
                       ]])
   tempTriggers.TCTRN =
     tempRegexTrigger("^(?:> )?(You're too confused to remember your name\\.)"
@@ -223,7 +200,6 @@ local function load()
                         local conc = matches[2]
                         raiseEvent("TCTRNconcEvent", conc)
                         raiseEvent("concEvent", conc)
-                        deleteLine()
                       ]])
   tempTriggers.Unconscious =
     tempRegexTrigger("^(?:> )?(You fall unconscious!)"
@@ -231,7 +207,6 @@ local function load()
                         local conc = matches[2]
                         raiseEvent("UnconsciousEvent", conc)
                         raiseEvent("concEvent", conc)
-                        deleteLine()
                       ]])
 
   --Movement
@@ -245,7 +220,6 @@ local function load()
                      ,[[
                         local movement = matches[2]
                         raiseEvent("movementEvent", movement)
-                        deleteLine()
                       ]])
 
   tempTriggers.MovementTeleport =
@@ -253,7 +227,6 @@ local function load()
                      ,[[
                         local movement = matches[2]
                         raiseEvent("movementEvent", movement)
-                        deleteLine()
                       ]])
 
   tempTriggers.MovementHorse =
@@ -261,7 +234,6 @@ local function load()
                      ,[[
                         local movement = matches[2]
                         raiseEvent("movementEvent", movement)
-                        deleteLine()
                       ]])
 
   --Aura Triggers
@@ -271,7 +243,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("VeryDimRedauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.DimRed =
@@ -280,7 +251,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("DimRedauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.Red =
@@ -289,7 +259,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("RedauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.OrangishRed =
@@ -298,7 +267,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("OrangishRedauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.ReddishOrange =
@@ -307,7 +275,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("ReddishOrangeauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.Orange =
@@ -316,7 +283,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("OrangeauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.YellowishOrange =
@@ -325,7 +291,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("YellowishOrangeauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.OrangishYellow =
@@ -334,7 +299,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("OrangishYellowauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.Yellow =
@@ -343,7 +307,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("YellowauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.GreenishYellow =
@@ -352,7 +315,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("GreenishYellowauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.YellowishGreen =
@@ -361,7 +323,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("YellowishGreenauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.Green =
@@ -370,7 +331,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("GreenauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.BluishGreen =
@@ -379,7 +339,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("BluishGreenauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.GreenishBlue =
@@ -388,7 +347,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("GreenishBlueauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.Blue =
@@ -397,7 +355,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("BlueauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.IntenseBlue =
@@ -406,7 +363,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("IntenseBlueauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.DimIndigo =
@@ -415,7 +371,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("DimIndigoauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.Indigo =
@@ -424,7 +379,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("IndigoauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.IntenseIndigo =
@@ -433,7 +387,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("IntenseIndigoauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.DimViolet =
@@ -442,7 +395,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("DimVioletauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.Violet =
@@ -451,7 +403,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("VioletauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.IntenseViolet =
@@ -460,7 +411,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("IntenseVioletauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.DimOctarine =
@@ -469,7 +419,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("DimOctarineauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.Octarine =
@@ -478,7 +427,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("OctarineauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.IntenseOctarine =
@@ -487,7 +435,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("IntenseOctarineauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   tempTriggers.Scintilating =
@@ -496,7 +443,6 @@ local function load()
                         local aura = matches[2]
                         raiseEvent("ScintilatingauraEvent", aura)
                         raiseEvent("auraEvent", aura)
-                        deleteLine()
                       ]])
 
   --Alignment
@@ -506,7 +452,6 @@ local function load()
                         local conviction = matches[2]
                         local alignment = matches[3]
                         raiseEvent("alignmentEvent", conviction, alignment)
-                        deleteLine()
                       ]])
 
   --Skill Improvement for self
@@ -514,8 +459,7 @@ local function load()
     tempRegexTrigger("^(?:> )?\\* You think your ([\\w'\\-# ]+) skill has improved\\. \\*$"
                      ,[[
                         local skill = matches[2]
-                        raiseEvent("skillImproveEvent", dm.name, skill)
-                        deleteLine()
+                        raiseEvent("skillImproveEvent", "dm.name", skill)
                       ]])
 
   --Skill Improvement for others
@@ -525,7 +469,6 @@ local function load()
                         local who = matches[2]
                         local skill = matches[3]
                         raiseEvent("skillImproveEvent", who, skill)
-                        deleteLine()
                       ]])
 
   --Skill Improvement for others
@@ -535,7 +478,6 @@ local function load()
                         local who = matches[2]
                         local skill = matches[3]
                         raiseEvent("skillMistakeEvent", who, skill)
-                        deleteLine()
                       ]])
 
 
@@ -555,10 +497,10 @@ local function reload()
   load()
 end
 
-status = {
+Status = {
   load = load,
   unload = unload,
   reload = reload
 }
 
-return status
+return Status
