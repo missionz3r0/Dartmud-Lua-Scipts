@@ -758,7 +758,6 @@ registerAnonymousEventHandler("skillMistakeEvent", "Handlers.skillMistakeHandler
 --UI Events
 registerAnonymousEventHandler("sysWindowResizeEvent", "Handlers.windowResizeHandler")
   local windowResizeListeners = {}
-  local count = 0
   function Handlers.addwindowResizeListener(listenerName, functionToAdd)
     windowResizeListeners[listenerName] = functionToAdd
   end
@@ -768,8 +767,6 @@ registerAnonymousEventHandler("sysWindowResizeEvent", "Handlers.windowResizeHand
   end
 
   function Handlers.windowResizeHandler(event, x, y)
-    count = count + 1
-    cecho(count.."\n")
     for k,v in pairs(windowResizeListeners) do
       v(event, x, y)
     end
