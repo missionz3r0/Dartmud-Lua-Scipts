@@ -2,8 +2,7 @@
 
 --Need a score parser for increaseSkill() to work. To be more specific I need to parse the output from the game's "score" command.
 --Still need to implement an adjuster that will fix the skill levels if it finds them to be in error.
-local dba = dm_scripts.dba
-skills = {}
+Skills = {}
 local aliases = {}
 
 -- build database if needed
@@ -40,7 +39,7 @@ local levels= {
 	["legendary"] 		   = {["abbr"] = "leggy",	  	["min"] = "1700",	["max"] = "99999"}
 }
 
-local function getSkill(skill_name, who)
+local function getSkill(who, skill_name)
     if not who then
         who = dm.me
     end
@@ -63,7 +62,7 @@ end
 
 local function imp2lvl(imp)
     imp = tonumber(imp)
-    local results = u.reverse(u.filter(_dm.levels, function(i) return tonumber(i.min) <= imp end))
+    local results = u.reverse(u.filter(levels, function(i) return tonumber(i.min) <= imp end))
     if results then
         local name = results[1]["abbr"]
         local min = tonumber(results[1].min)
@@ -83,14 +82,15 @@ local function nextLevel(imp)
     end
 end
 
-registerAnonymousEventHandler("skillInfoEvent", "skills.skillInfoEventHandler")
+registerAnonymousEventHandler("skillInfoEvent", "Skills.skillInfoEventHandler")
 
-local function skillInfoEventHandler(skill)
-	local result = getSkill(skill)
+local function skillInfoEventHandler(skill_name, who)
+	local result = getSkill(skill_name, who)
 	if result == -1 then
         cecho("<red>_dm.getSkill(): Invalid arguments...<reset>\n")
         return
 	end
+
 	local count = tonumber(result.count)
 	local level = imp2lvl(count, "name")
 	local nextLevel, tilNext
@@ -106,9 +106,7 @@ local function skillInfoEventHandler(skill)
 	cecho("<yellow>Improves: "..output.."\n")
 end
 
-local function increaseSkill(tableVar)
-	who = tableVar[1]
-	skill_name = tableVar[2]
+local function increaseSkill(skill_name, who)
 	if not who then
 		who = dm.me
 	end
@@ -133,19 +131,19 @@ local function load()
 	tempAliases = {}
 	tempAliases.SkillInfo = tempAlias('^\\^/info(?: )?(.*)',
 																				[[
-																					local skill = multimatches[2]
+																					local skill_name = multimatches[2]
 																					raiseEvent('skillInfoEvent',skill)
 																				]])
 
   aliases = tempAliases
-  handlers.addskillImproveListener(listenerName,increaseSkill)
+  Handlers.addskillImproveListener(listenerName,increaseSkill)
 end
 
 local function unload()
   for i,v in ipairs(aliases) do
     killAlias(v)
   end
-  handlers.removeskillImproveListener(listenerName)
+  Handlers.removeskillImproveListener(listenerName)
 end
 
 local function reload()
@@ -161,4 +159,4 @@ skills =
 	skillInfoEventHandler = skillInfoEventHandler
 }
 
-return skills
+return Skills
