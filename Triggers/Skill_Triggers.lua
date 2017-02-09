@@ -9,8 +9,9 @@ local function load()
   tempTriggers.SkillImproveSelf =
   tempRegexTrigger("^(?:> )?\\* You think your ([\\w'\\-# ]+) skill has improved\\. \\*$"
    ,[[
+      local name = Status.name or "dm.name"
       local skill = matches[2]
-      raiseEvent("skillImproveEvent", "dm.name", skill)
+      raiseEvent("skillImproveEvent", name, skill)
     ]])
 
   --Skill Improvement for others
