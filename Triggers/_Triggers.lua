@@ -2,18 +2,18 @@ local _Triggers = {}
 
 local modules = {}
 
-modules.age = require("Age")
-modules.alignment = require("Alignment")
-modules.aura = require("Aura")
-modules.concentration = require("Concentration")
-modules.encumberance = require("Encumberance")
-modules.hunger = require("Hunger")
-modules.movement = require("Movement")
-modules.name = require("Name")
-modules.race = require("Race")
-modules.skill = require("Skill")
-modules.thirst = require("Thirst")
-modules.youth = require("Youth")
+modules.age = require("Age_Triggers")
+modules.alignment = require("Alignment_Triggers")
+modules.aura = require("Aura_Triggers")
+modules.concentration = require("Concentration_Triggers")
+modules.encumberance = require("Encumberance_Triggers")
+modules.hunger = require("Hunger_Triggers")
+modules.movement = require("Movement_Triggers")
+modules.name = require("Name_Triggers")
+modules.race = require("Race_Triggers")
+modules.skill = require("Skill_Triggers")
+modules.thirst = require("Thirst_Triggers")
+modules.youth = require("Youth_Triggers")
 
 local function load()
   for k,v in pairs(modules) do
