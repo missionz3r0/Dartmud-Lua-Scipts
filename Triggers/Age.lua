@@ -32,4 +32,4 @@ Age = {
   ,reload = reload
 }
 
-return Thirst
+return Age
