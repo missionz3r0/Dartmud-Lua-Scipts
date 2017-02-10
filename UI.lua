@@ -1,7 +1,5 @@
 UI = {}
 
-local triggers = {}
-
 local topBorder = 164
 local bottomBorder = 0
 
@@ -84,16 +82,6 @@ local function onImprove(event, who, skill)
 end
 
 local function load()
-  local tempTriggers = {}
-
-  tempTriggers.generalChatTrigger = tempRegexTrigger("^(?:> )?.* (say|says|ask|asks|exclaim|exclaims|shout|shouts|yell|yells|tells) .*"
-                              ,[[
-                                raiseEvent("chatEvent", matches[1])
-                              ]])
-  tempTriggers.magicChatTrigger = tempRegexTrigger("^(?:> )?.*(A voice seems to say|A mental touch tells you).*"
-                              ,[[
-                                raiseEvent("chatEvent", matches[1])
-                              ]])
 
 
   setBorderTop(topBorder)
@@ -155,9 +143,6 @@ local function load()
 end
 
 local function unload()
-  for i,v in ipairs(triggers) do
-    killTrigger(v)
-  end
   Handlers.removewindowResizeListener(updateDisplayListenerName)
   Handlers.removechatListener(updateChatBoxListenerName)
   Handlers.removeskillImproveListener(improveBoxListenerName)

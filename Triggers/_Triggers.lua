@@ -5,6 +5,7 @@ local modules = {}
 modules.age = require("Age_Triggers")
 modules.alignment = require("Alignment_Triggers")
 modules.aura = require("Aura_Triggers")
+modules.chat = require("Chat_Triggers")
 modules.concentration = require("Concentration_Triggers")
 modules.encumberance = require("Encumberance_Triggers")
 modules.hunger = require("Hunger_Triggers")
