@@ -4,7 +4,7 @@ local triggers = {}
 
 local function load()
   local tempTriggers = {}
-  
+
   tempTriggers.Alignment =
     tempRegexTrigger("^(?:> )?You (\\w+) believe in (\\w+)\\."
                      ,[[
@@ -20,6 +20,7 @@ local function unload()
   for i,v in pairs(triggers) do
     killTrigger(v)
   end
+  triggers = {}
 end
 
 local function reload()

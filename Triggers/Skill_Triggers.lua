@@ -37,6 +37,7 @@ local function unload()
   for i,v in pairs(triggers) do
     killTrigger(v)
   end
+  triggers = {}
 end
 
 local function reload()
