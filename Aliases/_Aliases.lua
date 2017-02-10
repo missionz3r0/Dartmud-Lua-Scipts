@@ -2,6 +2,10 @@ local _Aliases = {}
 
 local modules = {}
 
+modules.channelling = require("Channelling_Aliases")
+modules.channelling = require("Magic_Aliases")
+modules.channelling = require("Skill_Aliases")
+
 local function load()
   for k,v in pairs(modules) do
     v.load()
