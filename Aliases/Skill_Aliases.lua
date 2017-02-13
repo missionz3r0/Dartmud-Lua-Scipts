@@ -2,7 +2,17 @@ local Skill = {}
 
 local function load()
   --Add update skill Alias
+  
   --Add Skill info Alias
+  	tempAliases = {}
+  	tempAliases.SkillInfo = tempAlias('^\\^/info(?: )?(.*)',
+  																				[[
+  																					local skill_name = multimatches[2]
+  																					raiseEvent('skillInfoEvent',skill)
+  																				]])
+
+    aliases = tempAliases
+
   --Add announcer alias
 end
 

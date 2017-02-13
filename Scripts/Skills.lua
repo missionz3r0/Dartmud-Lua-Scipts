@@ -2,7 +2,6 @@
 --Need a score parser for increaseSkill() to work. To be more specific I need to parse the output from the game's "score" command.
 --Still need to implement an adjuster that will fix the skill levels if it finds them to be in error.
 Skills = {}
-local aliases = {}
 
 -- build database if needed
 dba.execute('CREATE TABLE IF NOT EXISTS "improves" (_row_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, skill TEXT, count INTEGER DEFAULT 1, notes TEXT, last_imp TIMESTAMP, who VARCHAR(16), abbr TEXT, weight TEXT, power INTEGER);');
@@ -81,9 +80,7 @@ local function nextLevel(imp)
     end
 end
 
-registerAnonymousEventHandler("skillInfoEvent", "Skills.skillInfoEventHandler")
-
-local function skillInfoEventHandler(skill_name, who)
+local function skillInfo(skill_name, who)
 	local result = getSkill(skill_name, who)
 	if result == -1 then
         cecho("<red>_dm.getSkill(): Invalid arguments...<reset>\n")
@@ -127,22 +124,13 @@ end
 local listenerName = 'skills'
 
 local function load()
-	tempAliases = {}
-	tempAliases.SkillInfo = tempAlias('^\\^/info(?: )?(.*)',
-																				[[
-																					local skill_name = multimatches[2]
-																					raiseEvent('skillInfoEvent',skill)
-																				]])
-
-  aliases = tempAliases
   Handlers.addskillImproveListener(listenerName,increaseSkill)
+  Handlers.addskillInfoListener(listenerName, skillInfo)
 end
 
 local function unload()
-  for i,v in ipairs(aliases) do
-    killAlias(v)
-  end
   Handlers.removeskillImproveListener(listenerName)
+  Handlers.removeskillInfoListener(listenerName, skillInfo)
 end
 
 local function reload()
@@ -155,7 +143,6 @@ skills =
 	load = load,
 	unload = unload,
 	reload = reload,
-	skillInfoEventHandler = skillInfoEventHandler
 }
 
 return Skills
