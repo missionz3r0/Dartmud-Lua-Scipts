@@ -17,14 +17,14 @@ local function practiceCast(conc)
   send("cast "..currentSpellPractice.." @ ".. currentSpellPower.. " "..currentSpellArguments)
 end
 
-local function practiceCastSetup(spell, power, arguments)
+local function practiceCastSetup(spellName, power, arguments)
   if spellName == "off" then
     Handlers.removeBEBTconcEventListener("practiceCast")
 
   elseif spellName == "resume" then
     Handlers.addBEBTconcEventListener("practiceCast", practiceCast)
 
-  elseif action == "info" or "status" then
+  elseif spellName == "info" or spellName == "status" or spellName == "" then
     cecho("Currently casting "..currentSpellPractice.." @ "..currentSpellPower.." "..arguments)
 
   else
