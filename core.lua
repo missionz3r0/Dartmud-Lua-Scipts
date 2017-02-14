@@ -5,15 +5,17 @@ package.path = package.path .. ";" .. getMudletHomeDir() .. "/scripts/Timers/?.l
 package.path = package.path .. ";" .. getMudletHomeDir() .. "/scripts/Triggers/?.lua"
 
 
-Aliases = require("_Aliases")
 require("dba")
 require("_Handlers")
+
+Aliases = require("_Aliases")
 Timers = require("_Timers")
 Triggers = require("_Triggers")
+Status = require("Status")
 UI = require("UI")
 
 Aliases.load()
+Status.load()
 Timers.load()
 Triggers.load()
-
 UI.load()
