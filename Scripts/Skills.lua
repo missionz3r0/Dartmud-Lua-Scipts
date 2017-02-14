@@ -3,6 +3,8 @@
 --Still need to implement an adjuster that will fix the skill levels if it finds them to be in error.
 Skills = {}
 
+local sourceName = 'skills'
+
 -- build database if needed
 dba.execute('CREATE TABLE IF NOT EXISTS "improves" (_row_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, skill TEXT, count INTEGER DEFAULT 1, notes TEXT, last_imp TIMESTAMP, who VARCHAR(16), abbr TEXT, weight TEXT, power INTEGER);');
 
@@ -121,16 +123,14 @@ local function increaseSkill(skill_name, who)
 	return count
 end
 
-local listenerName = 'skills'
-
 local function load()
-  Handlers.addskillImproveListener(listenerName,increaseSkill)
-  Handlers.addskillInfoListener(listenerName, skillInfo)
+  Handlers.addskillImproveListener(sourceName,increaseSkill)
+  Handlers.addskillInfoListener(sourceName, skillInfo)
 end
 
 local function unload()
-  Handlers.removeskillImproveListener(listenerName)
-  Handlers.removeskillInfoListener(listenerName, skillInfo)
+  Handlers.removeskillImproveListener(sourceName)
+  Handlers.removeskillInfoListener(sourceName)
 end
 
 local function reload()
