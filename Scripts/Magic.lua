@@ -55,13 +55,13 @@ local function channellingSetup(power, target)
 end
 
 local function load()
-  Handlers.addpracticeCastEventListener("practiceCastSetup") = practiceCastSetup
-  Handlers.addchannellingEventListener("channellingSetup") = channellingSetup
+  Handlers.addpracticeCastEventListener("practiceCastSetup", practiceCastSetup)
+  Handlers.addchannellingEventListener("channellingSetup", channellingSetup)
 end
 
 local function unload()
-  Handlers.removepracticeCastEventListener("practiceCastSetup") = practiceCastSetup
-  Handlers.addchannellingEventListener("channellingSetup") = channellingSetup
+  Handlers.removepracticeCastEventListener("practiceCastSetup", practiceCastSetup)
+  Handlers.addchannellingEventListener("channellingSetup", channellingSetup)
 end
 
 local function reload()
