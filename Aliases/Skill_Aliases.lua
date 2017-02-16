@@ -1,10 +1,11 @@
 local Skill = {}
+local aliases = {}
 
 local function load()
+  tempAliases = {}
   --Add update skill Alias
 
   --Add Skill info Alias
-  	tempAliases = {}
   	tempAliases.SkillInfo = tempAlias('^\\/info(?: )?(.*)',
   																				[[
   																					local skill_name = matches[2]
@@ -17,11 +18,14 @@ local function load()
 end
 
 local function unload()
+  for i,v in pairs(aliases) do
+    killAlias(v)
+  end
 end
 
 local function reload()
   unload()
-  reload()
+  load()
 end
 
 Skill =
