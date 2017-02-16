@@ -124,13 +124,13 @@ local function increaseSkill(skill_name, who)
 end
 
 local function load()
-  Handlers.addskillImproveListener(sourceName,increaseSkill)
-  Handlers.addskillInfoListener(sourceName, skillInfo)
+  Handlers.addSkillImproveListener(sourceName,increaseSkill)
+  Handlers.addSkillInfoListener(sourceName, skillInfo)
 end
 
 local function unload()
-  Handlers.removeskillImproveListener(sourceName)
-  Handlers.removeskillInfoListener(sourceName)
+  Handlers.removeSkillImproveListener(sourceName)
+  Handlers.removeSkillInfoListener(sourceName)
 end
 
 local function reload()

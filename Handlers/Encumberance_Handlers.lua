@@ -1,17 +1,16 @@
-registerAnonymousEventHandler("encumbranceEvent", "Handlers.encumbranceEventHandler")
+registerAnonymousEventHandler("encumbranceEvent", "Handlers.encumbranceHandler")
+local encumbranceListeners = {}
 
-local encumbranceEventListeners = {}
-
-function Handlers.addencumbranceEventListener(listenerName, functionToAdd)
-  encumbranceEventListeners[listenerName] = functionToAdd
+function Handlers.addEncumbranceListener(listenerName, functionToAdd)
+  encumbranceListeners[listenerName] = functionToAdd
 end
 
-function Handlers.removeencumbranceEventListener(listenerName)
-  encumbranceEventListeners[listenerName] = nil
+function Handlers.removeEncumbranceListener(listenerName)
+  encumbranceListeners[listenerName] = nil
 end
 
-function Handlers.encumbranceEventHandler(event, encumberance)
-  for l,v in pairs(encumbranceEventListeners) do
+function Handlers.encumbranceHandler(event, encumbrance)
+  for l,v in pairs(encumbranceListeners) do
     v(encumberance)
   end
 end

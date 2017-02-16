@@ -1,15 +1,15 @@
-registerAnonymousEventHandler("practiceInscribingEvent", "Handlers.practiceInscribingEventHandler")
-  local practiceInscribingEventListeners = {}
-  function Handlers.addpracticeInscribingEventListener(listenerName, functionToAdd)
+registerAnonymousEventHandler("practiceInscribingEvent", "Handlers.practiceInscribingHandler")
+  local practiceInscribingListeners = {}
+  function Handlers.addPracticeInscribingListener(listenerName, functionToAdd)
     practiceCastEventListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removepracticeInscribingEventListener(listenerName)
+  function Handlers.removePracticeInscribingListener(listenerName)
     practiceCastEventListeners[listenerName] = nil
   end
 
-  function Handlers.practiceInscribingEventHandler(event, spell, power)
-    for l,v in pairs(practiceInscribingEventListeners) do
+  function Handlers.practiceInscribingHandler(event, spell, power)
+    for l,v in pairs(practiceInscribingListeners) do
       v(spell, power)
     end
   end

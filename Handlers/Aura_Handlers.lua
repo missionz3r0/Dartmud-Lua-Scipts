@@ -1,79 +1,79 @@
 
-registerAnonymousEventHandler("auraEvent", "Handlers.auraEventHandler")
-  local auraEventListeners = {}
-  function Handlers.addauraEventListener(listenerName, functionToAdd)
-    auraEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("auraEvent", "Handlers.AuraHandler")
+  local AuraListeners = {}
+  function Handlers.addAuraListener(listenerName, functionToAdd)
+    AuraListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeauraEventListener(listenerName)
-    auraEventListeners[listenerName] = nil
+  function Handlers.removeAuraListener(listenerName)
+    AuraListeners[listenerName] = nil
   end
 
-  function Handlers.auraEventHandler(event, aura)
-    for l,v in pairs(auraEventListeners) do
+  function Handlers.AuraHandler(event, aura)
+    for l,v in pairs(AuraListeners) do
       v(aura)
     end
   end
 
-registerAnonymousEventHandler("VeryDimRedauraEvent", "Handlers.VeryDimRedauraEventHandler")
-  local VeryDimRedauraEventListeners = {}
-  function Handlers.addVeryDimRedauraEventListener(listenerName, functionToAdd)
-    VeryDimRedauraEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("VeryDimRedauraEvent", "Handlers.VeryDimRedAuraHandler")
+  local VeryDimRedAuraListeners = {}
+  function Handlers.addVeryDimRedAuraListener(listenerName, functionToAdd)
+    VeryDimRedAuraListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeVeryDimRedauraEventListener(listenerName)
-    VeryDimRedauraEventListeners[listenerName] = nil
+  function Handlers.removeVeryDimRedAuraListener(listenerName)
+    VeryDimRedAuraListeners[listenerName] = nil
   end
 
-  function Handlers.VeryDimRedauraEventHandler(event, aura)
-    for l,v in pairs(VeryDimRedauraEventListeners) do
+  function Handlers.VeryDimRedAuraHandler(event, aura)
+    for l,v in pairs(VeryDimRedAuraListeners) do
       v(aura)
     end
   end
 
-registerAnonymousEventHandler("DimRedauraEvent", "Handlers.DimRedauraEventHandler")
-  local DimRedauraEventListeners = {}
-  function Handlers.addDimRedauraEventListener(listenerName, functionToAdd)
-    DimRedauraEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("DimRedauraEvent", "Handlers.DimRedAuraHandler")
+  local DimRedAuraListeners = {}
+  function Handlers.addDimRedAuraListener(listenerName, functionToAdd)
+    DimRedAuraListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeDimRedauraEventListener(listenerName)
-    DimRedauraEventListeners[listenerName] = nil
+  function Handlers.removeDimRedAuraListener(listenerName)
+    DimRedAuraListeners[listenerName] = nil
   end
 
-  function Handlers.DimRedauraEventHandler(event, aura)
-    for l,v in pairs(DimRedauraEventListeners) do
+  function Handlers.DimRedAuraHandler(event, aura)
+    for l,v in pairs(DimRedAuraListeners) do
       v(aura)
     end
   end
 
-registerAnonymousEventHandler("RedauraEvent", "Handlers.RedauraEventHandler")
-  local RedauraEventListeners = {}
-  function Handlers.addRedauraEventListener(listenerName, functionToAdd)
-    RedauraEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("RedauraEvent", "Handlers.RedAuraHandler")
+  local RedAuraListeners = {}
+  function Handlers.addRedAuraListener(listenerName, functionToAdd)
+    RedAuraListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeRedauraEventListener(listenerName)
-    RedauraEventListeners[listenerName] = nil
+  function Handlers.removeRedAuraListener(listenerName)
+    RedAuraListeners[listenerName] = nil
   end
 
-  function Handlers.RedauraEventHandler(event, aura)
-    for l,v in pairs(RedauraEventListeners) do
+  function Handlers.RedAuraHandler(event, aura)
+    for l,v in pairs(RedAuraListeners) do
       v(aura)
     end
   end
 
-registerAnonymousEventHandler("OrangishRedauraEvent", "Handlers.OrangishRedauraEventHandler")
+registerAnonymousEventHandler("OrangishRedauraEvent", "Handlers.OrangishRedAuraHandler")
   local OrangishRedauraListeners = {}
-  function Handlers.addOrangishRedauraEventListener(listenerName, functionToAdd)
+  function Handlers.addOrangishRedAuraListener(listenerName, functionToAdd)
     OrangishRedauraListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeOrangishRedauraEventListener(listenerName)
+  function Handlers.removeOrangishRedAuraListener(listenerName)
     OrangishRedauraListeners[listenerName] = nil
   end
 
-  function Handlers.OrangishRedauraEventHandler(event, aura)
+  function Handlers.OrangishRedAuraHandler(event, aura)
     for l,v in pairs(OrangishRedauraListeners) do
       v(aura)
     end

@@ -1,16 +1,16 @@
 
-registerAnonymousEventHandler("movementEvent", "Handlers.movementEventHandler")
-  local movementEventListeners = {}
-  function Handlers.addmovementEventListener(listenerName, functionToAdd)
-    movementEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("movementEvent", "Handlers.movementHandler")
+  local movementListeners = {}
+  function Handlers.addMovementListener(listenerName, functionToAdd)
+    movementListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removemovementEventListener(listenerName)
-    movementEventListeners[listenerName] = nil
+  function Handlers.removeMovementListener(listenerName)
+    movementListeners[listenerName] = nil
   end
 
-  function Handlers.movementEventHandler(event, movement)
-    for l,v in pairs(movementEventListeners) do
+  function Handlers.movementHandler(event, movement)
+    for l,v in pairs(movementListeners) do
       v(movement)
     end
   end

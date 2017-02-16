@@ -10,11 +10,11 @@ Status.hunger = ''
 Status.movement = ''
 Status.name = ''
 Status.race = ''
+Status.soulage = ''
 Status.thirst = ''
-Status.youth = ''
 
-local function setAge(age)
-  Status.age = age
+local function setAge(soulAge)
+  Status.soulage = soulAge
 end
 
 local function setAlignment(alignment)
@@ -49,8 +49,8 @@ local function setThirst(thirst)
   Status.thirst = thirst
 end
 
-local function setYouth(youth)
-  Status.youth = youth
+local function setAge(age)
+  Status.age = age
 end
 
 local function save()
@@ -64,38 +64,38 @@ local function save()
   saveTable["movement"] = Status.movement
   saveTable["name"] = Status.name
   saveTable["race"] = Status.race
+  saveTable["soulage"] = Status.soulage
   saveTable["thirst"] = Status.thirst
-  saveTable["youth"] = Status.youth
 
   return saveTable
 end
 
 function Status.load()
-  Handlers.addageEventListener(sourceName, setAge)
-  Handlers.addalignmentListener(sourceName, setAlignment)
-  Handlers.addauraEventListener(sourceName, setAura)
-  Handlers.addencumbranceEventListener(sourceName, setEncumberance)
-  Handlers.addhungerEventListener(sourceName, setHunger)
-  Handlers.addmovementEventListener(sourceName, setMovement)
-  Handlers.addnameEventListener(sourceName, setName)
-  Handlers.addraceEventListener(sourceName, setRace)
-  Handlers.addthirstEventListener(sourceName, setThirst)
-  Handlers.addyouthfullnessEventListener(sourceName, setYouth)
+  Handlers.addAgeListener(sourceName, setAge)
+  Handlers.addAlignmentListener(sourceName, setAlignment)
+  Handlers.addAuraListener(sourceName, setAura)
+  Handlers.addEncumbranceListener(sourceName, setEncumberance)
+  Handlers.addHungerListener(sourceName, setHunger)
+  Handlers.addMovementListener(sourceName, setMovement)
+  Handlers.addNameListener(sourceName, setName)
+  Handlers.addRaceListener(sourceName, setRace)
+  Handlers.addSoulAgeListener(sourceName, setSoulAge)
+  Handlers.addThirstListener(sourceName, setThirst)
 
   Handlers.addsaveEventListener(sourceName, save)
 end
 
 function Status.unload()
-  Handlers.removeageEventListener(sourceName)
-  Handlers.removealignmentListener(sourceName)
-  Handlers.removeauraEventListener(sourceName)
-  Handlers.removeencumbranceEventListener(sourceName)
-  Handlers.removehungerEventListener(sourceName)
-  Handlers.removemovementEventListener(sourceName)
-  Handlers.removenameEventListener(sourceName)
-  Handlers.removeraceEventListener(sourceName)
-  Handlers.removethirstEventListener(sourceName)
-  Handlers.removeyouthfullnessEventListener(sourceName)
+  Handlers.removeAgeListener(sourceName)
+  Handlers.removeAlignmentListener(sourceName)
+  Handlers.removeAuraListener(sourceName)
+  Handlers.removeEncumbranceListener(sourceName)
+  Handlers.removeHungerListener(sourceName)
+  Handlers.removeMovementListener(sourceName)
+  Handlers.removeNameListener(sourceName)
+  Handlers.removeRaceListener(sourceName)
+  Handlers.removeSoulAgeListener(sourceName)
+  Handlers.removeThirstListener(sourceName)
 
   Handlers.removesaveEventListener(sourceName)
 end

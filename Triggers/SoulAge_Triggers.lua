@@ -1,15 +1,15 @@
-local Youth = {}
+local SoulAge = {}
 
 local triggers = {}
 
 local function load()
   local tempTriggers = {}
-
-  tempTriggers.Youthfullness =
-    tempRegexTrigger("^(?:> )?You are (?:\\w+) the (?:\\w+)?\\.  You are a ([\\s\\S]+)\\."
+  tempTriggers.SoulAge =
+    tempRegexTrigger("^(?:> )?Your soul's age is: (\\d+) years, (\\d+) months by the Common Reckoning"
                      ,[[
-                        local youthfullness = matches[2]
-                        raiseEvent("youthfullnessEvent", youthfullness)
+                        local years = matches[2]
+                        local months = matches[3]
+                        raiseEvent("SoulAgeEvent", years, months)
                       ]])
 
   triggers = tempTriggers
@@ -27,10 +27,10 @@ local function reload()
   reload()
 end
 
-Youth = {
+SoulAge = {
   load = load
   ,unload = unload
   ,reload = reload
 }
 
-return Youth
+return SoulAge

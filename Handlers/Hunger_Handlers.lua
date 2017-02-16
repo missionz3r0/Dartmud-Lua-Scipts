@@ -1,16 +1,16 @@
 
-registerAnonymousEventHandler("hungerEvent", "Handlers.hungerEventHandler")
-  local hungerEventListeners = {}
-  function Handlers.addhungerEventListener(listenerName, functionToAdd)
-    hungerEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("hungerEvent", "Handlers.hungerHandler")
+  local hungerListeners = {}
+  function Handlers.addHungerListener(listenerName, functionToAdd)
+    hungerListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removehungerEventListener(listenerName)
-    hungerEventListeners[listenerName] = nil
+  function Handlers.removeHungerListener(listenerName)
+    hungerListeners[listenerName] = nil
   end
 
-  function Handlers.hungerEventHandler(event, hunger)
-    for l,v in pairs(hungerEventListeners) do
+  function Handlers.hungerHandler(event, hunger)
+    for l,v in pairs(hungerListeners) do
       v(hunger)
     end
   end

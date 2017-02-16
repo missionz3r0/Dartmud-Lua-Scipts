@@ -1,15 +1,15 @@
-registerAnonymousEventHandler("channellingEvent", "Handlers.channellingEventHandler")
-  local channellingEventListeners = {}
-  function Handlers.addchannellingEventListener(listenerName, functionToAdd)
-    practiceCastEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("channellingEvent", "Handlers.channellingHandler")
+  local channellingListeners = {}
+  function Handlers.addChannellingListener(listenerName, functionToAdd)
+    practiceCastListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removechannellingEventListener(listenerName)
-    practiceCastEventListeners[listenerName] = nil
+  function Handlers.removeChannellingListener(listenerName)
+    practiceCastListeners[listenerName] = nil
   end
 
-  function Handlers.channellingEventHandler(event, power, target)
-    for l,v in pairs(channellingEventListeners) do
+  function Handlers.channellingHandler(event, power, target)
+    for l,v in pairs(channellingListeners) do
       v(power, target)
     end
   end

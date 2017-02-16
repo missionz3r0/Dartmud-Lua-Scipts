@@ -13,8 +13,8 @@ modules.movement = require("Movement_Triggers")
 modules.name = require("Name_Triggers")
 modules.race = require("Race_Triggers")
 modules.skill = require("Skill_Triggers")
+modules.soulage = require("SoulAge_Triggers")
 modules.thirst = require("Thirst_Triggers")
-modules.youth = require("Youth_Triggers")
 
 local function load()
   for k,v in pairs(modules) do

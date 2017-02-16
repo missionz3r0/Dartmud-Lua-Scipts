@@ -1,11 +1,11 @@
 
 registerAnonymousEventHandler("chatEvent", "Handlers.chatHandler")
   local chatListeners = {}
-  function Handlers.addchatListener(listenerName, functionToAdd)
+  function Handlers.addChatListener(listenerName, functionToAdd)
     chatListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removechatListener(listenerName)
+  function Handlers.removeChatListener(listenerName)
     chatListeners[listenerName] = nil
   end
 

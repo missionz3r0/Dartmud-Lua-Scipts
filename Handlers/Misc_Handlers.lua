@@ -1,11 +1,11 @@
 
 registerAnonymousEventHandler("sysDataSendRequest", "Handlers.sysDataSendRequestHandler")
   local sysDataSendRequestListeners = {}
-  function Handlers.addsysDataSendRequestListener(listenerName, functionToAdd)
+  function Handlers.addSysDataSendRequestListener(listenerName, functionToAdd)
     sysDataSendRequestListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removesysDataSendRequestListener(listenerName)
+  function Handlers.removeSysDataSendRequestListener(listenerName)
     sysDataSendRequestListeners[listenerName] = nil
   end
 
@@ -15,18 +15,18 @@ registerAnonymousEventHandler("sysDataSendRequest", "Handlers.sysDataSendRequest
     end
   end
 
-registerAnonymousEventHandler("sysConnectionEvent", "Handlers.sysConnectionEventHandler")
-  local sysConnectionEventListeners = {}
-  function Handlers.addsysConnectionEventListener(listenerName, functionToAdd)
-    sysConnectionEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("sysConnectionEvent", "Handlers.sysConnectionHandler")
+  local sysConnectionListeners = {}
+  function Handlers.addSysConnectionListener(listenerName, functionToAdd)
+    sysConnectionListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removesysConnectionEventListener(listenerName)
-    sysConnectionEventListeners[listenerName] = nil
+  function Handlers.removeSysConnectionListener(listenerName)
+    sysConnectionListeners[listenerName] = nil
   end
 
-  function Handlers.sysConnectionEventHandler(e, f, g)
-    for l,v in pairs(sysConnectionEventListeners) do
+  function Handlers.sysConnectionHandler(e, f, g)
+    for l,v in pairs(sysConnectionListeners) do
       v(command)
     end
   end

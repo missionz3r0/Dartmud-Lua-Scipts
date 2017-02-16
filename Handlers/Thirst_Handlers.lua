@@ -1,16 +1,16 @@
 
-registerAnonymousEventHandler("thirstEvent", "Handlers.thirstEventHandler")
-  local thirstEventListeners = {}
-  function Handlers.addthirstEventListener(listenerName, functionToAdd)
-    thirstEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("thirstEvent", "Handlers.thirstHandler")
+  local thirstListeners = {}
+  function Handlers.addThirstListener(listenerName, functionToAdd)
+    thirstListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removethirstEventListener(listenerName)
-    thirstEventListeners[listenerName] = nil
+  function Handlers.removeThirstListener(listenerName)
+    thirstListeners[listenerName] = nil
   end
 
-  function Handlers.thirstEventHandler(event, thirst)
-    for l,v in pairs(thirstEventListeners) do
+  function Handlers.thirstHandler(event, thirst)
+    for l,v in pairs(thirstListeners) do
       v(thirst)
     end
   end

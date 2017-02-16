@@ -1,17 +1,16 @@
-registerAnonymousEventHandler("nameEvent", "Handlers.nameEventHandler")
+registerAnonymousEventHandler("nameEvent", "Handlers.nameHandler")
+local nameListeners = {}
 
-local nameEventListeners = {}
-
-function Handlers.addnameEventListener(listenerName, functionToAdd)
-  nameEventListeners[listenerName] = functionToAdd
+function Handlers.addNameListener(listenerName, functionToAdd)
+  nameListeners[listenerName] = functionToAdd
 end
 
-function Handlers.removenameEventListener(listenerName)
-  nameEventListeners[listenerName] = nil
+function Handlers.removeNameListener(listenerName)
+  nameListeners[listenerName] = nil
 end
 
-function Handlers.nameEventHandler(event, name)
-  for l,v in pairs(nameEventListeners) do
+function Handlers.nameHandler(event, name)
+  for l,v in pairs(nameListeners) do
     v(name)
   end
 end

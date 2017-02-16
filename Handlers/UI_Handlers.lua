@@ -1,11 +1,11 @@
 
 registerAnonymousEventHandler("sysWindowResizeEvent", "Handlers.windowResizeHandler")
   local windowResizeListeners = {}
-  function Handlers.addwindowResizeListener(listenerName, functionToAdd)
+  function Handlers.addWindowResizeListener(listenerName, functionToAdd)
     windowResizeListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removewindowResizeListener(listenerName)
+  function Handlers.removeWindowResizeListener(listenerName)
     windowResizeListeners[listenerName] = nil
   end
 
@@ -14,5 +14,3 @@ registerAnonymousEventHandler("sysWindowResizeEvent", "Handlers.windowResizeHand
       v(event, x, y)
     end
   end
-
-  

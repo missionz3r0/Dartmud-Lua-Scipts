@@ -130,9 +130,9 @@ local function load()
   }, chat_border)
   setWindowWrap("ChatBox", chatWrap)
 
-  Handlers.addwindowResizeListener(sourceName, updateDisplay)
-  Handlers.addchatListener(sourceName, onChat)
-  Handlers.addskillImproveListener(sourceName, onImprove)
+  Handlers.addWindowResizeListener(sourceName, updateDisplay)
+  Handlers.addChatListener(sourceName, onChat)
+  Handlers.addSkillImproveListener(sourceName, onImprove)
 
   alt_container = imp_container
   alt_containers["imp_container"] = imp_container
@@ -141,9 +141,9 @@ local function load()
 end
 
 local function unload()
-  Handlers.removewindowResizeListener(sourceName)
-  Handlers.removechatListener(sourceName)
-  Handlers.removeskillImproveListener(sourceName)
+  Handlers.removeWindowResizeListener(sourceName)
+  Handlers.removeChatListener(sourceName)
+  Handlers.removeSkillImproveListener(sourceName)
   resetProfile()
 end
 

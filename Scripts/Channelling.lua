@@ -12,11 +12,11 @@ local function channellingSetup(power, target)
 end
 
 local function load()
-  Handlers.addchannellingEventListener(sourceName, channellingSetup)
+  Handlers.addChannellingListener(sourceName, channellingSetup)
 end
 
 local function unload()
-  Handlers.addchannellingEventListener(sourceName, channellingSetup)
+  Handlers.addChannellingListener(sourceName, channellingSetup)
 end
 
 local function reload()

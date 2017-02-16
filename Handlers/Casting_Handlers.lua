@@ -1,16 +1,16 @@
 
-registerAnonymousEventHandler("practiceCastEvent", "Handlers.practiceCastEventHandler")
-  local practiceCastEventListeners = {}
-  function Handlers.addpracticeCastEventListener(listenerName, functionToAdd)
-    practiceCastEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("practiceCastEvent", "Handlers.practiceCastHandler")
+  local practiceCastListeners = {}
+  function Handlers.addPracticeCastListener(listenerName, functionToAdd)
+    practiceCastListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removepracticeCastEventListener(listenerName)
-    practiceCastEventListeners[listenerName] = nil
+  function Handlers.removePracticeCastListener(listenerName)
+    practiceCastListeners[listenerName] = nil
   end
 
-  function Handlers.practiceCastEventHandler(event, spellName, power, arguments)
-    for l,v in pairs(practiceCastEventListeners) do
+  function Handlers.practiceCastHandler(event, spellName, power, arguments)
+    for l,v in pairs(practiceCastListeners) do
       v(spellName, power, arguments)
     end
   end

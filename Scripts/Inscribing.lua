@@ -13,11 +13,11 @@ local function inscribeSetup(power, target)
 end
 
 local function load()
-  Handlers.addpracticeInscribingEventListener(sourceName, practiceCastSetup)
+  Handlers.addPracticeInscribingListener(sourceName, practiceCastSetup)
 end
 
 local function unload()
-  Handlers.removepracticeInscribingEventListener(sourceName, practiceCastSetup)
+  Handlers.removePracticeInscribingListener(sourceName, practiceCastSetup)
 end
 
 local function reload()

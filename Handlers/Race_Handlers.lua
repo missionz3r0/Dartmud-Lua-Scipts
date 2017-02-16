@@ -1,16 +1,16 @@
 
-registerAnonymousEventHandler("raceEvent", "Handlers.raceEventHandler")
-  local raceEventListeners = {}
-  function Handlers.addraceEventListener(listenerName, functionToAdd)
-    raceEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("raceEvent", "Handlers.raceHandler")
+  local raceListeners = {}
+  function Handlers.addRaceListener(listenerName, functionToAdd)
+    raceListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeraceEventListener(listenerName)
-    raceEventListeners[listenerName] = nil
+  function Handlers.removeRaceListener(listenerName)
+    raceListeners[listenerName] = nil
   end
 
-  function Handlers.raceEventHandler(event, name)
-    for l,v in pairs(raceEventListeners) do
+  function Handlers.raceHandler(event, name)
+    for l,v in pairs(raceListeners) do
       v(name)
     end
   end

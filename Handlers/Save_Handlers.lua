@@ -1,37 +1,37 @@
-registerAnonymousEventHandler("saveEvent", "Handlers.saveEventHandler")
-  local saveEventListeners = {}
-  function Handlers.addsaveEventListener(listenerName, functionToAdd)
-    saveEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("saveEvent", "Handlers.saveHandler")
+  local saveListeners = {}
+  function Handlers.addSaveListener(listenerName, functionToAdd)
+    saveListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removesaveEventListener(listenerName)
-    saveEventListeners[listenerName] = nil
+  function Handlers.removeSaveListener(listenerName)
+    saveListeners[listenerName] = nil
   end
 
-  function Handlers.saveEventHandler(event)
+  function Handlers.saveHandler(event)
     local saveTable = {}
-    for k,v in pairs(saveEventListeners) do
+    for k,v in pairs(saveListeners) do
       saveTable[k] = v()
     end
     table.save(getMudletHomeDir().."/dartmud.txt", saveTable)
   end
 
-registerAnonymousEventHandler("loadEvent", "Handlers.loadEventHandler")
-  local loadEventListeners = {}
-  function Handlers.addloadEventListener(listenerName, functionToAdd)
-    loadEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("loadEvent", "Handlers.loadHandler")
+  local loadListeners = {}
+  function Handlers.addLoadListener(listenerName, functionToAdd)
+    loadListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeloadEventListener(listenerName)
-    loadEventListeners[listenerName] = nil
+  function Handlers.removeLoadListener(listenerName)
+    loadListeners[listenerName] = nil
   end
 
-  function Handlers.loadEventHandler(event)
+  function Handlers.loadHandler(event)
     local saveTable = {}
     if io.exists(getMudletHomeDir().."/dartmud.txt") then
 
       table.load(getMudletHomeDir().."/dartmud.txt", saveTable)
-      for k,v in pairs(loadEventListeners) do
+      for k,v in pairs(loadListeners) do
         v(saveTable[k])
       end
     end

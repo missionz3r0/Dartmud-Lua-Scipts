@@ -1,11 +1,11 @@
 
 registerAnonymousEventHandler("skillImproveEvent", "Handlers.skillImproveHandler")
   local skillImproveListeners = {}
-  function Handlers.addskillImproveListener(listenerName, functionToAdd)
+  function Handlers.addSkillImproveListener(listenerName, functionToAdd)
     skillImproveListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeskillImproveListener(listenerName)
+  function Handlers.removeSkillImproveListener(listenerName)
     skillImproveListeners[listenerName] = nil
   end
 
@@ -17,11 +17,11 @@ registerAnonymousEventHandler("skillImproveEvent", "Handlers.skillImproveHandler
 
 registerAnonymousEventHandler("skillMistakeEvent", "Handlers.skillMistakeHandler")
   local skillMistakeListeners = {}
-  function Handlers.addskillMistakeListener(listenerName, functionToAdd)
+  function Handlers.addSkillMistakeListener(listenerName, functionToAdd)
     skillMistakeListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeskillMistakeListener(listenerName)
+  function Handlers.removeSkillMistakeListener(listenerName)
     skillMistakeListeners[listenerName] = nil
   end
 

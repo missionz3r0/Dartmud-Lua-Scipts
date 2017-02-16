@@ -1,11 +1,11 @@
 
 registerAnonymousEventHandler("alignmentEvent", "Handlers.alignmentHandler")
   local alignmentListeners = {}
-  function Handlers.addalignmentListener(listenerName, functionToAdd)
+  function Handlers.addAlignmentListener(listenerName, functionToAdd)
     alignmentListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removealignmentListener(listenerName)
+  function Handlers.removeAlignmentListener(listenerName)
     alignmentListeners[listenerName] = nil
   end
 

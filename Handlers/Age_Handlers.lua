@@ -1,16 +1,16 @@
 
-registerAnonymousEventHandler("ageEvent", "Handlers.ageEventHandler")
-  local ageEventListeners = {}
-  function Handlers.addageEventListener(listenerName, functionToAdd)
-    ageEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("ageEvent", "Handlers.ageHandler")
+  local ageListeners = {}
+  function Handlers.addAgeListener(listenerName, functionToAdd)
+    ageListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeageEventListener(listenerName)
-    ageEventListeners[listenerName] = nil
+  function Handlers.removeAgeListener(listenerName)
+    ageListeners[listenerName] = nil
   end
 
-  function Handlers.ageEventHandler(event, years, months)
-    for l,v in pairs(ageEventListeners) do
-      v(years, months)
+  function Handlers.ageHandler(event, age)
+    for l,v in pairs(ageListeners) do
+      v(age)
     end
   end

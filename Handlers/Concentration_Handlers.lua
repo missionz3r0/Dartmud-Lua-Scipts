@@ -1,128 +1,128 @@
 
-registerAnonymousEventHandler("concEvent", "Handlers.concEventHandler")
-  local concEventListeners = {}
-  function Handlers.addconcEventListener(listenerName, functionToAdd)
-    concEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("concEvent", "Handlers.concHandler")
+  local ConcListeners = {}
+  function Handlers.addConcListener(listenerName, functionToAdd)
+    ConcListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeconcEventListener(listenerName)
-    concEventListeners[listenerName] = nil
+  function Handlers.removeConcListener(listenerName)
+    ConcListeners[listenerName] = nil
   end
 
-  function Handlers.concEventHandler(event, conc)
-    for l,v in pairs(concEventListeners) do
+  function Handlers.concHandler(event, conc)
+    for l,v in pairs(ConcListeners) do
       v(conc)
     end
   end
 
-registerAnonymousEventHandler("BEBTconcEvent", "Handlers.BEBTconcEventHandler")
-  local BEBTconcEventListeners = {}
-  function Handlers.addBEBTconcEventListener(listenerName, functionToAdd)
-    BEBTconcEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("BEBTconcEvent", "Handlers.BEBTconcHandler")
+  local BEBTConcListeners = {}
+  function Handlers.addBEBTConcListener(listenerName, functionToAdd)
+    BEBTConcListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeBEBTconcEventListener(listenerName)
-    BEBTconcEventListeners[listenerName] = nil
+  function Handlers.removeBEBTConcListener(listenerName)
+    BEBTConcListeners[listenerName] = nil
   end
 
-  function Handlers.BEBTconcEventHandler(event, conc)
-    for l,v in pairs(BEBTconcEventListeners) do
+  function Handlers.BEBTconcHandler(event, conc)
+    for l,v in pairs(BEBTConcListeners) do
       v(conc)
     end
   end
 
-registerAnonymousEventHandler("BOBconcEvent", "Handlers.BOBconcEventHandler")
-  local BOBconcEventListeners = {}
-  function Handlers.addBOBconcEventListener(listenerName, functionToAdd)
-    BOBconcEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("BOBconcEvent", "Handlers.BOBconcHandler")
+  local BOBConcListeners = {}
+  function Handlers.addBOBConcListener(listenerName, functionToAdd)
+    BOBConcListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeBOBconcEventListener(listenerName)
-    BOBconcEventListeners[listenerName] = nil
+  function Handlers.removeBOBConcListener(listenerName)
+    BOBConcListeners[listenerName] = nil
   end
 
-  function Handlers.BOBconcEventHandler(event, conc)
-    for l,v in pairs(BOBconcEventListeners) do
+  function Handlers.BOBconcHandler(event, conc)
+    for l,v in pairs(BOBConcListeners) do
       v(conc)
     end
   end
 
-registerAnonymousEventHandler("SDconcEvent", "Handlers.SDconcEventHandler")
-  local SDconcEventListeners = {}
-  function Handlers.addSDconcEventListener(listenerName, functionToAdd)
-    SDconcEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("SDconcEvent", "Handlers.SDconcHandler")
+  local SDConcListeners = {}
+  function Handlers.addSDConcListener(listenerName, functionToAdd)
+    SDConcListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeSDconcEventListener(listenerName)
-    SDconcEventListeners[listenerName] = nil
+  function Handlers.removeSDConcListener(listenerName)
+    SDConcListeners[listenerName] = nil
   end
 
-  function Handlers.SDconcEventHandler(event, conc)
-    for l,v in pairs(SDconcEventListeners) do
+  function Handlers.SDconcHandler(event, conc)
+    for l,v in pairs(SDConcListeners) do
       v(conc)
     end
   end
 
-registerAnonymousEventHandler("OBconcEvent", "Handlers.OBconcEventHandler")
-  local OBconcEventListeners = {}
-  function Handlers.addOBconcEventListener(listenerName, functionToAdd)
-    OBconcEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("OBconcEvent", "Handlers.OBconcHandler")
+  local OBConcListeners = {}
+  function Handlers.addOBConcListener(listenerName, functionToAdd)
+    OBConcListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeOBconcEventListener(listenerName)
-    OBconcEventListeners[listenerName] = nil
+  function Handlers.removeOBConcListener(listenerName)
+    OBConcListeners[listenerName] = nil
   end
 
-  function Handlers.OBconcEventHandler(event, conc)
-    for l,v in pairs(OBconcEventListeners) do
+  function Handlers.OBconcHandler(event, conc)
+    for l,v in pairs(OBConcListeners) do
       v(conc)
     end
   end
 
-registerAnonymousEventHandler("DAOBconcEvent", "Handlers.DAOBconcEventHandler")
-  local DAOBconcEventListeners = {}
-  function Handlers.addDAOBconcEventListener(listenerName, functionToAdd)
-    DAOBconcEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("DAOBconcEvent", "Handlers.DAOBconcHandler")
+  local DAOBConcListeners = {}
+  function Handlers.addDAOBConcListener(listenerName, functionToAdd)
+    DAOBConcListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeDAOBconcEventListener(listenerName)
-    DAOBconcEventListeners[listenerName] = nil
+  function Handlers.removeDAOBConcListener(listenerName)
+    DAOBConcListeners[listenerName] = nil
   end
 
-  function Handlers.DAOBconcEventHandler(event, conc)
-    for l,v in pairs(DAOBconcEventListeners) do
+  function Handlers.DAOBconcHandler(event, conc)
+    for l,v in pairs(DAOBConcListeners) do
       v(conc)
     end
   end
 
-registerAnonymousEventHandler("SHOTconcEvent", "Handlers.SHOTconcEventHandler")
-  local SHOTconcEventListeners = {}
-  function Handlers.addSHOTconcEventListener(listenerName, functionToAdd)
-    SHOTconcEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("SHOTconcEvent", "Handlers.SHOTconcHandler")
+  local SHOTConcListeners = {}
+  function Handlers.addSHOTConcListener(listenerName, functionToAdd)
+    SHOTConcListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeSHOTconcEventListener(listenerName)
-    SHOTconcEventListeners[listenerName] = nil
+  function Handlers.removeSHOTConcListener(listenerName)
+    SHOTConcListeners[listenerName] = nil
   end
 
-  function Handlers.SHOTconcEventHandler(event, conc)
-    for l,v in pairs(SHOTconcEventListeners) do
+  function Handlers.SHOTconcHandler(event, conc)
+    for l,v in pairs(SHOTConcListeners) do
       v(conc)
     end
   end
 
-registerAnonymousEventHandler("TCTRNconcEvent", "Handlers.TCTRNconcEventHandler")
-  local TCTRNconcEventListeners = {}
-  function Handlers.addTCTRNconcEventListener(listenerName, functionToAdd)
-    TCTRNconcEventListeners[listenerName] = functionToAdd
+registerAnonymousEventHandler("TCTRNconcEvent", "Handlers.TCTRNconcHandler")
+  local TCTRNConcListeners = {}
+  function Handlers.addTCTRNConcListener(listenerName, functionToAdd)
+    TCTRNConcListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeTCTRNconcEventListener(listenerName)
-    TCTRNconcEventListeners[listenerName] = nil
+  function Handlers.removeTCTRNConcListener(listenerName)
+    TCTRNConcListeners[listenerName] = nil
   end
 
-  function Handlers.TCTRNconcEventHandler(event, conc)
-    for l,v in pairs(TCTRNconcEventListeners) do
+  function Handlers.TCTRNconcHandler(event, conc)
+    for l,v in pairs(TCTRNConcListeners) do
       v(conc)
     end
   end

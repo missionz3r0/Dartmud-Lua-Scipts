@@ -12,10 +12,10 @@ end
 
 local function practiceCastSetup(spellName, power, arguments)
   if spellName == "off" then
-    Handlers.removeBEBTconcEventListener(sourceName)
+    Handlers.removeBEBTconcListener(sourceName)
 
   elseif spellName == "resume" then
-    Handlers.addBEBTconcEventListener(sourceName, practiceCast)
+    Handlers.addBEBTconcListener(sourceName, practiceCast)
 
   elseif spellName == "info" or spellName == "status" or spellName == "" then
     cecho("Currently casting "..currentSpellPractice.." @ "..currentSpellPower.." "..arguments)
@@ -36,16 +36,16 @@ local function practiceCastSetup(spellName, power, arguments)
     currentSpellPower = power
     currentSpellArguments = arguments
 
-    Handlers.addBEBTconcEventListener(sourceName, practiceCast)
+    Handlers.addBEBTconcListener(sourceName, practiceCast)
   end
 end
 
 local function load()
-  Handlers.addpracticeCastEventListener(sourceName, practiceCastSetup)
+  Handlers.addPracticeCastListener(sourceName, practiceCastSetup)
 end
 
 local function unload()
-  Handlers.removepracticeCastEventListener(sourceName, practiceCastSetup)
+  Handlers.removePracticeCastListener(sourceName, practiceCastSetup)
 end
 
 local function reload()
