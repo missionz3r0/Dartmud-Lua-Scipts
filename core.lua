@@ -11,8 +11,6 @@ require("_Handlers")
 Aliases = require("_Aliases")
 Timers = require("_Timers")
 Triggers = require("_Triggers")
-Status = require("Status")
-UI = require("UI")
 
 Aliases.load()
 Status.load()
