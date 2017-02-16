@@ -1,17 +1,8 @@
-local Magic
-
-local practiceCastMemory = {}
-local practiceWriteMemory = {}
-local channelMemory = {}
+local Casting = {}
 
 local currentSpellPractice = ''
 local currentSpellPower = 100
 local currentSpellArguments = ''
-
-local currentChannelPower = 1
-local currentChannelTarget = ''
-
-local
 
 local function practiceCast(conc)
   send("cast "..currentSpellPractice.." @ ".. currentSpellPower.. " "..currentSpellArguments)
@@ -47,21 +38,12 @@ local function practiceCastSetup(spellName, power, arguments)
   end
 end
 
-local function channel()
-end
-
-local function channellingSetup(power, target)
-
-end
-
 local function load()
   Handlers.addpracticeCastEventListener("practiceCastSetup", practiceCastSetup)
-  Handlers.addchannellingEventListener("channellingSetup", channellingSetup)
 end
 
 local function unload()
   Handlers.removepracticeCastEventListener("practiceCastSetup", practiceCastSetup)
-  Handlers.addchannellingEventListener("channellingSetup", channellingSetup)
 end
 
 local function reload()
@@ -69,4 +51,10 @@ local function reload()
   load()
 end
 
-return Magic
+Casting = {
+  load = load
+  ,unload = unload
+  ,reload = reload
+}
+
+return Casting

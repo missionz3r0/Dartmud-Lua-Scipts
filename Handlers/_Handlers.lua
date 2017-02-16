@@ -1,21 +1,53 @@
+--Because of how anonymous event handlers are made in mudlet, it is difficult
+--to load and unload the handlers. So for now they are going to break they
+--mold of how I have everything else set up.
+
 Handlers = {}
 
-require("Age_Handlers")
-require("Alignment_Handlers")
-require("Aura_Handlers")
-require("Chat_Handlers")
-require("Concentration_Handlers")
-require("Encumberance_Handlers")
-require("Hunger_Handlers")
-require("Magic_Handlers")
-require("Misc_Handlers")
-require("Movement_Handlers")
-require("Name_Handlers")
-require("Race_Handlers")
-require("Save_Handlers")
-require("Skill_Handlers")
-require("Thirst_Handlers")
-require("UI_Handlers")
-require("Youth_Handlers")
+local modules = {}
 
-return Handlers
+modules.age = require("Age_Handlers")
+modules.alignment = require("Alignment_Handlers")
+modules.aura = require("Aura_Handlers")
+modules.casting = require("Casting_Handlers")
+modules.channelling = require("Channelling_Handlers")
+modules.chat = require("Chat_Handlers")
+modules.concentration = require("Concentration_Handlers")
+modules.encumberance = require("Encumberance_Handlers")
+modules.hunger = require("Hunger_Handlers")
+mudules.inscribing = require("Inscribing_Handlers")
+modules.misc = require("Misc_Handlers")
+modules.movement = require("Movement_Handlers")
+modules.name = require("Name_Handlers")
+modules.race = require("Race_Handlers")
+modules.save = require("Save_Handlers")
+modules.skill = require("Skill_Handlers")
+modules.thirst = require("Thirst_Handlers")
+modules.ui = require("UI_Handlers")
+modules.youth = require("Youth_Handlers")
+
+local function load()
+  --for k,v in pairs(modules) do
+  --  v.load()
+  --end
+end
+
+local function unload()
+  --for k,v in pairs(modules) do
+  --  v.unload()
+  --end
+end
+
+local function reload()
+  load()
+  unload()
+end
+
+_Handlers = {
+  load = load
+  ,unload = unload
+  ,reload = reload
+}
+
+
+return _Handlers

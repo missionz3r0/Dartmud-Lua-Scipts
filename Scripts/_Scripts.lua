@@ -1,11 +1,13 @@
-local _Aliases = {}
+local _Scripts = {}
 
 local modules = {}
 
-modules.casting = require("Casting_Aliases")
-modules.channelling = require("Channelling_Aliases")
-modules.inscribing = require("Inscribing_Aliases")
-modules.skill = require("Skill_Aliases")
+modules.casting = require("Casting")
+modules.channelling = require("Channelling")
+modules.inscribing = require("Inscribing")
+modules.skills = require("Skills")
+modules.status = require("Status")
+modules.ui = require("UI")
 
 local function load()
   for k,v in pairs(modules) do
@@ -24,10 +26,10 @@ local function reload()
   unload()
 end
 
-_Aliases = {
+_Scripts = {
   load = load
   ,unload = unload
   ,reload = reload
 }
 
-return _Aliases
+return _Scripts

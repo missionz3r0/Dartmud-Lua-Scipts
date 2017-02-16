@@ -6,9 +6,9 @@ package.path = package.path .. ";" .. getMudletHomeDir() .. "/scripts/Triggers/?
 
 
 require("dba")
-require("_Handlers")
 
 Aliases = require("_Aliases")
+Handlers = require("_Handlers")
 Timers = require("_Timers")
 Triggers = require("_Triggers")
 Status = require("Status")
