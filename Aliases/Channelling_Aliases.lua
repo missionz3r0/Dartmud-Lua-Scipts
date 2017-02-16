@@ -26,7 +26,7 @@ end
 
 local function reload()
   unload()
-  reload()
+  load()
 end
 
 Channelling_Aliases =
