@@ -2,11 +2,11 @@ registerAnonymousEventHandler("nameEvent", "Handlers.nameEventHandler")
 
 local nameEventListeners = {}
 
-function Handlers.addNameEventListener(listenerName, functionToAdd)
+function Handlers.addnameEventListener(listenerName, functionToAdd)
   nameEventListeners[listenerName] = functionToAdd
 end
 
-function Handlers.removeNameEventListener(listenerName)
+function Handlers.removenameEventListener(listenerName)
   nameEventListeners[listenerName] = nil
 end
 

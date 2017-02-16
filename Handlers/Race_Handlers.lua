@@ -2,11 +2,11 @@
 registerAnonymousEventHandler("raceEvent", "Handlers.raceEventHandler")
   local raceEventListeners = {}
   function Handlers.addraceEventListener(listenerName, functionToAdd)
-    ageEventListeners[listenerName] = functionToAdd
+    raceEventListeners[listenerName] = functionToAdd
   end
 
   function Handlers.removeraceEventListener(listenerName)
-    ageEventListeners[listenerName] = nil
+    raceEventListeners[listenerName] = nil
   end
 
   function Handlers.raceEventHandler(name)
