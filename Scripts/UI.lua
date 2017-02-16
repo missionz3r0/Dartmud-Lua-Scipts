@@ -1,5 +1,7 @@
 UI = {}
 
+local sourceName = "ui"
+
 local topBorder = 164
 local bottomBorder = 0
 
@@ -10,10 +12,6 @@ local chat_container = nil
 local imp_container = nil
 local alt_container = nil
 local alt_containers = {}
-
-local updateDisplayListenerName = "updateDisplay"
-local updateChatBoxListenerName = "updateChatBox"
-local improveBoxListenerName = "improveBox"
 
 local chatBoxMinSize = 700
 local altBoxMaxSize = 500
@@ -132,9 +130,9 @@ local function load()
   }, chat_border)
   setWindowWrap("ChatBox", chatWrap)
 
-  Handlers.addwindowResizeListener(updateDisplayListenerName, updateDisplay)
-  Handlers.addchatListener(updateChatBoxListenerName, onChat)
-  Handlers.addskillImproveListener(improveBoxListenerName, onImprove)
+  Handlers.addwindowResizeListener(sourceName, updateDisplay)
+  Handlers.addchatListener(sourceName, onChat)
+  Handlers.addskillImproveListener(sourceName, onImprove)
 
   alt_container = imp_container
   alt_containers["imp_container"] = imp_container
@@ -143,9 +141,9 @@ local function load()
 end
 
 local function unload()
-  Handlers.removewindowResizeListener(updateDisplayListenerName)
-  Handlers.removechatListener(updateChatBoxListenerName)
-  Handlers.removeskillImproveListener(improveBoxListenerName)
+  Handlers.removewindowResizeListener(sourceName)
+  Handlers.removechatListener(sourceName)
+  Handlers.removeskillImproveListener(sourceName)
   resetProfile()
 end
 

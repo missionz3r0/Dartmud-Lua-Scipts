@@ -1,5 +1,7 @@
 local Channelling = {}
 
+local sourceName = "channelling"
+
 local currentChannelPower = 1
 local currentChannelTarget = ''
 
@@ -10,11 +12,11 @@ local function channellingSetup(power, target)
 end
 
 local function load()
-  Handlers.addchannellingEventListener("channellingSetup", channellingSetup)
+  Handlers.addchannellingEventListener(sourceName, channellingSetup)
 end
 
 local function unload()
-  Handlers.addchannellingEventListener("channellingSetup", channellingSetup)
+  Handlers.addchannellingEventListener(sourceName, channellingSetup)
 end
 
 local function reload()

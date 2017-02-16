@@ -1,5 +1,7 @@
 local Inscribing = {}
 
+sourceName = "inscribing"
+
 local practiceCastMemory = {}
 local practiceWriteMemory = {}
 local channelMemory = {}
@@ -11,11 +13,11 @@ local function inscribeSetup(power, target)
 end
 
 local function load()
-  Handlers.addpracticeInscribingEventListener("practiceCastSetup", practiceCastSetup)
+  Handlers.addpracticeInscribingEventListener(sourceName, practiceCastSetup)
 end
 
 local function unload()
-  Handlers.removepracticeInscribingEventListener("practiceCastSetup", practiceCastSetup)
+  Handlers.removepracticeInscribingEventListener(sourceName, practiceCastSetup)
 end
 
 local function reload()
