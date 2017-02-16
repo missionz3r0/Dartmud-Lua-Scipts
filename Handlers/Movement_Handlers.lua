@@ -9,8 +9,8 @@ registerAnonymousEventHandler("movementEvent", "Handlers.movementEventHandler")
     movementEventListeners[listenerName] = nil
   end
 
-  function Handlers.movementEventHandler(conc)
+  function Handlers.movementEventHandler(event, movement)
     for l,v in pairs(movementEventListeners) do
-      v(conc)
+      v(movement)
     end
   end

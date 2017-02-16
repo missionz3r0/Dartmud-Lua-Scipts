@@ -10,7 +10,7 @@ function Handlers.removenameEventListener(listenerName)
   nameEventListeners[listenerName] = nil
 end
 
-function Handlers.nameEventHandler(name)
+function Handlers.nameEventHandler(event, name)
   for l,v in pairs(nameEventListeners) do
     v(name)
   end

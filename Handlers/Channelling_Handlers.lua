@@ -8,7 +8,7 @@ registerAnonymousEventHandler("channellingEvent", "Handlers.channellingEventHand
     practiceCastEventListeners[listenerName] = nil
   end
 
-  function Handlers.channellingEventHandler(power, target)
+  function Handlers.channellingEventHandler(event, power, target)
     for l,v in pairs(channellingEventListeners) do
       v(power, target)
     end

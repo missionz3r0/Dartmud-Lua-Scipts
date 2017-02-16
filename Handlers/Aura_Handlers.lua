@@ -9,7 +9,7 @@ registerAnonymousEventHandler("auraEvent", "Handlers.auraEventHandler")
     auraEventListeners[listenerName] = nil
   end
 
-  function Handlers.auraEventHandler(aura)
+  function Handlers.auraEventHandler(event, aura)
     for l,v in pairs(auraEventListeners) do
       v(aura)
     end
@@ -25,7 +25,7 @@ registerAnonymousEventHandler("VeryDimRedauraEvent", "Handlers.VeryDimRedauraEve
     VeryDimRedauraEventListeners[listenerName] = nil
   end
 
-  function Handlers.VeryDimRedauraEventHandler(aura)
+  function Handlers.VeryDimRedauraEventHandler(event, aura)
     for l,v in pairs(VeryDimRedauraEventListeners) do
       v(aura)
     end
@@ -41,7 +41,7 @@ registerAnonymousEventHandler("DimRedauraEvent", "Handlers.DimRedauraEventHandle
     DimRedauraEventListeners[listenerName] = nil
   end
 
-  function Handlers.DimRedauraEventHandler(aura)
+  function Handlers.DimRedauraEventHandler(event, aura)
     for l,v in pairs(DimRedauraEventListeners) do
       v(aura)
     end
@@ -57,7 +57,7 @@ registerAnonymousEventHandler("RedauraEvent", "Handlers.RedauraEventHandler")
     RedauraEventListeners[listenerName] = nil
   end
 
-  function Handlers.RedauraEventHandler(aura)
+  function Handlers.RedauraEventHandler(event, aura)
     for l,v in pairs(RedauraEventListeners) do
       v(aura)
     end
@@ -73,7 +73,7 @@ registerAnonymousEventHandler("OrangishRedauraEvent", "Handlers.OrangishRedauraE
     OrangishRedauraListeners[listenerName] = nil
   end
 
-  function Handlers.OrangishRedauraEventHandler(aura)
+  function Handlers.OrangishRedauraEventHandler(event, aura)
     for l,v in pairs(OrangishRedauraListeners) do
       v(aura)
     end
@@ -89,7 +89,7 @@ registerAnonymousEventHandler("ReddishOrangeauraEvent", "Handlers.ReddishOrangea
     ReddishOrangeauraListeners[listenerName] = nil
   end
 
-  function Handlers.ReddishOrangeauraHandler(aura)
+  function Handlers.ReddishOrangeauraHandler(event, aura)
     for l,v in pairs(ReddishOrangeauraListeners) do
       v(aura)
     end
@@ -105,7 +105,7 @@ registerAnonymousEventHandler("OrangeauraEvent", "Handlers.OrangeauraHandler")
     OrangeauraListeners[listenerName] = nil
   end
 
-  function Handlers.OrangeauraHandler(aura)
+  function Handlers.OrangeauraHandler(event, aura)
     for l,v in pairs(OrangeauraListeners) do
       v(aura)
     end
@@ -121,7 +121,7 @@ registerAnonymousEventHandler("YellowishOrangeauraEvent", "Handlers.YellowishOra
     YellowishOrangeauraListeners[listenerName] = nil
   end
 
-  function Handlers.YellowishOrangeauraHandler(aura)
+  function Handlers.YellowishOrangeauraHandler(event, aura)
     for l,v in pairs(YellowishOrangeauraListeners) do
       v(aura)
     end
@@ -137,7 +137,7 @@ registerAnonymousEventHandler("OrangishYellowauraEvent", "Handlers.OrangishYello
     OrangishYellowauraListeners[listenerName] = nil
   end
 
-  function Handlers.OrangishYellowauraHandler(aura)
+  function Handlers.OrangishYellowauraHandler(event, aura)
     for l,v in pairs(OrangishYellowauraListeners) do
       v(aura)
     end
@@ -153,7 +153,7 @@ registerAnonymousEventHandler("YellowauraEvent", "Handlers.YellowauraHandler")
     YellowauraListeners[listenerName] = nil
   end
 
-  function Handlers.YellowauraHandler(aura)
+  function Handlers.YellowauraHandler(event, aura)
     for l,v in pairs(YellowauraListeners) do
       v(aura)
     end
@@ -169,7 +169,7 @@ registerAnonymousEventHandler("GreenishYellowauraEvent", "Handlers.GreenishYello
     GreenishYellowauraListeners[listenerName] = nil
   end
 
-  function Handlers.GreenishYellowauraHandler(aura)
+  function Handlers.GreenishYellowauraHandler(event, aura)
     for l,v in pairs(GreenishYellowauraListeners) do
       v(aura)
     end
@@ -185,7 +185,7 @@ registerAnonymousEventHandler("YellowishGreenauraEvent", "Handlers.YellowishGree
     YellowishGreenauraListeners[listenerName] = nil
   end
 
-  function Handlers.YellowishGreenauraHandler(aura)
+  function Handlers.YellowishGreenauraHandler(event, aura)
     for l,v in pairs(YellowishGreenauraListeners) do
       v(aura)
     end
@@ -201,7 +201,7 @@ registerAnonymousEventHandler("GreenauraEvent", "Handlers.GreenauraHandler")
     GreenauraListeners[listenerName] = nil
   end
 
-  function Handlers.GreenauraHandler(aura)
+  function Handlers.GreenauraHandler(event, aura)
     for l,v in pairs(GreenauraListeners) do
       v(aura)
     end
@@ -217,7 +217,7 @@ registerAnonymousEventHandler("BluishGreenauraEvent", "Handlers.BluishGreenauraH
     BluishGreenauraListeners[listenerName] = nil
   end
 
-  function Handlers.BluishGreenauraHandler(aura)
+  function Handlers.BluishGreenauraHandler(event, aura)
     for l,v in pairs(BluishGreenauraListeners) do
       v(aura)
     end
@@ -233,7 +233,7 @@ registerAnonymousEventHandler("GreenishBlueauraEvent", "Handlers.GreenishBlueaur
     GreenishBlueauraListeners[listenerName] = nil
   end
 
-  function Handlers.GreenishBlueauraHandler(aura)
+  function Handlers.GreenishBlueauraHandler(event, aura)
     for l,v in pairs(GreenishBlueauraListeners) do
       v(aura)
     end
@@ -249,7 +249,7 @@ registerAnonymousEventHandler("BlueauraEvent", "Handlers.BlueauraHandler")
     BlueauraListeners[listenerName] = nil
   end
 
-  function Handlers.BlueauraHandler(aura)
+  function Handlers.BlueauraHandler(event, aura)
     for l,v in pairs(BlueauraListeners) do
       v(aura)
     end
@@ -265,7 +265,7 @@ registerAnonymousEventHandler("IntenseBlueauraEvent", "Handlers.IntenseBlueauraH
     IntenseBlueauraListeners[listenerName] = nil
   end
 
-  function Handlers.IntenseBlueauraHandler(aura)
+  function Handlers.IntenseBlueauraHandler(event, aura)
     for l,v in pairs(IntenseBlueauraListeners) do
       v(aura)
     end
@@ -281,7 +281,7 @@ registerAnonymousEventHandler("DimIndigoauraEvent", "Handlers.DimIndigoauraHandl
     DimIndigoauraListeners[listenerName] = nil
   end
 
-  function Handlers.DimIndigoauraHandler(aura)
+  function Handlers.DimIndigoauraHandler(event, aura)
     for l,v in pairs(DimIndigoauraListeners) do
       v(aura)
     end
@@ -297,7 +297,7 @@ registerAnonymousEventHandler("IndigoauraEvent", "Handlers.IndigoauraHandler")
     IndigoauraListeners[listenerName] = nil
   end
 
-  function Handlers.IndigoauraHandler(aura)
+  function Handlers.IndigoauraHandler(event, aura)
     for l,v in pairs(IndigoauraListeners) do
       v(aura)
     end
@@ -313,7 +313,7 @@ registerAnonymousEventHandler("IntenseIndigoauraEvent", "Handlers.IntenseIndigoa
     IntenseIndigoauraListeners[listenerName] = nil
   end
 
-  function Handlers.IntenseIndigoauraHandler(aura)
+  function Handlers.IntenseIndigoauraHandler(event, aura)
     for l,v in pairs(IntenseIndigoauraListeners) do
       v(aura)
     end
@@ -329,7 +329,7 @@ registerAnonymousEventHandler("DimVioletauraEvent", "Handlers.DimVioletauraHandl
     DimVioletauraListeners[listenerName] = nil
   end
 
-  function Handlers.DimVioletauraHandler(aura)
+  function Handlers.DimVioletauraHandler(event, aura)
     for l,v in pairs(DimVioletauraListeners) do
       v(aura)
     end
@@ -345,7 +345,7 @@ registerAnonymousEventHandler("VioletauraEvent", "Handlers.VioletauraHandler")
     VioletauraListeners[listenerName] = nil
   end
 
-  function Handlers.VioletauraHandler(aura)
+  function Handlers.VioletauraHandler(event, aura)
     for l,v in pairs(VioletauraListeners) do
       v(aura)
     end
@@ -361,7 +361,7 @@ registerAnonymousEventHandler("IntenseVioletauraEvent", "Handlers.IntenseVioleta
     IntenseVioletauraListeners[listenerName] = nil
   end
 
-  function Handlers.IntenseVioletauraHandler(aura)
+  function Handlers.IntenseVioletauraHandler(event, aura)
     for l,v in pairs(IntenseVioletauraListeners) do
       v(aura)
     end
@@ -377,7 +377,7 @@ registerAnonymousEventHandler("DimOctarineauraEvent", "Handlers.DimOctarineauraH
     DimOctarineauraListeners[listenerName] = nil
   end
 
-  function Handlers.DimOctarineauraHandler(aura)
+  function Handlers.DimOctarineauraHandler(event, aura)
     for l,v in pairs(DimOctarineauraListeners) do
       v(aura)
     end
@@ -393,7 +393,7 @@ registerAnonymousEventHandler("OctarineauraEvent", "Handlers.OctarineauraHandler
     OctarineauraListeners[listenerName] = nil
   end
 
-  function Handlers.OctarineauraHandler(aura)
+  function Handlers.OctarineauraHandler(event, aura)
     for l,v in pairs(OctarineauraListeners) do
       v(aura)
     end
@@ -409,7 +409,7 @@ registerAnonymousEventHandler("IntenseOctarineauraEvent", "Handlers.IntenseOctar
     IntenseOctarineauraListeners[listenerName] = nil
   end
 
-  function Handlers.IntenseOctarineauraHandler(aura)
+  function Handlers.IntenseOctarineauraHandler(event, aura)
     for l,v in pairs(IntenseOctarineauraListeners) do
       v(aura)
     end
@@ -425,7 +425,7 @@ registerAnonymousEventHandler("ScintilatingauraEvent", "Handlers.Scintilatingaur
     ScintilatingauraListeners[listenerName] = nil
   end
 
-  function Handlers.ScintilatingauraHandler(aura)
+  function Handlers.ScintilatingauraHandler(event, aura)
     for l,v in pairs(ScintilatingauraListeners) do
       v(aura)
     end

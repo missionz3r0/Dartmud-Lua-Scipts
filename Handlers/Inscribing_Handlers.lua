@@ -8,7 +8,7 @@ registerAnonymousEventHandler("practiceInscribingEvent", "Handlers.practiceInscr
     practiceCastEventListeners[listenerName] = nil
   end
 
-  function Handlers.practiceInscribingEventHandler(spell, power)
+  function Handlers.practiceInscribingEventHandler(event, spell, power)
     for l,v in pairs(practiceInscribingEventListeners) do
       v(spell, power)
     end

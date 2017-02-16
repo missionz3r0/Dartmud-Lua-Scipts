@@ -9,7 +9,7 @@ registerAnonymousEventHandler("thirstEvent", "Handlers.thirstEventHandler")
     thirstEventListeners[listenerName] = nil
   end
 
-  function Handlers.thirstEventHandler(thirst)
+  function Handlers.thirstEventHandler(event, thirst)
     for l,v in pairs(thirstEventListeners) do
       v(thirst)
     end

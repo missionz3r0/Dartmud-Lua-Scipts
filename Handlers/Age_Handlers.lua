@@ -9,7 +9,7 @@ registerAnonymousEventHandler("ageEvent", "Handlers.ageEventHandler")
     ageEventListeners[listenerName] = nil
   end
 
-  function Handlers.ageEventHandler(years, months)
+  function Handlers.ageEventHandler(event, years, months)
     for l,v in pairs(ageEventListeners) do
       v(years, months)
     end

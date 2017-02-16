@@ -8,7 +8,7 @@ registerAnonymousEventHandler("saveEvent", "Handlers.saveEventHandler")
     saveEventListeners[listenerName] = nil
   end
 
-  function Handlers.saveEventHandler()
+  function Handlers.saveEventHandler(event)
     local saveTable = {}
     for k,v in pairs(saveEventListeners) do
       saveTable[k] = v()
@@ -26,10 +26,10 @@ registerAnonymousEventHandler("loadEvent", "Handlers.loadEventHandler")
     loadEventListeners[listenerName] = nil
   end
 
-  function Handlers.loadEventHandler()
+  function Handlers.loadEventHandler(event)
     local saveTable = {}
     if io.exists(getMudletHomeDir().."/dartmud.txt") then
-      
+
       table.load(getMudletHomeDir().."/dartmud.txt", saveTable)
       for k,v in pairs(loadEventListeners) do
         v(saveTable[k])

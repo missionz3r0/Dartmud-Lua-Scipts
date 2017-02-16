@@ -75,7 +75,7 @@ local function onChat(event, text)
 	appendBuffer("ChatBox")
 end
 
-local function onImprove(event, who, skill)
+local function onImprove(who, skill)
   local ts = getTime(true, "hh:mm:ss")
 
   imp_container:echo(ts.." ".. who .. " ".. skill.."\n")

@@ -9,7 +9,7 @@ registerAnonymousEventHandler("practiceCastEvent", "Handlers.practiceCastEventHa
     practiceCastEventListeners[listenerName] = nil
   end
 
-  function Handlers.practiceCastEventHandler(spellName, power, arguments)
+  function Handlers.practiceCastEventHandler(event, spellName, power, arguments)
     for l,v in pairs(practiceCastEventListeners) do
       v(spellName, power, arguments)
     end

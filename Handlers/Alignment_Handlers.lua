@@ -9,7 +9,7 @@ registerAnonymousEventHandler("alignmentEvent", "Handlers.alignmentHandler")
     alignmentListeners[listenerName] = nil
   end
 
-  function Handlers.alignmentHandler(conviction, alignment)
+  function Handlers.alignmentHandler(event, conviction, alignment)
     for l,v in pairs(alignmentListeners) do
       v(conviction, alignment)
     end

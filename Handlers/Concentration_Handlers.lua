@@ -9,7 +9,7 @@ registerAnonymousEventHandler("concEvent", "Handlers.concEventHandler")
     concEventListeners[listenerName] = nil
   end
 
-  function Handlers.concEventHandler(conc)
+  function Handlers.concEventHandler(event, conc)
     for l,v in pairs(concEventListeners) do
       v(conc)
     end
@@ -25,7 +25,7 @@ registerAnonymousEventHandler("BEBTconcEvent", "Handlers.BEBTconcEventHandler")
     BEBTconcEventListeners[listenerName] = nil
   end
 
-  function Handlers.BEBTconcEventHandler(conc)
+  function Handlers.BEBTconcEventHandler(event, conc)
     for l,v in pairs(BEBTconcEventListeners) do
       v(conc)
     end
@@ -41,7 +41,7 @@ registerAnonymousEventHandler("BOBconcEvent", "Handlers.BOBconcEventHandler")
     BOBconcEventListeners[listenerName] = nil
   end
 
-  function Handlers.BOBconcEventHandler(conc)
+  function Handlers.BOBconcEventHandler(event, conc)
     for l,v in pairs(BOBconcEventListeners) do
       v(conc)
     end
@@ -57,7 +57,7 @@ registerAnonymousEventHandler("SDconcEvent", "Handlers.SDconcEventHandler")
     SDconcEventListeners[listenerName] = nil
   end
 
-  function Handlers.SDconcEventHandler(conc)
+  function Handlers.SDconcEventHandler(event, conc)
     for l,v in pairs(SDconcEventListeners) do
       v(conc)
     end
@@ -73,7 +73,7 @@ registerAnonymousEventHandler("OBconcEvent", "Handlers.OBconcEventHandler")
     OBconcEventListeners[listenerName] = nil
   end
 
-  function Handlers.OBconcEventHandler(conc)
+  function Handlers.OBconcEventHandler(event, conc)
     for l,v in pairs(OBconcEventListeners) do
       v(conc)
     end
@@ -89,7 +89,7 @@ registerAnonymousEventHandler("DAOBconcEvent", "Handlers.DAOBconcEventHandler")
     DAOBconcEventListeners[listenerName] = nil
   end
 
-  function Handlers.DAOBconcEventHandler(conc)
+  function Handlers.DAOBconcEventHandler(event, conc)
     for l,v in pairs(DAOBconcEventListeners) do
       v(conc)
     end
@@ -105,7 +105,7 @@ registerAnonymousEventHandler("SHOTconcEvent", "Handlers.SHOTconcEventHandler")
     SHOTconcEventListeners[listenerName] = nil
   end
 
-  function Handlers.SHOTconcEventHandler(conc)
+  function Handlers.SHOTconcEventHandler(event, conc)
     for l,v in pairs(SHOTconcEventListeners) do
       v(conc)
     end
@@ -121,7 +121,7 @@ registerAnonymousEventHandler("TCTRNconcEvent", "Handlers.TCTRNconcEventHandler"
     TCTRNconcEventListeners[listenerName] = nil
   end
 
-  function Handlers.TCTRNconcEventHandler(conc)
+  function Handlers.TCTRNconcEventHandler(event, conc)
     for l,v in pairs(TCTRNconcEventListeners) do
       v(conc)
     end
@@ -137,7 +137,7 @@ registerAnonymousEventHandler("UnconsciousEvent", "Handlers.UnconsciousEventHand
     UnconsciousEventListeners[listenerName] = nil
   end
 
-  function Handlers.UnconsciousEventHandler(conc)
+  function Handlers.UnconsciousEventHandler(event, conc)
     for l,v in pairs(UnconsciousEventListeners) do
       v(conc)
     end

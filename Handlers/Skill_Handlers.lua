@@ -9,9 +9,9 @@ registerAnonymousEventHandler("skillImproveEvent", "Handlers.skillImproveHandler
     skillImproveListeners[listenerName] = nil
   end
 
-  function Handlers.skillImproveHandler(evt, who, skill)
+  function Handlers.skillImproveHandler(event, who, skill)
     for l,v in pairs(skillImproveListeners) do
-      v(evt, who, skill)
+      v(who, skill)
     end
   end
 
@@ -25,7 +25,7 @@ registerAnonymousEventHandler("skillMistakeEvent", "Handlers.skillMistakeHandler
     skillMistakeListeners[listenerName] = nil
   end
 
-  function Handlers.skillMistakeHandler(who, skill)
+  function Handlers.skillMistakeHandler(event, who, skill)
     for l,v in pairs(skillMistakeListeners) do
       v(who, skill)
     end
@@ -41,7 +41,7 @@ registerAnonymousEventHandler("skillInfoEvent", "Skills.skillInfoEventHandler")
     skillInfoListeners[listenerName] = nil
   end
 
-  function Handlers.skillInfoHandler(who, skill)
+  function Handlers.skillInfoHandler(event, who, skill)
     for l,v in pairs(skillInfoListeners) do
       v(who, skill)
     end

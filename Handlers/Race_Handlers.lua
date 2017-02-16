@@ -9,7 +9,7 @@ registerAnonymousEventHandler("raceEvent", "Handlers.raceEventHandler")
     raceEventListeners[listenerName] = nil
   end
 
-  function Handlers.raceEventHandler(name)
+  function Handlers.raceEventHandler(event, name)
     for l,v in pairs(raceEventListeners) do
       v(name)
     end

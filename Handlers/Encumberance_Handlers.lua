@@ -10,7 +10,7 @@ function Handlers.removeencumbranceEventListener(listenerName)
   encumbranceEventListeners[listenerName] = nil
 end
 
-function Handlers.encumbranceEventHandler(encumberance)
+function Handlers.encumbranceEventHandler(event, encumberance)
   for l,v in pairs(encumbranceEventListeners) do
     v(encumberance)
   end

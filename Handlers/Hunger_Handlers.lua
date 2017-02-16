@@ -9,7 +9,7 @@ registerAnonymousEventHandler("hungerEvent", "Handlers.hungerEventHandler")
     hungerEventListeners[listenerName] = nil
   end
 
-  function Handlers.hungerEventHandler(hunger)
+  function Handlers.hungerEventHandler(event, hunger)
     for l,v in pairs(hungerEventListeners) do
       v(hunger)
     end
