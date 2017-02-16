@@ -11,6 +11,6 @@ registerAnonymousEventHandler("sysWindowResizeEvent", "Handlers.windowResizeHand
 
   function Handlers.windowResizeHandler(event, x, y)
     for k,v in pairs(windowResizeListeners) do
-      v(event, x, y)
+      v(x, y)
     end
   end

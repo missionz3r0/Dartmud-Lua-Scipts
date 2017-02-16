@@ -1,7 +1,7 @@
 --Because of how anonymous event handlers are made in mudlet, it is difficult
 --to load and unload the handlers. So for now they are going to break they
 --mold of how I have everything else set up.
-
+local _Handlers = {}
 Handlers = {}
 
 local modules = {}

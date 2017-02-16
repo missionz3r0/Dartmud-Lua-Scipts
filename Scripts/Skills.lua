@@ -1,7 +1,7 @@
 
 --Need a score parser for increaseSkill() to work. To be more specific I need to parse the output from the game's "score" command.
 --Still need to implement an adjuster that will fix the skill levels if it finds them to be in error.
-Skills = {}
+local Skills = {}
 
 local sourceName = 'skills'
 
@@ -138,7 +138,7 @@ local function reload()
   load()
 end
 
-skills =
+Skills =
 {
 	load = load,
 	unload = unload,

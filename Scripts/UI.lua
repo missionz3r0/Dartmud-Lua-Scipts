@@ -1,4 +1,4 @@
-UI = {}
+local UI = {}
 
 local sourceName = "ui"
 
@@ -19,7 +19,7 @@ local altBoxMaxSize = 500
 local chatWidth = 0
 local altWidth = 0
 
-local function updateDisplay(evt, x, y)
+local function updateDisplay(x, y)
     local mainWidth, mainHeight = getMainWindowSize()
     local x = mainWidth
     local y = mainHeight
@@ -62,7 +62,7 @@ local function updateDisplay(evt, x, y)
   	end
 end
 
-local function onChat(event, text)
+local function onChat(text)
 	local ts = getTime(true, "hh:mm:ss")
 	chat_container:echo(ts.." ")
 	--[[ even though we get the text passed into the event get text from buffer
@@ -80,8 +80,6 @@ local function onImprove(who, skill)
 end
 
 local function load()
-
-
   setBorderTop(topBorder)
   setBorderBottom(bottomBorder)
 
@@ -154,9 +152,9 @@ end
 
 
 UI = {
-  load = load,
-  unload = unload,
-  reload = reload
+  load = load
+  ,unload = unload
+  ,reload = reload
 }
 
 return UI

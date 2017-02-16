@@ -82,7 +82,7 @@ function Status.load()
   Handlers.addSoulAgeListener(sourceName, setSoulAge)
   Handlers.addThirstListener(sourceName, setThirst)
 
-  Handlers.addsaveEventListener(sourceName, save)
+  Handlers.addSaveListener(sourceName, save)
 end
 
 function Status.unload()
@@ -97,12 +97,12 @@ function Status.unload()
   Handlers.removeSoulAgeListener(sourceName)
   Handlers.removeThirstListener(sourceName)
 
-  Handlers.removesaveEventListener(sourceName)
+  Handlers.removeSaveListener(sourceName)
 end
 
 function Status.reload()
-  unload()
-  load()
+  Status.unload()
+  Status.load()
 end
 
 return Status

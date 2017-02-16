@@ -9,11 +9,11 @@ require("dba")
 require("_Handlers")
 
 Aliases = require("_Aliases")
+Scripts = require("_Scripts")
 Timers = require("_Timers")
 Triggers = require("_Triggers")
 
 Aliases.load()
-Status.load()
+Scripts.load()
 Timers.load()
 Triggers.load()
-UI.load()

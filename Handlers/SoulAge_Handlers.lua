@@ -1,6 +1,6 @@
 
 registerAnonymousEventHandler("SoulAgeEvent", "Handlers.SoulAgeHandler")
-  local SoulAgeListeners = {}
+  local soulAgeListeners = {}
   function Handlers.addSoulAgeListener(listenerName, functionToAdd)
     soulAgeListeners[listenerName] = functionToAdd
   end

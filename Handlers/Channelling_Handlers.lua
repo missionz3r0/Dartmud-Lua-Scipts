@@ -1,11 +1,11 @@
 registerAnonymousEventHandler("channellingEvent", "Handlers.channellingHandler")
   local channellingListeners = {}
   function Handlers.addChannellingListener(listenerName, functionToAdd)
-    practiceCastListeners[listenerName] = functionToAdd
+    channellingListeners[listenerName] = functionToAdd
   end
 
   function Handlers.removeChannellingListener(listenerName)
-    practiceCastListeners[listenerName] = nil
+    channellingListeners[listenerName] = nil
   end
 
   function Handlers.channellingHandler(event, power, target)

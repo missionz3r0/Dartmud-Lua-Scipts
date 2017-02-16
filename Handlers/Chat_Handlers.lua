@@ -11,6 +11,6 @@ registerAnonymousEventHandler("chatEvent", "Handlers.chatHandler")
 
   function Handlers.chatHandler(event, text)
     for k,v in pairs(chatListeners) do
-      v(event, text)
+      v(text)
     end
   end
