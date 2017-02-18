@@ -140,9 +140,12 @@ end
 
 Skills =
 {
-	load = load,
-	unload = unload,
-	reload = reload,
+	load = load
+	,unload = unload
+	,reload = reload
+	,imp2lvl = imp2lvl
+	,getSkill = getSkill
+	,nextLevel = nextLevel
 }
 
 return Skills

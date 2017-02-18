@@ -76,6 +76,21 @@ end
 local function onImprove(who, skill)
   local ts = getTime(true, "hh:mm:ss")
 
+  local skill = Skills.getSkill(who, skill)
+  local count = toNumber(skill.Count)
+
+  local level = Skills.imp2lvl(count)
+  local nextLevel = Skills.nextLevel(count)
+  local tilNext = nextLevel.min - count
+
+  if(who ~= Status.name) then
+    output = ts.." ("..who..") "..skill.." - "..count.." ("..level..")"
+  else
+    output = ts.." "..skill.." - "..count.." ("..level..")"
+  end
+
+
+
   imp_container:echo(ts.." ".. who .. " ".. skill.."\n")
 end
 
