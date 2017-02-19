@@ -1,12 +1,13 @@
 local _Aliases = {}
 
 local modules = {}
+local directory = getMudletHomeDir().."\\scripts\\Aliases\\"
 
 local function load()
-  modules.casting = dofile(getMudletHomeDir().."\\aliases\\Casting_Aliases.lua")
-  modules.channelling = dofile(getMudletHomeDir().."\\aliases\\Channelling_Aliases.lua")
-  modules.inscribing = dofile(getMudletHomeDir().."\\aliases\\Inscribing_Aliases.lua")
-  modules.skill = dofile(getMudletHomeDir().."\\aliases\\Skill_Aliases.lua")
+  modules.casting = dofile(directory.."Casting_Aliases.lua")
+  modules.channelling = dofile(directory.."Channelling_Aliases.lua")
+  modules.inscribing = dofile(directory.."Inscribing_Aliases.lua")
+  modules.skill = dofile(directory.."Skill_Aliases.lua")
 
   for k,v in pairs(modules) do
     v.load()

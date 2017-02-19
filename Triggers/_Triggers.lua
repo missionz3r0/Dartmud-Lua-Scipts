@@ -1,22 +1,22 @@
 local _Triggers = {}
 
 local modules = {}
-
-modules.age = require("Age_Triggers")
-modules.alignment = require("Alignment_Triggers")
-modules.aura = require("Aura_Triggers")
-modules.chat = require("Chat_Triggers")
-modules.concentration = require("Concentration_Triggers")
-modules.encumberance = require("Encumberance_Triggers")
-modules.hunger = require("Hunger_Triggers")
-modules.movement = require("Movement_Triggers")
-modules.name = require("Name_Triggers")
-modules.race = require("Race_Triggers")
-modules.skill = require("Skill_Triggers")
-modules.soulage = require("SoulAge_Triggers")
-modules.thirst = require("Thirst_Triggers")
+local directory = getMudletHomeDir().."\\scripts\\Triggers\\"
 
 local function load()
+  modules.age = dofile(directory.."Age_Triggers.lua")
+  modules.alignment = dofile(directory.."Alignment_Triggers.lua")
+  modules.aura = dofile(directory.."Aura_Triggers.lua")
+  modules.chat = dofile(directory.."Chat_Triggers.lua")
+  modules.concentration = dofile(directory.."Concentration_Triggers.lua")
+  modules.encumberance = dofile(directory.."Encumberance_Triggers.lua")
+  modules.hunger = dofile(directory.."Hunger_Triggers.lua")
+  modules.movement = dofile(directory.."Movement_Triggers.lua")
+  modules.name = dofile(directory.."Name_Triggers.lua")
+  modules.race = dofile(directory.."Race_Triggers.lua")
+  modules.skill = dofile(directory.."Skill_Triggers.lua")
+  modules.soulage = dofile(directory.."SoulAge_Triggers.lua")
+  modules.thirst = dofile(directory.."Thirst_Triggers.lua")
   for k,v in pairs(modules) do
     v.load()
   end
@@ -25,6 +25,7 @@ end
 local function unload()
   for k,v in pairs(modules) do
     v.unload()
+    v = nil
   end
 end
 

@@ -1,15 +1,16 @@
 local _Scripts = {}
 
 local modules = {}
-
-modules.casting = require("Casting")
-modules.channelling = require("Channelling")
-modules.inscribing = require("Inscribing")
-modules.skills = require("Skills")
-modules.status = require("Status")
-modules.ui = require("UI")
+local directory = getMudletHomeDir().."\\scripts\\Scripts\\"
 
 local function load()
+  modules.casting = dofile(directory.."Casting.lua")
+  modules.channelling = dofile(directory.."Channelling.lua")
+  modules.inscribing = dofile(directory.."Inscribing.lua")
+  modules.skills = dofile(directory.."Skills.lua")
+  modules.status = dofile(directory.."Status.lua")
+  modules.ui = dofile(directory.."UI.lua")
+
   for k,v in pairs(modules) do
     v.load()
   end
@@ -18,6 +19,7 @@ end
 local function unload()
   for k,v in pairs(modules) do
     v.unload()
+    v = nil
   end
 end
 

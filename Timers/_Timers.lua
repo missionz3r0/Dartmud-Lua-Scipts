@@ -11,6 +11,7 @@ end
 local function unload()
   for k,v in pairs(modules) do
     v.unload()
+    v = nil
   end
 end
 
