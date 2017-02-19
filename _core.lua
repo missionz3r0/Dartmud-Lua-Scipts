@@ -1,17 +1,10 @@
-package.path = package.path .. ";" .. getMudletHomeDir() .. "/scripts/Aliases/?.lua"
-package.path = package.path .. ";" .. getMudletHomeDir() .. "/scripts/Handlers/?.lua"
-package.path = package.path .. ";" .. getMudletHomeDir() .. "/scripts/Scripts/?.lua"
-package.path = package.path .. ";" .. getMudletHomeDir() .. "/scripts/Timers/?.lua"
-package.path = package.path .. ";" .. getMudletHomeDir() .. "/scripts/Triggers/?.lua"
-
-
-require("dba")
+dba = require("dba")
 require("_Handlers")
 
-Aliases = require("_Aliases")
-Scripts = require("_Scripts")
-Timers = require("_Timers")
-Triggers = require("_Triggers")
+Aliases = dofile(getMudletHomeDir().."\\scripts\\_Aliases.lua")
+Scripts = dofile(getMudletHomeDir().."\\scripts\\_Scripts.lua")
+Timers = dofile(getMudletHomeDir().."\\scripts\\_Timers.lua")
+Triggers = dofile(getMudletHomeDir().."\\scripts\\_Triggers.lua")
 
 Aliases.load()
 Scripts.load()
