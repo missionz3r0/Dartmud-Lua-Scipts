@@ -31,7 +31,7 @@ registerAnonymousEventHandler("skillMistakeEvent", "Handlers.skillMistakeHandler
     end
   end
 
-registerAnonymousEventHandler("skillInfoEvent", "Skills.skillInfoEventHandler")
+registerAnonymousEventHandler("skillInfoEvent", "Skills.skillInfoHandler")
   local skillInfoListeners = {}
   function Handlers.addSkillInfoListener(listenerName, functionToAdd)
     skillMistakeListeners[listenerName] = functionToAdd

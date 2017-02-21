@@ -4,7 +4,7 @@
 --]]
 
 require "luasql.sqlite3"
-require "php"
+dofile(getMudletHomeDir().."\\scripts\\Scripts\\php.lua")
 
 module("dba",package.seeall)
 
