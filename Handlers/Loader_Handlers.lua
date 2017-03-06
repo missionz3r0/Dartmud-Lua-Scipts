@@ -26,7 +26,7 @@ registerAnonymousEventHandler("unloadEvent", "Handlers.unloadHandler")
     unloadListeners[listenerName] = nil
   end
 
-  function Handlers.loadHandler(event)
+  function Handlers.unloadHandler(event)
     for l,v in pairs(unloadListeners) do
       v()
     end
@@ -34,11 +34,11 @@ registerAnonymousEventHandler("unloadEvent", "Handlers.unloadHandler")
 registerAnonymousEventHandler("reloadEvent", "Handlers.reloadHandler")
   local reloadListeners = {}
   function Handlers.addReloadListener(listenerName, functionToAdd)
-    loadListeners[listenerName] = functionToAdd
+    reloadListeners[listenerName] = functionToAdd
   end
 
   function Handlers.removeReloadListener(listenerName)
-    loadListeners[listenerName] = nil
+    reloadListeners[listenerName] = nil
   end
 
   function Handlers.reloadHandler(event)

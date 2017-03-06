@@ -1,7 +1,7 @@
 local _Aliases = {}
 
 local modules = {}
-local directory = getMudletHomeDir().."\\scripts\\Aliases\\"
+local directory = getMudletHomeDir().."/scripts/Aliases/"
 
 local function load()
   modules.casting = dofile(directory.."Casting_Aliases.lua")

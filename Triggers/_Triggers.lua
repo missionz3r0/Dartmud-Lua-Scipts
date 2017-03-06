@@ -1,7 +1,7 @@
 local _Triggers = {}
 
 local modules = {}
-local directory = getMudletHomeDir().."\\scripts\\Triggers\\"
+local directory = getMudletHomeDir().."/scripts/Triggers/"
 
 local function load()
   modules.age = dofile(directory.."Age_Triggers.lua")
@@ -11,6 +11,7 @@ local function load()
   modules.concentration = dofile(directory.."Concentration_Triggers.lua")
   modules.encumberance = dofile(directory.."Encumberance_Triggers.lua")
   modules.hunger = dofile(directory.."Hunger_Triggers.lua")
+  modules.login = dofile(directory.."Login_Triggers.lua")
   modules.movement = dofile(directory.."Movement_Triggers.lua")
   modules.name = dofile(directory.."Name_Triggers.lua")
   modules.race = dofile(directory.."Race_Triggers.lua")

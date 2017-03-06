@@ -16,22 +16,22 @@ registerAnonymousEventHandler("saveEvent", "Handlers.saveHandler")
     table.save(getMudletHomeDir().."/dartmud.txt", saveTable)
   end
 
-registerAnonymousEventHandler("loadEvent", "Handlers.loadHandler")
+registerAnonymousEventHandler("loadDataEvent", "Handlers.loadDataHandler")
   local loadListeners = {}
-  function Handlers.addLoadListener(listenerName, functionToAdd)
+  function Handlers.addLoadDataListener(listenerName, functionToAdd)
     loadListeners[listenerName] = functionToAdd
   end
 
-  function Handlers.removeLoadListener(listenerName)
+  function Handlers.removeLoadDataListener(listenerName)
     loadListeners[listenerName] = nil
   end
 
-  function Handlers.loadHandler(event)
+  function Handlers.loadDataHandler(event)
     local saveTable = {}
     if io.exists(getMudletHomeDir().."/dartmud.txt") then
 
       table.load(getMudletHomeDir().."/dartmud.txt", saveTable)
-      for k,v in pairs(loadListeners) do
+      for k,v in pairs(loadDataListeners) do
         v(saveTable[k])
       end
     end

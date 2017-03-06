@@ -53,23 +53,6 @@ local function setAge(age)
   Status.age = age
 end
 
-local function save()
-  local saveTable = {}
-
-  saveTable["age"] = Status.age
-  saveTable["alignment"] = Status.alignment
-  saveTable["aura"] = Status.aura
-  saveTable["encumberance"] = Status.encumberance
-  saveTable["hunger"] = Status.hunger
-  saveTable["movement"] = Status.movement
-  saveTable["name"] = Status.name
-  saveTable["race"] = Status.race
-  saveTable["soulage"] = Status.soulage
-  saveTable["thirst"] = Status.thirst
-
-  return saveTable
-end
-
 function Status.load()
   Handlers.addAgeListener(sourceName, setAge)
   Handlers.addAlignmentListener(sourceName, setAlignment)
@@ -82,7 +65,7 @@ function Status.load()
   Handlers.addSoulAgeListener(sourceName, setSoulAge)
   Handlers.addThirstListener(sourceName, setThirst)
 
-  Handlers.addSaveListener(sourceName, save)
+
 end
 
 function Status.unload()
@@ -96,8 +79,6 @@ function Status.unload()
   Handlers.removeRaceListener(sourceName)
   Handlers.removeSoulAgeListener(sourceName)
   Handlers.removeThirstListener(sourceName)
-
-  Handlers.removeSaveListener(sourceName)
 end
 
 function Status.reload()

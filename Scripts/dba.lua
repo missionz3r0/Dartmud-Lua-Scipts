@@ -4,8 +4,9 @@
 --]]
 
 require "luasql.sqlite3"
-dofile(getMudletHomeDir().."\\scripts\\Scripts\\php.lua")
+dofile(getMudletHomeDir().."/scripts/Scripts/php.lua")
 
+local dba = {}
 module("dba",package.seeall)
 
 local loader_game = "Database_dartmud"
@@ -67,3 +68,12 @@ function commit()
     transaction = false
     return true
 end
+
+dba = {
+  execute = execute
+  ,begin = begin
+  ,commit = commit
+  ,query = query
+}
+
+return dba

@@ -1,7 +1,7 @@
 
 --Need a score parser for increaseSkill() to work. To be more specific I need to parse the output from the game's "score" command.
 --Still need to implement an adjuster that will fix the skill levels if it finds them to be in error.
-local Skills = {}
+Skills = {}
 
 local sourceName = 'skills'
 
@@ -41,7 +41,7 @@ local levels= {
 
 local function getSkill(who, skill_name)
     if not who then
-        who = dm.me
+        who = Status.me
     end
 
     local results = dba.query('SELECT * FROM improves WHERE who="'..who..'" AND skill LIKE "'..skill_name..'%"')

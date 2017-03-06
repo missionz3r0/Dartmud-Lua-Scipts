@@ -2,7 +2,7 @@
 --to load and unload the handlers. So for now they are going to break they
 --mold of how I have everything else set up.
 local _Handlers = {}
-local directory = getMudletHomeDir().."\\scripts\\Handlers\\"
+local directory = getMudletHomeDir().."/scripts/Handlers/"
 Handlers = {}
 
 local modules = {}
@@ -18,6 +18,7 @@ modules.encumberance = dofile(directory.."Encumberance_Handlers.lua")
 modules.hunger = dofile(directory.."Hunger_Handlers.lua")
 modules.inscribing = dofile(directory.."Inscribing_Handlers.lua")
 modules.loader = dofile(directory.."Loader_Handlers.lua")
+modules.login = dofil(directory.."Login.lua")
 modules.misc = dofile(directory.."Misc_Handlers.lua")
 modules.movement = dofile(directory.."Movement_Handlers.lua")
 modules.name = dofile(directory.."Name_Handlers.lua")
@@ -30,8 +31,7 @@ modules.ui = dofile(directory.."UI_Handlers.lua")
 
 local function load()
   for k,v in pairs(modules) do
-    print(v)
--end
+  end
 end
 
 local function unload()
