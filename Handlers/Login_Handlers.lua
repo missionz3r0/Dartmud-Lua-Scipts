@@ -10,6 +10,7 @@ registerAnonymousEventHandler("loginEvent", "Handlers.loginHandler")
 
   function Handlers.loginHandler(event)
     for k,v in pairs(loginListeners) do
+      print("Hi!")
       v()
     end
   end

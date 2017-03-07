@@ -35,8 +35,6 @@ Handlers.addLoadListener(sourceName,load)
 Handlers.addUnloadListener(sourceName,unload)
 Handlers.addReloadListener(sourceName,reload)
 
-raiseEvent("loadEvent")
-
 _Core = {
   load = load
   ,unload = unload

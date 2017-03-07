@@ -5,11 +5,17 @@ local triggers = {}
 local function load()
   local tempTriggers = {}
 
-  tempTriggers.Login =
-    tempRegexTrigger("^Running under version (?:\S+)\."
+  tempTriggers.login =
+    tempRegexTrigger("^Running under version \\S+\\."
                      ,[[
                         raiseEvent("loginEvent")
                       ]])
+
+  tempTriggers.re_login =
+    tempRegexTrigger("^You are already playing, reconnecting to old object."
+                     ,[[
+                        raiseEvent("loginEvent")
+                     ]])
 
   triggers = tempTriggers
 end

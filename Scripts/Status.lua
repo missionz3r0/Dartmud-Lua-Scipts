@@ -53,6 +53,10 @@ local function setAge(age)
   Status.age = age
 end
 
+local function login()
+  send("score")
+end
+
 function Status.load()
   Handlers.addAgeListener(sourceName, setAge)
   Handlers.addAlignmentListener(sourceName, setAlignment)
@@ -65,7 +69,7 @@ function Status.load()
   Handlers.addSoulAgeListener(sourceName, setSoulAge)
   Handlers.addThirstListener(sourceName, setThirst)
 
-
+  Handlers.addLoginListener(sourceName, login)
 end
 
 function Status.unload()
@@ -79,6 +83,8 @@ function Status.unload()
   Handlers.removeRaceListener(sourceName)
   Handlers.removeSoulAgeListener(sourceName)
   Handlers.removeThirstListener(sourceName)
+
+  Handlers.removeLoginListener(sourceName)
 end
 
 function Status.reload()

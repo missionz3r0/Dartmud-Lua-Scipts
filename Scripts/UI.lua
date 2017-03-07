@@ -3,7 +3,7 @@ local UI = {}
 local sourceName = "ui"
 
 local topBorder = 164
-local bottomBorder = 0
+local bottomBorder = 30
 
 local chat_border = nil
 local alt_border = nil
