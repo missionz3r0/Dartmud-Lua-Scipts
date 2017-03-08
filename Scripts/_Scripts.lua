@@ -1,9 +1,10 @@
 local _Scripts = {}
 
 local modules = {}
-local directory = getMudletHomeDir().."/scripts/Scripts/"
 
-local function load()
+local function load(directory)
+  local directory = directory.."/Scripts/"
+
   modules.casting = dofile(directory.."Casting.lua")
   modules.channelling = dofile(directory.."Channelling.lua")
   modules.inscribing = dofile(directory.."Inscribing.lua")

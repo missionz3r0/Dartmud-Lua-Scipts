@@ -2,7 +2,8 @@
 --to load and unload the handlers. So for now they are going to break they
 --mold of how I have everything else set up.
 local _Handlers = {}
-local directory = getMudletHomeDir().."/scripts/Handlers/"
+local packageName = "dartmudlet"
+local directory = getMudletHomeDir().."/"..packageName.."/Handlers/"
 Handlers = {}
 
 local modules = {}
@@ -29,7 +30,8 @@ modules.soulage = dofile(directory.."SoulAge_Handlers.lua")
 modules.thirst = dofile(directory.."Thirst_Handlers.lua")
 modules.ui = dofile(directory.."UI_Handlers.lua")
 
-local function load()
+local function load(directory)
+  local directory = directory.."/Handlers/"
   for k,v in pairs(modules) do
   end
 end

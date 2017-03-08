@@ -4,7 +4,7 @@
 --]]
 
 require "luasql.sqlite3"
-dofile(getMudletHomeDir().."/scripts/Scripts/php.lua")
+dofile(getMudletHomeDir().."/dartmudlet/Scripts/php.lua")
 
 local dba = {}
 module("dba",package.seeall)

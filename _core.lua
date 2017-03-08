@@ -1,5 +1,6 @@
 local _Core = {}
-local directory = getMudletHomeDir().."/scripts/"
+local packageName = "dartmudlet"
+local directory = getMudletHomeDir().."/"..packageName.."/"
 local modules = {}
 local sourceName = "core"
 
@@ -14,7 +15,7 @@ local function load()
   modules.triggers = dofile(directory.."Triggers/_Triggers.lua")
 
   for k,v in pairs(modules) do
-    v.load()
+    v.load(directory)
   end
 end
 

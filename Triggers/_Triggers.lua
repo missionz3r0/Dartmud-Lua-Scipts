@@ -1,9 +1,10 @@
 local _Triggers = {}
 
 local modules = {}
-local directory = getMudletHomeDir().."/scripts/Triggers/"
 
-local function load()
+local function load(directory)
+  local directory = directory.."/Triggers/"
+
   modules.age = dofile(directory.."Age_Triggers.lua")
   modules.alignment = dofile(directory.."Alignment_Triggers.lua")
   modules.aura = dofile(directory.."Aura_Triggers.lua")

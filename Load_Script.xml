@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE MudletPackage>
+<MudletPackage version="1.0">
+    <ScriptPackage>
+        <Script isActive="no" isFolder="no">
+            <name>Load Scripts</name>
+            <packageName></packageName>
+            <script>local directory = getMudletHomeDir() .. &quot;/dartmudlet/&quot;
+local coreFile = directory..&quot;/_core.lua&quot;
+
+local core = dofile(coreFile)
+
+core.load()</script>
+            <eventHandlerList/>
+        </Script>
+    </ScriptPackage>
+</MudletPackage>
