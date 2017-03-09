@@ -11,9 +11,14 @@ local function load()
               ,[[
                 local spellName = matches[2]
                 local power = tonumber(matches[3]) or 100
-                local arguments = matches[4] or ""
+                local spellArguments = matches[4] or ""
+                local arguments = {
+                  spellName = spellName
+                  ,power = power
+                  ,spellArguments = spellArguments
+                }
 
-                raiseEvent("practiceCastEvent", spellName, power, arguments)
+                Events.raiseEvent("practiceCastEvent", arguments)
               ]])
   aliases = tempAliases
 end

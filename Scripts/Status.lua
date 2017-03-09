@@ -5,7 +5,7 @@ local sourceName = "status"
 Status.age = ''
 Status.alignment = ''
 Status.aura = ''
-Status.encumberance = ''
+Status.encumbrance = ''
 Status.hunger = ''
 Status.movement = ''
 Status.name = ''
@@ -13,78 +13,78 @@ Status.race = ''
 Status.soulage = ''
 Status.thirst = ''
 
-local function setAge(soulAge)
-  Status.soulage = soulAge
+local function setAge(args)
+  Status.soulage = args["soulAge"]
 end
 
-local function setAlignment(alignment)
-  Status.alignment = alignment
+local function setAlignment(args)
+  Status.alignment = args["alignment"]
 end
 
-local function setAura(aura)
-  Status.aura = aura
+local function setAura(args)
+  Status.aura = args["aura"]
 end
 
-local function setEncumberance(encumberance)
-  Status.encumberance = encumberance
+local function setEncumberance(args)
+  Status.encumbrance = args["encumbrance"]
 end
 
-local function setHunger(hunger)
-  Status.hunger = hunger
+local function setHunger(args)
+  Status.hunger = args["hunger"]
 end
 
-local function setMovement(movement)
-  Status.movement = movement
+local function setMovement(args)
+  Status.movement = args["movement"]
 end
 
-local function setName(name)
-  Status.name = name
+local function setName(args)
+  Status.name = args["name"]
 end
 
-local function setRace(race)
+local function setRace(args)
   Status.race = race
 end
 
-local function setThirst(thirst)
-  Status.thirst = thirst
+local function setThirst(args)
+  Status.thirst = args["thirst"]
 end
 
-local function setAge(age)
-  Status.age = age
+local function setAge(args)
+  Status.age = args["age'"]
 end
 
-local function login()
+local function login(args)
   send("score")
 end
 
 function Status.load()
-  Handlers.addAgeListener(sourceName, setAge)
-  Handlers.addAlignmentListener(sourceName, setAlignment)
-  Handlers.addAuraListener(sourceName, setAura)
-  Handlers.addEncumbranceListener(sourceName, setEncumberance)
-  Handlers.addHungerListener(sourceName, setHunger)
-  Handlers.addMovementListener(sourceName, setMovement)
-  Handlers.addNameListener(sourceName, setName)
-  Handlers.addRaceListener(sourceName, setRace)
-  Handlers.addSoulAgeListener(sourceName, setSoulAge)
-  Handlers.addThirstListener(sourceName, setThirst)
+  Events.addListener("ageEvent", sourceName, setAge)
+  Events.addListener("alignmentEvent", sourceName, setAlignment)
+  Events.addListener("auraEvent", sourceName, setAura)
+  Events.addListener("encumbranceEvent", sourceName, setEncumbrance)
+  Events.addListener("hungerEvent", sourceName, setHunger)
+  Events.addListener("movementEvent", sourceName, setMovement)
+  Events.addListener("nameEvent", sourceName, setName)
+  Events.addListener("raceEvent", sourceName, setRace)
+  Events.addListener("soulAgeEvent", sourceName, setSoulAge)
+  Events.addListener("thirstEvent", sourceName, setThirst)
 
-  Handlers.addLoginListener(sourceName, login)
+  Events.addListener("loginEvent", sourceName, login)
 end
 
 function Status.unload()
-  Handlers.removeAgeListener(sourceName)
-  Handlers.removeAlignmentListener(sourceName)
-  Handlers.removeAuraListener(sourceName)
-  Handlers.removeEncumbranceListener(sourceName)
-  Handlers.removeHungerListener(sourceName)
-  Handlers.removeMovementListener(sourceName)
-  Handlers.removeNameListener(sourceName)
-  Handlers.removeRaceListener(sourceName)
-  Handlers.removeSoulAgeListener(sourceName)
-  Handlers.removeThirstListener(sourceName)
+  Events.removeListener("ageEvent", sourceName)
+  Events.removeListener("alignmentEvent", sourceName)
+  Events.removeListener("auraEvent", sourceName)
+  Events.removeListener("encumbranceEvent", sourceName)
+  Events.removeListener("hungerEvent", sourceName)
+  Events.removeListener("movementEvent", sourceName)
+  Events.removeListener("nameEvent", sourceName)
+  Events.removeListener("raceEvent", sourceName)
+  Events.removeListener("soulAgeEvent", sourceName)
+  Events.removeListener("thirstEvent", sourceName)
 
-  Handlers.removeLoginListener(sourceName)
+  Events.removeListener("loginEvent", sourceName)
 end
 
 function Status.reload()

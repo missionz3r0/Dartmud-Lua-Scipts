@@ -10,7 +10,10 @@ local function load()
                      ,[[
                         local conviction = matches[2]
                         local alignment = matches[3]
-                        raiseEvent("alignmentEvent", conviction, alignment)
+                        local arguments  = {conviction = conviction
+                                            ,alignment = alignment}
+
+                        Events.raiseEvent("alignmentEvent", arguments)
                       ]])
 
   triggers = tempTriggers

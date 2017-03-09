@@ -8,13 +8,15 @@ local function load()
   tempTriggers.login =
     tempRegexTrigger("^Running under version \\S+\\."
                      ,[[
-                        raiseEvent("loginEvent")
+                        arguments = {}
+                        Events.raiseEvent("loginEvent", arguments)
                       ]])
 
   tempTriggers.re_login =
     tempRegexTrigger("^You are already playing, reconnecting to old object."
                      ,[[
-                        raiseEvent("loginEvent")
+                        arguments = {}
+                        Events.raiseEvent("loginEvent", arguments)
                      ]])
 
   triggers = tempTriggers

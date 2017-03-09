@@ -4,8 +4,12 @@ local directory = getMudletHomeDir().."/"..packageName.."/"
 local modules = {}
 local sourceName = "core"
 
+--These are the only system events we use. And since we can't un-make
+--an anonymousEventHandler. We place it here so it's no remade on a reload.
+registerAnonymousEventHandler("sysWindowResizeEvent", "Events.raiseEvent")
+registerAnonymousEventHandler("sysDownloadError", "Events.raiseEvent")
+
 dba = dofile(directory.."Scripts/dba.lua")
-_Handlers = dofile(directory.."Handlers/_Handlers.lua")
 
 
 local function load()

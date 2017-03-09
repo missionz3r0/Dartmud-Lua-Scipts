@@ -9,7 +9,9 @@ local function load()
                      ,[[
                         local years = matches[2]
                         local months = matches[3]
-                        raiseEvent("SoulAgeEvent", years, months)
+                        arguments = {years = years, months = months}
+
+                        Events.raiseEvent("SoulAgeEvent", arguments)
                       ]])
 
   triggers = tempTriggers

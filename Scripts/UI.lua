@@ -19,7 +19,7 @@ local altBoxMaxSize = 500
 local chatWidth = 0
 local altWidth = 0
 
-local function updateDisplay(x, y)
+local function updateDisplay(args)
     local mainWidth, mainHeight = getMainWindowSize()
     local x = mainWidth
     local y = mainHeight
@@ -62,7 +62,8 @@ local function updateDisplay(x, y)
   	end
 end
 
-local function onChat(text)
+local function onChat(args)
+  local text = args["message"]
 	local ts = getTime(true, "hh:mm:ss")
 	chat_container:echo(ts.." ")
 	--[[ even though we get the text passed into the event get text from buffer
@@ -73,7 +74,9 @@ local function onChat(text)
 	appendBuffer("ChatBox")
 end
 
-local function onImprove(who, skill)
+local function onImprove(args)
+  local who = args["name"]
+  local skill = args["skill"]
   local ts = getTime(true, "hh:mm:ss")
 
   local skill = Skills.getSkill(who, skill)
@@ -145,9 +148,9 @@ local function load()
   }, chat_border)
   setWindowWrap("ChatBox", chatWrap)
 
-  Handlers.addWindowResizeListener(sourceName, updateDisplay)
-  Handlers.addChatListener(sourceName, onChat)
-  Handlers.addSkillImproveListener(sourceName, onImprove)
+  Events.addListener("sysWindowResizeEvent", sourceName, updateDisplay)
+  Events.addListener("chatEvent", sourceName, onChat)
+  Events.addListener("skillImproveEvent", sourceName, onImprove)
 
   alt_container = imp_container
   alt_containers["imp_container"] = imp_container
@@ -156,9 +159,9 @@ local function load()
 end
 
 local function unload()
-  Handlers.removeWindowResizeListener(sourceName)
-  Handlers.removeChatListener(sourceName)
-  Handlers.removeSkillImproveListener(sourceName)
+  Events.removeListener("sysWindowResizeEvent", sourceName)
+  Events.removeListener("chatEvent", sourceName)
+  Events.removeListener("skillImproveEvent", sourceName)
   resetProfile()
 end
 

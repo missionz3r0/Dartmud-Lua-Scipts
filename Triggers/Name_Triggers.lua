@@ -9,7 +9,9 @@ local function load()
     tempRegexTrigger("^(?:> )?You are (\\w+) the (?:\\w+)?\\.  You are a (?:[\\s\\S]+)\\."
                      ,[[
                         local name = matches[2]
-                        raiseEvent("nameEvent", name)
+                        arguments = {name = name}
+                        
+                        Events.raiseEvent("nameEvent", arguments)
                       ]])
 
   triggers = tempTriggers

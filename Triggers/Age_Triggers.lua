@@ -8,8 +8,9 @@ local function load()
   tempTriggers.Youthfullness =
     tempRegexTrigger("^(?:> )?You are (?:\\w+) the (?:\\w+)?\\.  You are a ([\\s\\S]+)\\."
                      ,[[
-                        local age = matches[2]
-                        raiseEvent("ageEvent", age)
+                        local age =  matches[2]
+                        local arguments = { age = age }
+                        Events.raiseEvent("ageEvent", arguments)
                       ]])
 
   triggers = tempTriggers

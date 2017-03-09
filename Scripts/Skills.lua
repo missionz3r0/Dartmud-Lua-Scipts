@@ -82,7 +82,9 @@ local function nextLevel(imp)
     end
 end
 
-local function skillInfo(skill_name, who)
+local function skillInfo(args)
+  local skill_name = args["skill_name"]
+  local who = args["who"]
 	local result = getSkill(skill_name, who)
 	if result == -1 then
         cecho("<red>_dm.getSkill(): Invalid arguments...<reset>\n")
@@ -104,7 +106,9 @@ local function skillInfo(skill_name, who)
 	cecho("<yellow>Improves: "..output.."\n")
 end
 
-local function increaseSkill(skill_name, who)
+local function increaseSkill(args)
+  local skill_name = args["skill"]
+  local who = args["name"]
 	if not who then
 		who = dm.me
 	end
@@ -124,13 +128,13 @@ local function increaseSkill(skill_name, who)
 end
 
 local function load()
-  Handlers.addSkillImproveListener(sourceName,increaseSkill)
-  Handlers.addSkillInfoListener(sourceName, skillInfo)
+  Events.addListener("skillImproveListenerEvent", sourceName, increaseSkill)
+  Events.addSkillInfoListener("skillInfoListenerEvent", sourceName, skillInfo)
 end
 
 local function unload()
-  Handlers.removeSkillImproveListener(sourceName)
-  Handlers.removeSkillInfoListener(sourceName)
+  Events.removeSkillImproveListener("skillImproveListenerEvent", sourceName)
+  Events.removeSkillInfoListener("skillInfoListenerEvent", sourceName)
 end
 
 local function reload()

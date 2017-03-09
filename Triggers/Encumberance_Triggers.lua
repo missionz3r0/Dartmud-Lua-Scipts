@@ -9,7 +9,9 @@ local function load()
     tempRegexTrigger("^(?:> )?Encumbrance: ([\s\S+]))\\."
                      ,[[
                         local encumbrance = matches[2]
-                        raiseEvent("encumbranceEvent", encumbrance)
+                        local arguments = {encumbrance = encumbrance}
+
+                        Events.raiseEvent("encumbranceEvent", arguments)
                       ]])
 
   triggers = tempTriggers

@@ -9,7 +9,8 @@ local function load()
   	tempAliases.SkillInfo = tempAlias('^\\/info(?: )?(.*)',
   																				[[
   																					local skill_name = matches[2]
-  																					raiseEvent('skillInfoEvent',skill)
+                                            local arguments = {skill_name = skill_name, who = Status.name}
+  																					Events.raiseEvent('skillInfoEvent', arguments)
   																				]])
 
     aliases = tempAliases

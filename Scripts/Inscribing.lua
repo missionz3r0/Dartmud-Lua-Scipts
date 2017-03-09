@@ -9,15 +9,17 @@ local channelMemory = {}
 local function inscribe()
 end
 
-local function inscribeSetup(power, target)
+local function inscribeSetup(args)
+  local power = args["power"]
+  local arguments = args["arguments"]
 end
 
 local function load()
-  Handlers.addPracticeInscribingListener(sourceName, practiceCastSetup)
+  Events.addListener("practiceInscribingEvent", sourceName, inscribeSetup)
 end
 
 local function unload()
-  Handlers.removePracticeInscribingListener(sourceName, practiceCastSetup)
+  Events.removeListener("practiceInscribingEvent", sourceName)
 end
 
 local function reload()

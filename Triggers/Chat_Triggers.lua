@@ -8,7 +8,9 @@ local function load()
   tempTriggers.generalChatTrigger
     = tempRegexTrigger("^(?:> )?.* (say|says|ask|asks|exclaim|exclaims|shout|shouts|yell|yells|tells) .*"
                         ,[[
-                          raiseEvent("chatEvent", matches[1])
+                          local message = matches[1]
+                          local arguments = {message = message}
+                          Events.raiseEvent("chatEvent", arguments)
                         ]])
 
   triggers = tempTriggers

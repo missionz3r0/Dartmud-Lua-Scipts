@@ -6,17 +6,20 @@ local function load()
 
   tempAliases.load = tempAlias('^\\/load',
                                   [[
-                                    raiseEvent('loadEvent')
+                                    local arguments = {}
+                                    Events.raiseEvent('loadEvent', arguments)
                                   ]])
 
   tempAliases.unload = tempAlias('^\\/unload',
                                   [[
-                                    raiseEvent('unloadEvent')
+                                    local arguments = {}
+                                    Events.raiseEvent('unloadEvent', arguments)
                                   ]])
 
   tempAliases.reload = tempAlias('^\\/reload',
                                   [[
-                                    raiseEvent('reloadEvent')
+                                    local arguments = {}
+                                    Events.raiseEvent('reloadEvent', arguments)
                                   ]])
   aliases = tempAliases
 end

@@ -14,21 +14,27 @@ local function load()
       tempRegexTrigger("^(?:> )?(?:Movement: )?(Who needs a hyperspacial bypass\\?)"
                        ,[[
                           local movement = matches[2]
-                          raiseEvent("movementEvent", movement)
+                          arguments = {movement = movement}
+
+                          Events.raiseEvent("movementEvent", arguments)
                         ]])
 
     tempTriggers.MovementTeleport =
       tempRegexTrigger("^(?:> )?(?:Movement: )?(Who needs a teleport spell\\?)"
                        ,[[
                           local movement = matches[2]
-                          raiseEvent("movementEvent", movement)
+                          arguments = {movement = movement}
+
+                          Events.raiseEvent("movementEvent", arguments)
                         ]])
 
     tempTriggers.MovementHorse =
       tempRegexTrigger("^(?:> )?(?:Movement: )?(Who needs a horse\\?)"
                        ,[[
                           local movement = matches[2]
-                          raiseEvent("movementEvent", movement)
+                          arguments = {movement = movement}
+
+                          Events.raiseEvent("movementEvent", arguments)
                         ]])
 
   triggers = tempTriggers

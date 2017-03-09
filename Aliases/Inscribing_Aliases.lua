@@ -11,8 +11,9 @@ tempAliases.practiceInscribing =
             ,[[
               local spell = matches[2]
               local power = tonumber(matches[3]) or 100
+              arguments = {spell = spell, power = power}
 
-              raiseEvent("practiceInscribingEvent", spell, power)
+              Events.raiseEvent("practiceInscribingEvent", arguments)
             ]])
 
   aliases = tempAliases

@@ -11,7 +11,9 @@ local function load()
     tempRegexTrigger("^(?:> )?You are ([\s\S]+), and (?:[\s\S]+)\\."
                      ,[[
                         local hunger = matches[2]
-                        raiseEvent("hungerEvent", hunger)
+                        arguments = {hunger = hunger}
+
+                        Events.raiseEvent("hungerEvent", hunger)
                       ]])
 
 
@@ -19,43 +21,64 @@ local function load()
     tempRegexTrigger("^(?:> )?You are (not hungry)\\."
                      ,[[
                         local hunger = matches[2]
-                        raiseEvent("hungerEvent", hunger)
+                        arguments = {hunger = hunger}
+
+                        Events.raiseEvent("hungerEvent", hunger)
                       ]])
 
   tempTriggers.SlightlyHungry =
     tempRegexTrigger("^(?:> )?You are (slightly hungry)\\."
                      ,[[
                         local hunger = matches[2]
-                        raiseEvent("hungerEvent", hunger)
+                        arguments = {hunger = hunger}
+
+                        Events.raiseEvent("hungerEvent", hunger)
                       ]])
 
   tempTriggers.Hungry =
     tempRegexTrigger("^(?:> )?You are (hungry)\\."
                      ,[[
                         local hunger = matches[2]
-                        raiseEvent("hungerEvent", hunger)
+                        arguments = {hunger = hunger}
+
+                        Events.raiseEvent("hungerEvent", hunger)
                       ]])
 
   tempTriggers.Famished =
     tempRegexTrigger("^(?:> )?You are (famished)\\."
                      ,[[
                         local hunger = matches[2]
-                        raiseEvent("hungerEvent", hunger)
+                        arguments = {hunger = hunger}
+
+                        Events.raiseEvent("hungerEvent", hunger)
                       ]])
 
   tempTriggers.FaintFromHunger =
     tempRegexTrigger("^(?:> )?You are (faint from hunger)\\."
                      ,[[
                         local hunger = matches[2]
-                        raiseEvent("hungerEvent", hunger)
+                        arguments = {hunger = hunger}
+
+                        Events.raiseEvent("hungerEvent", hunger)
                       ]])
 
   tempTriggers.Starving =
     tempRegexTrigger("^(?:> )?You are (starving)\\."
                      ,[[
                         local hunger = matches[2]
-                        raiseEvent("hungerEvent", hunger)
+                        arguments = {hunger = hunger}
+
+                        Events.raiseEvent("hungerEvent", hunger)
                       ]])
+
+  tempTriggers.StarvingToDeath =
+   tempRegexTrigger("^(?:> )?You are (starving to death)\\."
+                    ,[[
+                       local hunger = matches[2]
+                       arguments = {hunger = hunger}
+
+                       Events.raiseEvent("hungerEvent", hunger)
+                     ]])
 
   triggers = tempTriggers
 end

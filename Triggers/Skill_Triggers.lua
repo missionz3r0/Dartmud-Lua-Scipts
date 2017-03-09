@@ -11,23 +11,29 @@ local function load()
    ,[[
       local name = Status.name
       local skill = matches[2]
-      raiseEvent("skillImproveEvent", name, skill)
+      arguments = {name = name, skill = skill}
+
+      raiseEvent("skillImproveEvent", arguments)
     ]])
 
   --Skill Improvement for others
   tempTriggers.SkillImproveOther =
   tempRegexTrigger("^(?:> )?\\* You think that ([A-Za-z]+)'s ([\\w'\\-# ]+) skill has improved\\. \\*$"
    ,[[
-      local who = matches[2]
+      local name = matches[2]
       local skill = matches[3]
-      raiseEvent("skillImproveEvent", who, skill)
+      arguments = {name = name, skill = skill}
+
+      Events.raiseEvent("skillImproveEvent", arguments)
     ]])
 
   --Skill Improvement mistake
   tempTriggers.SkillMistake =
   tempRegexTrigger("^(?:> )?\\(But you were mistaken.\\)\\."
    ,[[
-      raiseEvent("skillMistakeEvent")
+      arguments = {}
+
+      Events.raiseEvent("skillMistakeEvent", arguments)
     ]])
 
     triggers = tempTriggers

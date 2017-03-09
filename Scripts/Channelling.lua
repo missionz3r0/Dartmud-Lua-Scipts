@@ -8,15 +8,17 @@ local currentChannelTarget = ''
 local function channel()
 end
 
-local function channellingSetup(power, target)
+local function channellingSetup(args)
+  local power = args["power"]
+  local target = args["target"]
 end
 
 local function load()
-  Handlers.addChannellingListener(sourceName, channellingSetup)
+  Events.addListener("channellingEvent", sourceName, channellingSetup)
 end
 
 local function unload()
-  Handlers.addChannellingListener(sourceName, channellingSetup)
+  Handlers.removeListener("channellingEvent", sourceName)
 end
 
 local function reload()

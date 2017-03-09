@@ -7,6 +7,7 @@ local function load(directory)
 
   modules.casting = dofile(directory.."Casting.lua")
   modules.channelling = dofile(directory.."Channelling.lua")
+  modules.events = dofile(directory.."events.lua")
   modules.inscribing = dofile(directory.."Inscribing.lua")
   modules.skills = dofile(directory.."Skills.lua")
   modules.status = dofile(directory.."Status.lua")

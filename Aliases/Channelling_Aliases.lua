@@ -11,8 +11,9 @@ local function load()
               ,[[
                 local power = tonumber(matches[2])
                 local target = matches[3]
+                local arguments = {power = power, target = target}
 
-                raiseEvent("channellingEvent", power, target)
+                Events.raiseEvent("channellingEvent", arguments)
               ]])
 
   aliases = tempAliases

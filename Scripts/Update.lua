@@ -23,13 +23,13 @@ function downloadError(var2, var3)
 end
 
 local function load()
-  Handlers.addLoginListener(sourceName,download)
-  Handlers.addDownloadErrorListener(sourceName,download)
+  Events.addListener("loginEvent", sourceName, download)
+  Events.addListener("sysDownloadError", sourceName, download)
 end
 
 local function unload()
-  Handlers.removeLoginListener(sourceName)
-  Handlers.removeDownloadErrorListener(sourceName)
+  Events.removeListener("loginEvent", sourceName)
+  Events.removeListener("sysDownloadError", sourceName)
 end
 
 local function reload()
