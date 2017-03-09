@@ -2,7 +2,7 @@ local Inscribing_Aliases = {}
 
 local aliases = {}
 
-local function load()
+local function load(args)
   tempAliases = {}
 
   --Practice writing alias
@@ -19,15 +19,15 @@ tempAliases.practiceInscribing =
   aliases = tempAliases
 end
 
-local function unload()
+local function unload(args)
   for i,v in pairs(aliases) do
     killAlias(v)
   end
 end
 
-local function reload()
-  unload()
-  load()
+local function reload(args)
+  unload(args)
+  load(args)
 end
 
 Inscribing_Aliases =

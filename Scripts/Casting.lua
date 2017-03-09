@@ -40,17 +40,17 @@ local function practiceCastSetup(spellName, power, arguments)
   end
 end
 
-local function load()
+local function load(args)
   Events.addListener("PracticeCastEvent",sourceName, practiceCastSetup)
 end
 
-local function unload()
+local function unload(args)
   Events.removeListener("PracticeCastEvent",sourceName)
 end
 
-local function reload()
-  unload()
-  load()
+local function reload(args)
+  unload(args)
+  load(args)
 end
 
 Casting = {

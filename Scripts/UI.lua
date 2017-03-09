@@ -99,7 +99,7 @@ local function onImprove(args)
   end
 end
 
-local function load()
+local function load(args)
   setBorderTop(topBorder)
   setBorderBottom(bottomBorder)
 
@@ -158,16 +158,16 @@ local function load()
   triggers = tempTriggers
 end
 
-local function unload()
+local function unload(args)
   Events.removeListener("sysWindowResizeEvent", sourceName)
   Events.removeListener("chatEvent", sourceName)
   Events.removeListener("skillImproveEvent", sourceName)
   resetProfile()
 end
 
-local function reload()
-  unload()
-  reload()
+local function reload(args)
+  unload(args)
+  reload(args)
 end
 
 

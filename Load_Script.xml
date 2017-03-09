@@ -8,7 +8,7 @@
             <script>local directory = getMudletHomeDir() .. &quot;/dartmudlet/&quot;
 local coreFile = directory..&quot;/_core.lua&quot;
 
-local core = dofile(coreFile)
+local core = dofile(true, coreFile)
 
 core.load()</script>
             <eventHandlerList/>

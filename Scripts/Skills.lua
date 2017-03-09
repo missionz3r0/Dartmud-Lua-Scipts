@@ -127,19 +127,19 @@ local function increaseSkill(args)
 	return count
 end
 
-local function load()
+local function load(args)
   Events.addListener("skillImproveListenerEvent", sourceName, increaseSkill)
   Events.addSkillInfoListener("skillInfoListenerEvent", sourceName, skillInfo)
 end
 
-local function unload()
+local function unload(args)
   Events.removeSkillImproveListener("skillImproveListenerEvent", sourceName)
   Events.removeSkillInfoListener("skillInfoListenerEvent", sourceName)
 end
 
-local function reload()
-  unload()
-  load()
+local function reload(args)
+  unload(args)
+  load(args)
 end
 
 Skills =

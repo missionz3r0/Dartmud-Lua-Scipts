@@ -2,8 +2,9 @@ local _Triggers = {}
 
 local modules = {}
 
-local function load(directory)
-  local directory = directory.."/Triggers/"
+local function load(args)
+  local directory = args["directory"]
+  directory = directory.."/Triggers/"
 
   modules.age = dofile(directory.."Age_Triggers.lua")
   modules.alignment = dofile(directory.."Alignment_Triggers.lua")
@@ -24,16 +25,16 @@ local function load(directory)
   end
 end
 
-local function unload()
+local function unload(args)
   for k,v in pairs(modules) do
-    v.unload()
+    v.unload(args)
     v = nil
   end
 end
 
-local function reload()
-  load()
-  reload()
+local function reload(args)
+  load(args)
+  reload(args)
 end
 
 _Triggers = {

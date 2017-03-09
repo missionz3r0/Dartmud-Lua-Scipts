@@ -14,17 +14,17 @@ local function inscribeSetup(args)
   local arguments = args["arguments"]
 end
 
-local function load()
+local function load(args)
   Events.addListener("practiceInscribingEvent", sourceName, inscribeSetup)
 end
 
-local function unload()
+local function unload(args)
   Events.removeListener("practiceInscribingEvent", sourceName)
 end
 
-local function reload()
-  unload()
-  load()
+local function reload(args)
+  unload(args)
+  load(args)
 end
 
 Inscribing = {

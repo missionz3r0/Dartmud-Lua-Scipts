@@ -13,17 +13,17 @@ local function channellingSetup(args)
   local target = args["target"]
 end
 
-local function load()
+local function load(args)
   Events.addListener("channellingEvent", sourceName, channellingSetup)
 end
 
-local function unload()
+local function unload(args)
   Handlers.removeListener("channellingEvent", sourceName)
 end
 
-local function reload()
-  unload()
-  load()
+local function reload(args)
+  unload(args)
+  load(args)
 end
 
 Channelling = {

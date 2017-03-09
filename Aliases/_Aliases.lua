@@ -2,29 +2,30 @@ local _Aliases = {}
 
 local modules = {}
 
-local function load(directory)
-  local directory = directory.."/Aliases/"
-  
+local function load(args)
+  local directory = args["directory"]
+  directory = directory.."/Aliases/"
+
   modules.casting = dofile(directory.."Casting_Aliases.lua")
   modules.channelling = dofile(directory.."Channelling_Aliases.lua")
   modules.inscribing = dofile(directory.."Inscribing_Aliases.lua")
   modules.skill = dofile(directory.."Skill_Aliases.lua")
 
   for k,v in pairs(modules) do
-    v.load()
+    v.load(args)
   end
 end
 
-local function unload()
+local function unload(args)
   for k,v in pairs(modules) do
     v.unload()
     v = nil
   end
 end
 
-local function reload()
-  unload()
-  load()
+local function reload(args)
+  unload(args)
+  load(args)
 end
 
 _Aliases = {

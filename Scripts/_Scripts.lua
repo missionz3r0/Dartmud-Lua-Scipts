@@ -2,8 +2,10 @@ local _Scripts = {}
 
 local modules = {}
 
-local function load(directory)
-  local directory = directory.."/Scripts/"
+local function load(args)
+  local directory = args["directory"]
+  local isFirstLoad = args["isFirstLoad"]
+  directory = directory.."/Scripts/"
 
   modules.casting = dofile(directory.."Casting.lua")
   modules.channelling = dofile(directory.."Channelling.lua")
@@ -14,20 +16,20 @@ local function load(directory)
   modules.ui = dofile(directory.."UI.lua")
 
   for k,v in pairs(modules) do
-    v.load()
+    v.load(args)
   end
 end
 
-local function unload()
+local function unload(args)
   for k,v in pairs(modules) do
-    v.unload()
+    v.unload(args)
     v = nil
   end
 end
 
-local function reload()
-  load()
-  unload()
+local function reload(args)
+  load(args)
+  unload(args)
 end
 
 _Scripts = {

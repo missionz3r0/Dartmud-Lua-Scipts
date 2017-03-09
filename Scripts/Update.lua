@@ -6,7 +6,7 @@ local url = "https://github.com/missionz3r0/Dartmud-Lua-Scipts/archive/developme
 local savePath = getMudletHomeDir().."/scripts/update.zip"
 
 local function download()
-  if getMudletVersion ~= nill then
+  if (getMudletVersion) then
     if io.exists(path) then
     	downloadFile(saveTo, url)
     else
@@ -17,24 +17,24 @@ local function download()
 end
 
 
-function downloadError(var2, var3)
-	print("Var2: "..var2.."\n")
-	print("Var3: "..var3.."\n")
+function downloadError(args)
+  local error = args["error"]
+  local url = args["url"]
+  print("Error: "..error)
+	print("While downloading file from: "..url)
 end
 
-local function load()
-  Events.addListener("loginEvent", sourceName, download)
-  Events.addListener("sysDownloadError", sourceName, download)
+local function load(args)
+  Events.addListener("sysDownloadError", sourceName, downloadError)
 end
 
-local function unload()
-  Events.removeListener("loginEvent", sourceName)
+local function unload(args)
   Events.removeListener("sysDownloadError", sourceName)
 end
 
-local function reload()
-  unload()
-  load()
+local function reload(args)
+  unload(args)
+  load(args)
 end
 
 Update = {

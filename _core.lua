@@ -9,36 +9,45 @@ local sourceName = "core"
 registerAnonymousEventHandler("sysWindowResizeEvent", "Events.raiseEvent")
 registerAnonymousEventHandler("sysDownloadError", "Events.raiseEvent")
 
-dba = dofile(directory.."Scripts/dba.lua")
 
 
-local function load()
+
+local function load(args)
+  local directory = args["directory"]
+  local isFirstLoad = args["isFirstLoad"]
+
+  dba = dofile(directory.."Scripts/dba.lua")
+
   modules.aliases = dofile(directory.."Aliases/_Aliases.lua")
   modules.scripts = dofile(directory.."Scripts/_Scripts.lua")
   modules.timers = dofile(directory.."Timers/_Timers.lua")
   modules.triggers = dofile(directory.."Triggers/_Triggers.lua")
 
+
   for k,v in pairs(modules) do
-    v.load(directory)
+    v.load(args)
   end
+
+  Events.addListener("loadEvent",sourceName,load)
+  Events.addListener("unloadEvent", sourceName,unload)
+  Events.addListener("reloadEvent", sourceName,reload)
 end
 
-local function unload()
+local function unload(args)
+  Events.removeListener("loadEvent",sourceName)
+  Events.removeListener("unloadEvent", sourceName)
+  Events.removeListener("reloadEvent", sourceName)
+
   for k,v in pairs(modules) do
-    v.unload()
+    v.unload(args)
     v = nil
   end
 end
 
-local function reload()
-  unload()
-  load()
+local function reload(args)
+  unload(args)
+  load(args)
 end
-
-
-Handlers.addLoadListener(sourceName,load)
-Handlers.addUnloadListener(sourceName,unload)
-Handlers.addReloadListener(sourceName,reload)
 
 _Core = {
   load = load
