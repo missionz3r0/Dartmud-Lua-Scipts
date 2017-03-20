@@ -3,7 +3,6 @@ local Update = {}
 local sourceName = "update"
 
 local url = "https://github.com/missionz3r0/Dartmud-Lua-Scipts/archive/development.zip"
-local savePath = getMudletHomeDir().."/scripts/update.zip"
 
 local function download()
   if (getMudletVersion) then
@@ -16,6 +15,12 @@ local function download()
   end
 end
 
+local function downloadFinished(args)
+  local file = args["file"]
+
+  savePath = file.."\\savePath\\"
+end
+
 
 function downloadError(args)
   local error = args["error"]
@@ -25,6 +30,12 @@ function downloadError(args)
 end
 
 local function load(args)
+  local isFirstLoad = args["isFirstLoad"]
+
+  if isFirstLoad then
+    download()
+  end
+
   Events.addListener("sysDownloadError", sourceName, downloadError)
 end
 

@@ -5,12 +5,16 @@
         <Script isActive="no" isFolder="no">
             <name>Load Scripts</name>
             <packageName></packageName>
-            <script>local directory = getMudletHomeDir() .. &quot;/dartmudlet/&quot;
-local coreFile = directory..&quot;/_core.lua&quot;
+            <script>local directory = getMudletHomeDir() .. "/dartmudlet/"
+local coreFile = directory.."/_core.lua"
 
-local core = dofile(true, coreFile)
+local args = {}
+args["directory"] = directory
+args["isFirstLoad"] = true
 
-core.load()</script>
+local core = dofile(coreFile)
+
+core.load(args)
             <eventHandlerList/>
         </Script>
     </ScriptPackage>

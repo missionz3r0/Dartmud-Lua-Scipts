@@ -1,6 +1,6 @@
 Events = {}
 
-local eventlist = {}
+local eventList = {}
 
 --I really want to get rid of these anonymous event handlers, but I've no idea
 --as to how for the moment. So I'll settle with a clunky push into the eventlist
@@ -45,7 +45,7 @@ end
 local function raiseEvent(eventName, args)
   createEventList(eventName)
 
-  for k,v in pairs(EventList[eventName]) do
+  for k,v in pairs(eventList[eventName]) do
     v(args)
   end
 end
@@ -53,13 +53,13 @@ end
 local function addListener(eventName, sourceName, listenerFunction)
   createEventList(eventName)
 
-  EventList[eventName][sourceName] = listenerFunction
+  eventList[eventName][sourceName] = listenerFunction
 end
 
 local function removeListener(eventName, sourceName)
   createEventList(eventName)
 
-  EventList[eventName][sourceName] = nil
+  eventList[eventName][sourceName] = nil
 end
 
 Events = {

@@ -4,7 +4,6 @@ local modules = {}
 
 local function load(args)
   local directory = args["directory"]
-  local isFirstLoad = args["isFirstLoad"]
   directory = directory.."/Scripts/"
 
   modules.casting = dofile(directory.."Casting.lua")

@@ -129,12 +129,12 @@ end
 
 local function load(args)
   Events.addListener("skillImproveListenerEvent", sourceName, increaseSkill)
-  Events.addSkillInfoListener("skillInfoListenerEvent", sourceName, skillInfo)
+  Events.addListener("skillInfoListenerEvent", sourceName, skillInfo)
 end
 
 local function unload(args)
-  Events.removeSkillImproveListener("skillImproveListenerEvent", sourceName)
-  Events.removeSkillInfoListener("skillInfoListenerEvent", sourceName)
+  Events.removeListener("skillImproveListenerEvent", sourceName)
+  Events.removeListener("skillInfoListenerEvent", sourceName)
 end
 
 local function reload(args)
