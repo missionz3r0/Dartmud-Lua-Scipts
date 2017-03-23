@@ -8,7 +8,7 @@ local function load(args)
   local tempTriggers = {}
 
   tempTriggers.HungerAndThirst=
-    tempRegexTrigger("^(?:> )?You are ([\s\S]+), and (?:[\s\S]+)\\."
+    tempRegexTrigger("^(?:> )?You are ([\\s\\S]+), and (?:[\\s\\S]+)\\."
                      ,[[
                         local hunger = matches[2]
                         arguments = {hunger = hunger}

@@ -2,73 +2,170 @@ local UI = {}
 
 local sourceName = "ui"
 
+local windows = {}
+local windows_ByPosition = {}
+windows_ByPosition.topRight = {}
+windows_ByPosition.topLeft = {}
+windows_ByPosition.right = {}
+
+
+local buttonBarBorder = 25
 local topBorder = 164
-local bottomBorder = 30
+local bottomBorder = 0
 
-local chat_border = nil
-local alt_border = nil
+local topLeftMinSize = 700
+local topRightMinSize = 500
 
-local chat_container = nil
-local imp_container = nil
-local alt_container = nil
-local alt_containers = {}
+local topLeftWidth = 0
+local rightWidth = 0
 
-local chatBoxMinSize = 700
-local altBoxMaxSize = 500
+local function createUIBox(name, position)
+  local border = {}
+  local container = {}
 
-local chatWidth = 0
-local altWidth = 0
+  local x, y = getMainWindowSize()
+
+  if(x <= topLeftMinSize) then
+    topLeftWidth = x
+    rightWidth = 0
+  elseif (x > topLeftMinSize and x < (topLeftMinSize+topRightMinSize)) then
+    topLeftWidth = topLeftMinSize
+    rightWidth = x-topLeftMinSize
+  else
+    topLeftWidth = x - topRightMinSize
+    rightWidth = topRightMinSize
+  end
+
+
+  if position == "topLeft" then
+    local height = topBorder - 4
+    local fontSize = 10
+    local fontWidth = calcFontSize(fontSize)
+    local wrap = topLeftWidth/fontWidth
+
+    border = Geyser.Label:new({x=0,y=0,width=topLeftWidth+4,height=height+4})
+    border:setStyleSheet([[border:2px solid white;background-color: black]])
+
+    container = Geyser.MiniConsole:new({  name=name,
+                                          x=2, y=2,
+                                          fontSize=fontSize,
+                                          width=topLeftWidth, height=height,
+                                          color="black"
+                                        }, border)
+    setWindowWrap(name, wrap)
+
+  elseif position == "topRight" then
+    local height = topBorder - 4
+    local fontSize = 10
+    local fontWidth = calcFontSize(fontSize)
+    local wrap = rightWidth/fontWidth
+
+    border = Geyser.Label:new({x=topLeftWidth,y=0,width=rightWidth+4,height=height+4})
+    border:setStyleSheet([[border:2px solid white;background-color: black]])
+
+    container = Geyser.MiniConsole:new({  name=name,
+                                          x=2, y=2,
+                                          fontSize=fontSize,
+                                          width=rightWidth-4, height=height,
+                                          color="black"
+                                        }, border)
+
+  elseif position == "right" then
+    local height = y-topBorder - buttonBarBorder - 4
+    local fontSize = 10
+    local fontWidth = calcFontSize(fontSize)
+    local wrap = rightWidth/fontWidth
+
+    border = Geyser.Label:new({x=topLeftWidth,y=topBorder + buttonBarBorder,width=rightWidth+4,height=height+4})
+    border:setStyleSheet([[border:2px solid white;background-color: black]])
+
+    container = Geyser.MiniConsole:new({  name=name,
+                                          x=2, y=2,
+                                          fontSize=fontSize,
+                                          width=rightWidth-4, height=height,
+                                          color="black"
+                                        }, border)
+  end
+
+  local window = {border = border
+                 ,container = container}
+
+  windows[name] = window
+  windows_ByPosition[position][name] = window
+end
 
 local function updateDisplay(args)
     local mainWidth, mainHeight = getMainWindowSize()
     local x = mainWidth
     local y = mainHeight
 
-    local previousAltWidth = altWidth
+    local previousrightWidth = rightWidth
 
-    if(x <= chatBoxMinSize) then
-      chatWidth = x
-      altWidth = 0
-    elseif (x > chatBoxMinSize and x < (chatBoxMinSize+altBoxMaxSize)) then
-      chatWidth = chatBoxMinSize
-      altWidth = x-chatBoxMinSize
+    if(x <= topLeftMinSize) then
+      topLeftWidth = x
+      rightWidth = 0
+    elseif (x > topLeftMinSize and x < (topLeftMinSize+topRightMinSize)) then
+      topLeftWidth = topLeftMinSize
+      rightWidth = x-topLeftMinSize
     else
-      chatWidth = x - altBoxMaxSize
-      altWidth = altBoxMaxSize
+      topLeftWidth = x - topRightMinSize
+      rightWidth = topRightMinSize
     end
 
-    if previousAltWidth ~= altWidth then
-      setBorderRight(altWidth)
+    --We do this because setting the border is a window resize event.
+    --If we didn't do this, we'd get stuck in an infinite loop.
+    if previousrightWidth ~= rightWidth then
+      setBorderRight(rightWidth)
     end
 
-    local height = 160
+    local height = topBorder - 4
     local fontSize = 10
     local fontWidth = calcFontSize(fontSize)
-    local chatWrap = chatWidth/fontWidth
-    local altWrap = altWidth/fontWidth
+    local topLeftWrap = topLeftWidth/fontWidth
 
-    if alt_border then
-      alt_border:resize(altWidth, 164)
-      alt_border:move(chatWidth,0)
-      alt_border:setStyleSheet([[border:2px solid white;background-color: black]])
-      alt_container:resize(altWidth,160)
+    --Update Top Right Window
+    for key,window in pairs(windows_ByPosition["topRight"]) do
+      local border = window["border"]
+      local container = window["container"]
+
+      border:resize(rightWidth, topBorder)
+      border:move(topLeftWidth,0)
+      border:setStyleSheet([[border:2px solid white;background-color: black]])
+      container:resize(rightWidth-4,topBorder - 4)
     end
 
-  	if chat_border then
-  		chat_border:resize(chatWidth, 164)
-  		chat_border:move(0, 0)
-  		chat_container:resize(chatWidth-4,160)
-  		setWindowWrap("ChatBox", chatWrap)
-  	end
+    --Update Top Left Window
+    for key,window in pairs(windows_ByPosition["topLeft"]) do
+      local border = window["border"]
+      local container = window["container"]
+
+      border:resize(topLeftWidth, topBorder)
+      border:move(0,0)
+      border:setStyleSheet([[border:2px solid white;background-color: black]])
+      container:resize(topLeftWidth-4,topBorder - 4)
+      setWindowWrap(key, topLeftWrap)
+    end
+
+    --Update Right Side Window
+    for key,window in pairs(windows_ByPosition["right"]) do
+      local border = window["border"]
+      local container = window["container"]
+
+      border:resize(rightWidth, y-topBorder)
+      border:move(topLeftWidth,topBorder + buttonBarBorder)
+      border:setStyleSheet([[border:2px solid white;background-color: black]])
+      container:resize(rightWidth-4,y-topBorder - buttonBarBorder - 4)
+    end
 end
 
 local function onChat(args)
   local text = args["message"]
 	local ts = getTime(true, "hh:mm:ss")
-	chat_container:echo(ts.." ")
-	--[[ even though we get the text passed into the event get text from buffer
-		  to preserve colors/formatting
-	]]
+  local container = windows["ChatBox"]["container"]
+	container:echo(ts.." ")
+
+	-- even though we get the text passed into the event we will get the text
+  -- from buffer to preserve colors/formatting
 	selectCurrentLine()
 	copy()
 	appendBuffer("ChatBox")
@@ -76,93 +173,82 @@ end
 
 local function onImprove(args)
   local who = args["name"]
-  local skill = args["skill"]
+  local skill = args["skill_name"]
   local ts = getTime(true, "hh:mm:ss")
+  local container = windows["ImpBox"]["container"]
+  local count = 0
+  local output = ''
 
-  local skill = Skills.getSkill(who, skill)
-  if (skill > 0) then
-    local count = toNumber(skill.Count)
+  local skillVar = Skills.getSkill(args)
 
-    local level = Skills.imp2lvl(count)
-    local nextLevel = Skills.nextLevel(count)
-    local tilNext = nextLevel.min - count
-
-    if(who ~= Status.name) then
-      output = ts.." ("..who..") "..skill.." - "..count.." ("..level..")"
-    else
-      output = ts.." "..skill.." - "..count.." ("..level..")"
-    end
-
-
-
-    imp_container:echo(ts.." ".. who .. " ".. skill.."\n")
+  if skillVar then
+    count = tonumber(skillVar.count)+1
+  else
+    count = 1
   end
+
+  local level = Skills.imp2lvl(count)
+  local nextLevel = level.next_level
+  local tilNext = nextLevel.min - count
+  if(who ~= Status.name) then
+    output = ts.." ("..who..") "..skill.." - "..count.." ("..level.abbr..") - ("..tilNext.." / "..nextLevel.abbr..")"
+  else
+    output = ts.." "..skill.." - "..count.." ("..level.abbr..") - ("..tilNext.." / "..nextLevel.abbr..")"
+  end
+
+  container:echo(output.."\n")
+end
+
+local function onSkillMistake(args)
+  local container = windows["ImpBox"]["container"]
+  selectCurrentLine("ImpBox")
+  deleteLine("ImpBox")
+  container:echo("")
+end
+
+local function onStartWho(args)
+  local container = windows["WhoBox"]["container"]
+  clearWindow("WhoBox")
+  selectCurrentLine()
+	copy()
+	appendBuffer("WhoBox")
+end
+
+local function onWho(args)
+  local container = windows["WhoBox"]["container"]
+  selectCurrentLine()
+  copy()
+  appendBuffer("WhoBox")
 end
 
 local function load(args)
-  setBorderTop(topBorder)
+  setBorderTop(topBorder+buttonBarBorder)
   setBorderBottom(bottomBorder)
+  setBorderRight(rightWidth)
 
-  local mainWidth, mainHeight = getMainWindowSize()
-  local x = mainWidth
-  local y = mainHeight
-
-  if(x <= chatBoxMinSize) then
-    chatWidth = x
-    altWidth = 0
-  elseif (x > chatBoxMinSize and x < (chatBoxMinSize+altBoxMaxSize)) then
-    chatWidth = chatBoxMinSize
-    altWidth = x-chatBoxMinSize
-  else
-    chatWidth = x - altBoxMaxSize
-    altWidth = altBoxMaxSize
-  end
-  setBorderRight(altWidth)
-
-  local height = 160
-  local fontSize = 10
-  local fontWidth = calcFontSize(fontSize)
-  local chatWrap = chatWidth/fontWidth
-  local altWrap = altWidth/fontWidth
-
-  alt_border = Geyser.Label:new({x=chatWidth,y=0,width=altWidth+4,height=height+4})
-  alt_border:setStyleSheet([[border:2px solid white;background-color: black]])
-
-  imp_container = Geyser.MiniConsole:new({
-    name="ImpBox",
-    x=2, y=2,
-    fontSize=fontSize,
-    width=altWidth-4, height=height,
-    color="black"
-  }, alt_border)
-
-  chat_border = Geyser.Label:new({x=0,y=0,width=chatWidth+4,height=height+4})
-  chat_border:setStyleSheet([[border:2px solid white;background-color: black]])
-
-  chat_container = Geyser.MiniConsole:new({
-      name="ChatBox",
-      x=2, y=2,
-      fontSize=fontSize,
-      width=chatWidth, height=height,
-      color="black"
-  }, chat_border)
-  setWindowWrap("ChatBox", chatWrap)
+  createUIBox("ImpBox","topRight")
+  createUIBox("ChatBox","topLeft")
+  createUIBox("WhoBox","right")
 
   Events.addListener("sysWindowResizeEvent", sourceName, updateDisplay)
   Events.addListener("chatEvent", sourceName, onChat)
   Events.addListener("skillImproveEvent", sourceName, onImprove)
-
-  alt_container = imp_container
-  alt_containers["imp_container"] = imp_container
-
-  triggers = tempTriggers
+  Events.addListener("skillMistakeEvent", sourceName, onSkillMistake)
+  Events.addListener("startWhoEvent", sourceName, onStartWho)
+  Events.addListener("whoEvent", sourceName, onWho)
 end
 
 local function unload(args)
   Events.removeListener("sysWindowResizeEvent", sourceName)
   Events.removeListener("chatEvent", sourceName)
   Events.removeListener("skillImproveEvent", sourceName)
+  Events.removeListener("skillMistakeEvent", sourceName)
+  Events.removeListener("startWhoEvent", sourceName)
+  Events.removeListener("whoEvent", sourceName)
   resetProfile()
+
+  windows = {}
+  windows_ByPosition = {}
 end
 
 local function reload(args)

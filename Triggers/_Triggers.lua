@@ -20,6 +20,7 @@ local function load(args)
   modules.skill = dofile(directory.."Skill_Triggers.lua")
   modules.soulage = dofile(directory.."SoulAge_Triggers.lua")
   modules.thirst = dofile(directory.."Thirst_Triggers.lua")
+  modules.who = dofile(directory.."Who_Triggers.lua")
   for k,v in pairs(modules) do
     v.load()
   end

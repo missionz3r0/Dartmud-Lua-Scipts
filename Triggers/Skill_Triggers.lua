@@ -11,9 +11,9 @@ local function load(args)
    ,[[
       local name = Status.name
       local skill = matches[2]
-      arguments = {name = name, skill = skill}
+      arguments = {name = name, skill_name = skill}
 
-      raiseEvent("skillImproveEvent", arguments)
+      Events.raiseEvent("skillImproveEvent", arguments)
     ]])
 
   --Skill Improvement for others
@@ -22,14 +22,14 @@ local function load(args)
    ,[[
       local name = matches[2]
       local skill = matches[3]
-      arguments = {name = name, skill = skill}
+      arguments = {name = name, skill_name = skill}
 
       Events.raiseEvent("skillImproveEvent", arguments)
     ]])
 
   --Skill Improvement mistake
   tempTriggers.SkillMistake =
-  tempRegexTrigger("^(?:> )?\\(But you were mistaken.\\)\\."
+  tempRegexTrigger("^(?:> )?\\(But you were mistaken.\\)"
    ,[[
       arguments = {}
 

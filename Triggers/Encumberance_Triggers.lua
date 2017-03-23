@@ -6,7 +6,7 @@ local function load(args)
   local tempTriggers = {}
 
   tempTriggers.Encumbrance =
-    tempRegexTrigger("^(?:> )?Encumbrance: ([\s\S+]))\\."
+    tempRegexTrigger("^(?:> )?Encumbrance: ([\\s\\S]+))\\."
                      ,[[
                         local encumbrance = matches[2]
                         local arguments = {encumbrance = encumbrance}
