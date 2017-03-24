@@ -6,7 +6,7 @@ local function load(args)
 
   tempAliases.load = tempAlias('^\\/load',
                                   [[
-                                    local directory = getMudletHomeDir().."/"..packageName.."/"
+                                    local directory = getMudletHomeDir().."/dartmudlet/"
                                     local isFirstLoad = false
                                     local arguments = {isFirstLoad = isFirstLoad, directory = directory}
                                     Events.raiseEvent('loadEvent', arguments)
@@ -14,7 +14,7 @@ local function load(args)
 
   tempAliases.unload = tempAlias('^\\/unload',
                                   [[
-                                    local directory = getMudletHomeDir().."/"..packageName.."/"
+                                    local directory = getMudletHomeDir().."/dartmudlet/"
                                     local isFirstLoad = false
                                     local arguments = {isFirstLoad = isFirstLoad, directory = directory}
                                     Events.raiseEvent('unloadEvent', arguments)
@@ -22,7 +22,7 @@ local function load(args)
 
   tempAliases.reload = tempAlias('^\\/reload',
                                   [[
-                                    local directory = getMudletHomeDir().."/"..packageName.."/"
+                                    local directory = getMudletHomeDir().."/dartmudlet/"
                                     local isFirstLoad = false
                                     local arguments = {isFirstLoad = isFirstLoad, directory = directory}
                                     Events.raiseEvent('reloadEvent', arguments)

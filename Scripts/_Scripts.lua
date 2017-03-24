@@ -4,7 +4,7 @@ local modules = {}
 
 local function load(args)
   local directory = args["directory"]
-  directory = directory.."/Scripts/"
+  directory = directory.."Scripts/"
 
   modules.casting = dofile(directory.."Casting.lua")
   modules.channelling = dofile(directory.."Channelling.lua")

@@ -9,18 +9,16 @@ local sourceName = "core"
 registerAnonymousEventHandler("sysWindowResizeEvent", "Events.raiseEvent")
 registerAnonymousEventHandler("sysDownloadError", "Events.raiseEvent")
 
-
-
-
 local function load(args)
+  print("Loading in!")
   local directory = args["directory"]
   local isFirstLoad = args["isFirstLoad"]
 
   dba = dofile(directory.."Scripts/dba.lua")
 
-  modules.aliases = dofile(directory.."Aliases/_Aliases.lua")
-  modules.scripts = dofile(directory.."Scripts/_Scripts.lua")
-  modules.timers = dofile(directory.."Timers/_Timers.lua")
+  modules.aliases  = dofile(directory.."Aliases/_Aliases.lua")
+  modules.scripts  = dofile(directory.."Scripts/_Scripts.lua")
+  modules.timers   = dofile(directory.."Timers/_timers.lua")
   modules.triggers = dofile(directory.."Triggers/_Triggers.lua")
 
 
@@ -34,6 +32,7 @@ local function load(args)
 end
 
 local function unload(args)
+  print("Unloading!")
   Events.removeListener("loadEvent",sourceName)
   Events.removeListener("unloadEvent", sourceName)
   Events.removeListener("reloadEvent", sourceName)

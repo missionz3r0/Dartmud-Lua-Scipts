@@ -38,6 +38,7 @@ levels.beginner   = {name = "a beginner",     abbr = "beginner",	min = "18",		ma
 levels.novice     = {name = "a novice",       abbr = "novice",		min = "10",		max = "17",    next_level = levels.beginner}
 levels.tyro       = {name = "a tyro",         abbr = "tyro",		  min = "4",		max = "9",     next_level = levels.novice}
 levels.unskilled  = {name = "unskilled",      abbr = "unskilled",	min = "1",		max = "3",     next_level = levels.tyro}
+levels.NoSkill    = {name = "no skill",       abbr = "noskill", 	min = "0",		max = "0",     next_level = levels.unskilled}
 
 local function getSkill(args)
   local who = args["who"]
@@ -49,7 +50,7 @@ local function getSkill(args)
   local results = dba.query('SELECT * FROM improves WHERE who="'..who..'" AND skill LIKE "'..skill_name..'%"')
 
   if results.count() == 0 then
-      return nil
+      return  -1
   end
   if results.count() > 1 then
       local i
@@ -70,6 +71,17 @@ local function imp2lvl(imp)
       return v
     end
   end
+  return -1
+end
+
+local function name2lvl(name)
+
+  for k,v in pairs(levels) do
+    if (v.name == name) then
+      return v
+    end
+  end
+
   return -1
 end
 
@@ -145,6 +157,44 @@ local function skillMistake()
   end
 end
 
+local function updateCount(args)
+  local count = args["count"]
+  local who = args["who"]
+  local skill_name = args["skill_name"]
+
+  local skill = getSkill(args)
+
+  if skill ~= nil then
+    dba.execute('UPDATE improves SET count='..count..' WHERE who="'..who..'" AND skill="'..skill_name..'"')
+
+    cecho("<red>Skill: "..skill.name.." from "..skill.count.." to "..count)
+  else
+    cecho("<red>No skill by that name.\n")
+  end
+end
+
+local function shownSkill(args)
+  local who = Status.name
+  local skill_name = args["skill_name"]
+  local skill_level = args["skill_level"]
+
+  local skill = getSkill(args)
+
+  if(skill == -1 ) then
+      local level = args["skill_level"]
+      local imps = name2lvl(level).min
+      dba.execute('INSERT INTO improves (skill, count, who, last_imp) VALUES("'..skill_name..'", '..imps..', "'..who..'", datetime("NOW"))')
+      cecho("<red>Adding Skill: "..skill_name.."to database at count: "..imps)
+  else
+    local dba_count = skill.count
+    local actual_skill_level = name2lvl(skill_level)
+    if(skill_level.name ~= actual_skill_level.name) then
+      updateCount({count=actual_skill_level.min, who=who, skill_name=skill_name})
+    end
+  end
+end
+
+
 local function load(args)
   local directory = args["directory"]
   directory = directory.."/Scripts/"
@@ -152,12 +202,16 @@ local function load(args)
   Events.addListener("skillImproveEvent", sourceName, increaseSkill)
   Events.addListener("skillInfoEvent", sourceName, skillInfo)
   Events.addListener("skillMistakeEvent", sourceName, skillMistake)
+  Events.addListener("shownSkillEvent", sourceName, shownSkill)
+  Events.addListener("updateSkillEvent", sourceName, updateCount)
 end
 
 local function unload(args)
   Events.removeListener("skillImproveEvent", sourceName)
   Events.removeListener("skillInfoEvent", sourceName)
   Events.removeListener("skillMistakeEvent", sourceName)
+  Events.removeListener("shownSkillEvent", sourceName)
+  Events.removeListener("updateSkillEvent", sourceName)
 end
 
 local function reload(args)

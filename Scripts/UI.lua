@@ -19,7 +19,7 @@ local topRightMinSize = 500
 local topLeftWidth = 0
 local rightWidth = 0
 
-local function createUIBox(name, position)
+local function createUIConsole(name, position)
   local border = {}
   local container = {}
 
@@ -226,9 +226,9 @@ local function load(args)
   setBorderBottom(bottomBorder)
   setBorderRight(rightWidth)
 
-  createUIBox("ImpBox","topRight")
-  createUIBox("ChatBox","topLeft")
-  createUIBox("WhoBox","right")
+  createUIConsole("ImpBox","topRight")
+  createUIConsole("ChatBox","topLeft")
+  createUIConsole("WhoBox","right")
 
   Events.addListener("sysWindowResizeEvent", sourceName, updateDisplay)
   Events.addListener("chatEvent", sourceName, onChat)
