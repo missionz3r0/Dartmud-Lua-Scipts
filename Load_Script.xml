@@ -6,16 +6,11 @@
             <name>Load Scripts</name>
             <packageName></packageName>
             <script>
+              registerAnonymousEventHandler("sysConnectionEvent","core.reload")
               local directory = getMudletHomeDir() .. "/dartmudlet/"
               local coreFile = directory.."/_core.lua"
 
-              local args = {}
-              args["directory"] = directory
-              args["isFirstLoad"] = true
-
-              local core = dofile(coreFile)
-
-              core.load(args)
+              core = dofile(coreFile)
             </script>
             <eventHandlerList/>
         </Script>
