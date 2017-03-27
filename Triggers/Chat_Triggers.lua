@@ -13,6 +13,14 @@ local function load(args)
                           Events.raiseEvent("chatEvent", arguments)
                         ]])
 
+  tempTriggers.szTrigger
+    = tempRegexTrigger("^(?:> )?A voice seems to say:.*"
+                        ,[[
+                          local message = matches[1]
+                          local arguments = {message = message}
+                          Events.raiseEvent("chatEvent", arguments)
+                        ]])
+
   triggers = tempTriggers
 end
 
