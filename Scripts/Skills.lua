@@ -7,8 +7,6 @@ local sourceName = 'skills'
 
 local previous_skill_value = {}
 
--- build database if needed
-dba.execute('CREATE TABLE IF NOT EXISTS "improves" (_row_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, skill TEXT, count INTEGER DEFAULT 1, notes TEXT, last_imp TIMESTAMP, who VARCHAR(16), abbr TEXT, weight TEXT, power INTEGER);');
 
 levels = {}
 levels.leggy      = {name = "legendary",      abbr = "leggy",	  	min = "1700",	max = "99999", next_level = nil}
@@ -58,7 +56,7 @@ local function getSkill(args)
       for i=1,results.count() do
           cecho("<red>\t"..results[i].skill.."\n")
       end
-      return nil
+      return 0
   end
   return results[1]
 end
@@ -136,6 +134,8 @@ local function increaseSkill(args)
 		dba.execute('INSERT INTO improves (skill, count, who, last_imp) VALUES("'..skill_name..'", 1, "'..who..'", datetime("NOW"))')
 	end
 
+  send("show skills "..skill_name)
+
 	return count
 end
 
@@ -164,11 +164,12 @@ local function updateCount(args)
 
   local skill = getSkill(args)
 
-  if skill ~= nil then
+  if skill ~= nil and skill~= 0 and skill ~= -1 then
     dba.execute('UPDATE improves SET count='..count..' WHERE who="'..who..'" AND skill="'..skill_name..'"')
 
-    cecho("<red>Skill: "..skill.name.." from "..skill.count.." to "..count)
+    cecho("<red>Updating skill: "..skill_name.." from "..skill.count.." to "..count)
   else
+    display(skill_name)
     cecho("<red>No skill by that name.\n")
   end
 end
@@ -184,11 +185,11 @@ local function shownSkill(args)
       local level = args["skill_level"]
       local imps = name2lvl(level).min
       dba.execute('INSERT INTO improves (skill, count, who, last_imp) VALUES("'..skill_name..'", '..imps..', "'..who..'", datetime("NOW"))')
-      cecho("<red>Adding Skill: "..skill_name.."to database at count: "..imps)
+      cecho("<red>Adding Skill: "..skill_name.." to database for "..who.." at count: "..imps)
   else
     local dba_count = skill.count
-    local actual_skill_level = name2lvl(skill_level)
-    if(skill_level.name ~= actual_skill_level.name) then
+    local actual_skill_level = name2lvl(skill_level).name
+    if(skill_level ~= actual_skill_level) then
       updateCount({count=actual_skill_level.min, who=who, skill_name=skill_name})
     end
   end
@@ -196,6 +197,8 @@ end
 
 
 local function load(args)
+-- build database if needed
+  dba.execute('CREATE TABLE IF NOT EXISTS "improves" (_row_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, skill TEXT, count INTEGER DEFAULT 1, notes TEXT, last_imp TIMESTAMP, who VARCHAR(16), abbr TEXT, weight TEXT, power INTEGER);');
   local directory = args["directory"]
   directory = directory.."/Scripts/"
 
