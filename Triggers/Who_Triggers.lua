@@ -13,9 +13,9 @@ local function load(args)
                 ]])
 
   tempTriggers.whoNames =
-    tempRegexTrigger("^(?:> )?(?: *(?:\\[\\w+\\] )?\\w+ \\w+ \\w+ +(?:\\d+m)? (?:\\d+s)?)+ *"
+    tempRegexTrigger("^(?:> )? {7}(?:(?:\\[[A-Za-z]+\\] )?([A-Za-z]+ [A-Za-z]+ [A-Za-z]+)( +)(?:\\d+m)? ?(?:\\d+s)?)+ *?"
                ,[[
-                  args = {}
+                  args = {name = name}
                   Events.raiseEvent("whoEvent", args)
                 ]])
 
@@ -45,7 +45,7 @@ local function load(args)
     tempRegexTrigger("^(?:> )? *Ferdarchi was last renewed (?:\\d+ days )?(?:\\d+ hours )?(?:\\d+ minutes )?(?:\\d+ seconds)? ago\\."
                ,[[
                  args = {}
-                 Events.raiseEvent("whoEvent", args)
+                 Events.raiseEvent("endWhoEvent", args)
                ]])
 
   triggers = tempTriggers

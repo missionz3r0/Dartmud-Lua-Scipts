@@ -221,6 +221,21 @@ local function onWho(args)
   appendBuffer("WhoBox")
 end
 
+local function onWhoEnd(args)
+  local container = windows["WhoBox"]["container"]
+  selectCurrentLine()
+  copy()
+  appendBuffer("WhoBox")
+end
+
+local function refreshUI(args)
+  for key,window in pairs(windows) do
+    local container = window["container"]
+
+    container:cecho("")
+  end
+end
+
 local function load(args)
   setBorderTop(topBorder+buttonBarBorder)
   setBorderBottom(bottomBorder)
@@ -236,6 +251,8 @@ local function load(args)
   Events.addListener("skillMistakeEvent", sourceName, onSkillMistake)
   Events.addListener("startWhoEvent", sourceName, onStartWho)
   Events.addListener("whoEvent", sourceName, onWho)
+  Events.addListener("endWhoEvent", sourceName, onStartWho)
+  Events.addListener("refreshUIEvent", sourceName, refreshUI)
 end
 
 local function unload(args)
@@ -245,7 +262,16 @@ local function unload(args)
   Events.removeListener("skillMistakeEvent", sourceName)
   Events.removeListener("startWhoEvent", sourceName)
   Events.removeListener("whoEvent", sourceName)
-  resetProfile()
+  Events.removeListener("endWhoEvent", sourceName)
+  Events.removeListener("refreshUIEvent", sourceName)
+
+  for key,window in pairs(windows) do
+    local container = window["container"]
+    local border = window["border"]
+
+    Geyser:remove(container)
+    Geyser:remove(border)
+  end
 
   windows = {}
   windows_ByPosition = {}
