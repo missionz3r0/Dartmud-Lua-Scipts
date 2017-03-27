@@ -2,16 +2,17 @@ local Inscribing = {}
 
 sourceName = "inscribing"
 
-local practiceCastMemory = {}
 local practiceWriteMemory = {}
-local channelMemory = {}
 
 local function inscribe()
 end
 
 local function inscribeSetup(args)
+  local spell = args["spell"]
   local power = args["power"]
-  local arguments = args["arguments"]
+
+
+
 end
 
 local function load(args)
