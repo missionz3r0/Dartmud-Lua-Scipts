@@ -4,10 +4,8 @@
 --]]
 
 require "luasql.sqlite3"
-dofile(getMudletHomeDir().."/dartmudlet/Scripts/php.lua")
 
 dba = {}
-module("dba",package.seeall)
 
 local loader_game = "Database_dartmud"
 local dbFile = string.upper(loader_game)..".db"

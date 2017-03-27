@@ -28,3 +28,5 @@ function php:Table(...)
     })
     return newTable
 end
+
+return php
