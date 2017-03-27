@@ -7,7 +7,7 @@ local function load(args)
 
   --Practice casting alias
   tempAliases.practiceCast =
-    tempAlias("\/cast ! (\w+)(?: @ (\d+))(?: ([\w,\s]+))?"
+    tempAlias("\\/[Cc][Aa][Ss][Tt] ! (\\w+)(?: @ (\\d+))(?: ([\\w,\\s]+))?"
               ,[[
                 local spellName = matches[2]
                 local power = tonumber(matches[3]) or 100
