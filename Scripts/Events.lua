@@ -10,10 +10,12 @@ local function load(args)
     registerAnonymousEventHandler("sysWindowResizeEvent", "Events.raiseWindowResizeEvent")
     registerAnonymousEventHandler("sysDownloadDone", "Events.raiseSysDownloadDoneEvent")
     registerAnonymousEventHandler("sysDownloadError", "Events.raiseSysDownloadErrorEvent")
+    registerAnonymousEventHandler("sysDataSendRequest","Events.raiseSysDataSendRequestEvent")
   end
 end
 
 local function unload(args)
+  eventList = {}
 end
 
 local function reload(args)
@@ -29,7 +31,7 @@ end
 
 local function raiseWindowResizeEvent(evt, x, y)
   args = {x = x, y = y}
-  Events.raiseEvent("windowResizeEvent", args)
+  Events.raiseEvent("sysWindowResizeEvent", args)
 end
 
 local function raiseSysDownloadDoneEvent(evt, file)
@@ -40,6 +42,11 @@ end
 local function raiseSysDownloadErrorEvent(evt, error, url)
   args = {error = error, url = url}
   Events.raiseEvent("sysDownloadErrorEvent", args)
+end
+
+local function raiseSysDataSendRequestEvent(evt, command)
+  args = {command = command}
+  Events.raiseEvent("sysDataSendRequestEvent", args)
 end
 
 local function raiseEvent(eventName, args)
@@ -70,6 +77,7 @@ Events = {
   ,raiseWindowResizeEvent = raiseWindowResizeEvent
   ,raiseSysDownloadErrorEvent = raiseSysDownloadErrorEvent
   ,raiseSysDownloadDoneEvent = raiseSysDownloadDoneEvent
+  ,raiseSysDataSendRequestEvent = raiseSysDataSendRequestEvent
   ,addListener = addListener
   ,removeListener = removeListener
 }
