@@ -251,7 +251,7 @@ local function load(args)
   Events.addListener("skillMistakeEvent", sourceName, onSkillMistake)
   Events.addListener("startWhoEvent", sourceName, onStartWho)
   Events.addListener("whoEvent", sourceName, onWho)
-  Events.addListener("endWhoEvent", sourceName, onStartWho)
+  Events.addListener("endWhoEvent", sourceName, onWhoEnd)
   Events.addListener("refreshUIEvent", sourceName, refreshUI)
 end
 
