@@ -42,7 +42,7 @@ local function setName(args)
 end
 
 local function setRace(args)
-  Status.race = race
+  Status.race = args["race"]
 end
 
 local function setThirst(args)

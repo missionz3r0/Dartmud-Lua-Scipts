@@ -32,9 +32,7 @@ local function load(args)
   local isFirstLoad = args["isFirstLoad"]
   local directory = args["directory"]
 
-  if isFirstLoad then
-    download(directory)
-  end
+  --download(directory)
 
   Events.addListener("sysDownloadError", sourceName, downloadError)
 end

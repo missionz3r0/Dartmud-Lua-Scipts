@@ -5,13 +5,10 @@ local eventList = {}
 --I really want to get rid of these anonymous event handlers, but I've no idea
 --as to how for the moment. So I'll settle with a clunky push into the eventlist
 local function load(args)
-  local isFirstLoad = args["isFirstLoad"]
-  if(isFirstLoad) then
-    registerAnonymousEventHandler("sysWindowResizeEvent", "Events.raiseWindowResizeEvent")
-    registerAnonymousEventHandler("sysDownloadDone", "Events.raiseSysDownloadDoneEvent")
-    registerAnonymousEventHandler("sysDownloadError", "Events.raiseSysDownloadErrorEvent")
-    registerAnonymousEventHandler("sysDataSendRequest","Events.raiseSysDataSendRequestEvent")
-  end
+  registerAnonymousEventHandler("sysWindowResizeEvent", "Events.raiseWindowResizeEvent")
+  registerAnonymousEventHandler("sysDownloadDone", "Events.raiseSysDownloadDoneEvent")
+  registerAnonymousEventHandler("sysDownloadError", "Events.raiseSysDownloadErrorEvent")
+  registerAnonymousEventHandler("sysDataSendRequest","Events.raiseSysDataSendRequestEvent")
 end
 
 local function unload(args)

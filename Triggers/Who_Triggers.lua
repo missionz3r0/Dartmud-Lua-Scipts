@@ -13,7 +13,7 @@ local function load(args)
                 ]])
 
   tempTriggers.whoNames =
-    tempRegexTrigger("^(?:> )? {7}(?:(?:\\[[A-Za-z]+\\] )?([A-Za-z]+ [A-Za-z]+ [A-Za-z]+)( +)(?:\\d+m)? ?(?:\\d+s)?)+ *?"
+    tempRegexTrigger("^(?:> )?(?: {7}| {2}(?:\\[[A-Za-z]+\\] ))(?:([A-Za-z]+ [A-Za-z]+ [A-Za-z]+)( +)(?:\\d+m)? ?(?:\\d+s)?)+ *?"
                ,[[
                   args = {name = name}
                   Events.raiseEvent("whoEvent", args)

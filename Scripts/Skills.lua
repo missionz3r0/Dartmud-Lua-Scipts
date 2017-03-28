@@ -134,7 +134,7 @@ local function increaseSkill(args)
 		dba.execute('INSERT INTO improves (skill, count, who, last_imp) VALUES("'..skill_name..'", 1, "'..who..'", datetime("NOW"))')
 	end
 
-  send("show skills "..skill_name)
+  send("show skills: "..skill_name)
 
 	return count
 end
@@ -162,15 +162,15 @@ local function updateCount(args)
   local who = args["who"]
   local skill_name = args["skill_name"]
 
-  local skill = getSkill(args)
+  local skill = getSkill({who = who, skill_name = skill_name})
 
   if skill ~= nil and skill~= 0 and skill ~= -1 then
     dba.execute('UPDATE improves SET count='..count..' WHERE who="'..who..'" AND skill="'..skill_name..'"')
 
-    cecho("<red>Updating skill: "..skill_name.." from "..skill.count.." to "..count)
+    cecho("<red>\nUpdating skill: "..skill_name.." from "..skill.count.." to "..count)
   else
+    cecho("<red>No skill by name:\n")
     display(skill_name)
-    cecho("<red>No skill by that name.\n")
   end
 end
 
@@ -179,7 +179,7 @@ local function shownSkill(args)
   local skill_name = args["skill_name"]
   local skill_level = args["skill_level"]
 
-  local skill = getSkill(args)
+  local skill = getSkill({who = who, skill_name = skill_name})
 
   if(skill == -1 ) then
       local level = args["skill_level"]
@@ -188,8 +188,9 @@ local function shownSkill(args)
       cecho("<red>Adding Skill: "..skill_name.." to database for "..who.." at count: "..imps)
   else
     local dba_count = skill.count
-    local actual_skill_level = name2lvl(skill_level).name
-    if(skill_level ~= actual_skill_level) then
+    local current_skill_level = imp2lvl(dba_count)
+    actual_skill_level = name2lvl(skill_level)
+    if(current_skill_level.name ~= actual_skill_level.name) then
       updateCount({count=actual_skill_level.min, who=who, skill_name=skill_name})
     end
   end

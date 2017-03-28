@@ -9,7 +9,7 @@ windows_ByPosition.topLeft = {}
 windows_ByPosition.right = {}
 
 
-local buttonBarBorder = 25
+local buttonBarBorder = 0
 local topBorder = 164
 local bottomBorder = 0
 

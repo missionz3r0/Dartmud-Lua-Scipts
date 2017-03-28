@@ -3,7 +3,6 @@ local packageName = "dartmudlet"
 local directory = getMudletHomeDir().."/"..packageName.."/"
 local modules = {}
 local sourceName = "core"
-local isFirstLoad = true
 
 local function load(e, f, g)
   print("Loading!")
@@ -52,12 +51,8 @@ local function unload(e, f, g)
     resetProfile()
     args = {}
     args["directory"] = directory
-    args["isFirstLoad"] = isFirstLoad
 
     print("Unloading!")
-    Events.removeListener("loadEvent",sourceName)
-    Events.removeListener("unloadEvent", sourceName)
-    Events.removeListener("reloadEvent", sourceName)
 
     for k,module in pairs(modules) do
       if module.unload then

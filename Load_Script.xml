@@ -6,7 +6,7 @@
             <name>Load Scripts</name>
             <packageName></packageName>
             <script>
-              registerAnonymousEventHandler("sysConnectionEvent","core.reload")
+              registerAnonymousEventHandler("sysLoadEvent","core.reload")
               local directory = getMudletHomeDir() .. "/dartmudlet/"
               local coreFile = directory.."/_core.lua"
 
