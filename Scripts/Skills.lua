@@ -197,7 +197,7 @@ local function shownSkill(args)
 end
 
 
-local function load(args)
+local function setup(args)
 -- build database if needed
   dba.execute('CREATE TABLE IF NOT EXISTS "improves" (_row_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, skill TEXT, count INTEGER DEFAULT 1, notes TEXT, last_imp TIMESTAMP, who VARCHAR(16), abbr TEXT, weight TEXT, power INTEGER);');
   local directory = args["directory"]
@@ -210,7 +210,7 @@ local function load(args)
   Events.addListener("updateSkillEvent", sourceName, updateCount)
 end
 
-local function unload(args)
+local function unsetup(args)
   Events.removeListener("skillImproveEvent", sourceName)
   Events.removeListener("skillInfoEvent", sourceName)
   Events.removeListener("skillMistakeEvent", sourceName)
@@ -218,16 +218,16 @@ local function unload(args)
   Events.removeListener("updateSkillEvent", sourceName)
 end
 
-local function reload(args)
-  unload(args)
-  load(args)
+local function resetup(args)
+  unsetup(args)
+  setup(args)
 end
 
 Skills =
 {
-	load = load
-	,unload = unload
-	,reload = reload
+	setup = setup
+	,unsetup = unsetup
+	,resetup = resetup
 	,imp2lvl = imp2lvl
 	,getSkill = getSkill
 	,nextLevel = nextLevel

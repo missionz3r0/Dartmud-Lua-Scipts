@@ -236,7 +236,7 @@ local function refreshUI(args)
   end
 end
 
-local function load(args)
+local function setup(args)
   setBorderTop(topBorder+buttonBarBorder)
   setBorderBottom(bottomBorder)
   setBorderRight(rightWidth)
@@ -255,7 +255,7 @@ local function load(args)
   Events.addListener("refreshUIEvent", sourceName, refreshUI)
 end
 
-local function unload(args)
+local function unsetup(args)
   Events.removeListener("sysWindowResizeEvent", sourceName)
   Events.removeListener("chatEvent", sourceName)
   Events.removeListener("skillImproveEvent", sourceName)
@@ -277,16 +277,16 @@ local function unload(args)
   windows_ByPosition = {}
 end
 
-local function reload(args)
-  unload(args)
-  reload(args)
+local function resetup(args)
+  unsetup(args)
+  resetup(args)
 end
 
 
 UI = {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
 }
 
 return UI

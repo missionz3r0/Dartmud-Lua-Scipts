@@ -4,8 +4,8 @@ local directory = getMudletHomeDir().."/"..packageName.."/"
 local modules = {}
 local sourceName = "core"
 
-local function load(e, f, g)
-  print("Loading!")
+local function setup(e, f, g)
+  print("Setup!")
   modules = {}
   args = {}
 
@@ -38,25 +38,35 @@ local function load(e, f, g)
   end
 
   for i,module in ipairs(modules) do
-    if module.load then
-      module.load({directory = directory, isFirstLoad = isFirstLoad})
+    if module.setup then
+      module.setup({})
     end
   end
 
   isFirstLoad = false
+
+  load()
 end
 
-local function unload(e, f, g)
+local function load()
+  print("Loading!")
+  for i,module in ipairs(modules) do
+    if module.load then
+      module.load()
+    end
+end
+
+local function unsetup(e, f, g)
   if(not isFirstLoad) then
     resetProfile()
     args = {}
     args["directory"] = directory
 
-    print("Unloading!")
+    print("Unsetup!")
 
     for k,module in pairs(modules) do
-      if module.unload then
-        module.unload({directory = directory, isFirstLoad = isFirstLoad})
+      if module.unsetup then
+        module.unsetup({directory = directory, isFirstLoad = isFirstLoad})
         module = nil
       end
     end
@@ -64,16 +74,16 @@ local function unload(e, f, g)
   end
 end
 
-local function reload(e, f, g)
-  print("Reload!")
-  unload(e, f, g)
-  load(e, f, g)
+local function resetup(e, f, g)
+  print("resetup!")
+  unsetup(e, f, g)
+  setup(e, f, g)
 end
 
 _Core = {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
 }
 
 return _Core

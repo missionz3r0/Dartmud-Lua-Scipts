@@ -10,28 +10,40 @@ end
 local function inscribeSetup(args)
   local spell = args["spell"]
   local power = args["power"]
-
-
-
 end
 
 local function load(args)
+end
+
+local function setup(args)
   Events.addListener("practiceInscribingEvent", sourceName, inscribeSetup)
 end
 
-local function unload(args)
+local function unsetup(args)
   Events.removeListener("practiceInscribingEvent", sourceName)
 end
 
-local function reload(args)
-  unload(args)
-  load(args)
+local function resetup(args)
+  unsetup(args)
+  setup(args)
+end
+
+local function load()
+  Events.raiseEvent("loadEvent",sourceName,
+                   function(sentTable)
+                     practiceWriteMemory = sentTable
+                   end)
+end
+
+local function save()
+  Events.raiseEvent("saveEvent",sourceName, practiceWriteMemory)
 end
 
 Inscribing = {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
+  ,load = load
 }
 
 return Inscribing

@@ -11,7 +11,7 @@ local function refreshUITimer()
                         ]])
 end
 
-local function load(args)
+local function setup(args)
   temp_timers = {}
 
   temp_timers.refreshUI = tempTimer(1
@@ -24,22 +24,22 @@ local function load(args)
   Events.addListener("refreshUIEvent", sourceName, refreshUITimer)
 end
 
-local function unload()
+local function unsetup()
   for k,v in pairs(timers) do
     killTimer(v)
   end
   Events.removeListener("refreshUIEvent", sourceName)
 end
 
-local function reload()
-  load()
-  reload()
+local function resetup()
+  setup()
+  resetup()
 end
 
 UI_Timers = {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
 }
 
 return UI_Timers

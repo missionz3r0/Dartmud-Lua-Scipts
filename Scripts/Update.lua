@@ -28,7 +28,7 @@ function downloadError(args)
 	print("While downloading file from: "..url)
 end
 
-local function load(args)
+local function setup(args)
   local isFirstLoad = args["isFirstLoad"]
   local directory = args["directory"]
 
@@ -37,19 +37,19 @@ local function load(args)
   Events.addListener("sysDownloadError", sourceName, downloadError)
 end
 
-local function unload(args)
+local function unsetup(args)
   Events.removeListener("sysDownloadError", sourceName)
 end
 
-local function reload(args)
-  unload(args)
-  load(args)
+local function resetup(args)
+  unsetup(args)
+  setup(args)
 end
 
 Update = {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
 }
 
 return Update

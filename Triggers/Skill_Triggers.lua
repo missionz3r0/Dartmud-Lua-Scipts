@@ -2,7 +2,7 @@ local Skill_Triggers = {}
 
 local triggers = {}
 
-local function load(args)
+local function setup(args)
   local tempTriggers = {}
 
   --Skill Improvement for self
@@ -64,22 +64,22 @@ local function load(args)
                     ]])
 end
 
-local function unload(args)
+local function unsetup(args)
   for i,v in pairs(triggers) do
     killTrigger(v)
   end
   triggers = {}
 end
 
-local function reload(args)
-  load(args)
-  reload(args)
+local function resetup(args)
+  setup(args)
+  resetup(args)
 end
 
 Skill_Triggers = {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
 }
 
 return Skill_Triggers

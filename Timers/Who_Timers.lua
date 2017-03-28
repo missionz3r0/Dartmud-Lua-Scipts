@@ -13,7 +13,7 @@ local function whoItUp(args)
                         ]])
 end
 
-local function load(args)
+local function setup(args)
   temp_timers = {}
 
   temp_timers.who = tempTimer(300
@@ -26,22 +26,22 @@ local function load(args)
   Events.addListener("whoTimerEvent", sourceName, whoItUp)
 end
 
-local function unload()
+local function unsetup()
   Events.removeListener("whoTimerEvent", sourceName)
   for k,v in pairs(timers) do
     killTimer(v)
   end
 end
 
-local function reload()
-  load()
-  reload()
+local function resetup()
+  setup()
+  resetup()
 end
 
 Who_Timers = {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
 }
 
 return Who_Timers

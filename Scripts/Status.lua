@@ -57,7 +57,7 @@ local function login(args)
   send("score")
 end
 
-function Status.load(args)
+function Status.setup(args)
   Events.addListener("ageEvent", sourceName, setAge)
   Events.addListener("alignmentEvent", sourceName, setAlignment)
   Events.addListener("auraEvent", sourceName, setAura)
@@ -72,7 +72,7 @@ function Status.load(args)
   Events.addListener("loginEvent", sourceName, login)
 end
 
-function Status.unload(args)
+function Status.unsetup(args)
   Events.removeListener("ageEvent", sourceName)
   Events.removeListener("alignmentEvent", sourceName)
   Events.removeListener("auraEvent", sourceName)
@@ -87,9 +87,9 @@ function Status.unload(args)
   Events.removeListener("loginEvent", sourceName)
 end
 
-function Status.reload(args)
-  Status.unload(args)
-  Status.load(args)
+function Status.resetup(args)
+  Status.unsetup(args)
+  Status.setup(args)
 end
 
 return Status

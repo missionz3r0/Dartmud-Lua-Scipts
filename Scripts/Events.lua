@@ -4,20 +4,20 @@ local eventList = {}
 
 --I really want to get rid of these anonymous event handlers, but I've no idea
 --as to how for the moment. So I'll settle with a clunky push into the eventlist
-local function load(args)
+local function setup(args)
   registerAnonymousEventHandler("sysWindowResizeEvent", "Events.raiseWindowResizeEvent")
   registerAnonymousEventHandler("sysDownloadDone", "Events.raiseSysDownloadDoneEvent")
   registerAnonymousEventHandler("sysDownloadError", "Events.raiseSysDownloadErrorEvent")
   registerAnonymousEventHandler("sysDataSendRequest","Events.raiseSysDataSendRequestEvent")
 end
 
-local function unload(args)
+local function unsetup(args)
   eventList = {}
 end
 
-local function reload(args)
-  load(args)
-  unload(args)
+local function resetup(args)
+  setup(args)
+  unsetup(args)
 end
 
 local function createEventList(eventName)
@@ -67,9 +67,9 @@ local function removeListener(eventName, sourceName)
 end
 
 Events = {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
   ,raiseEvent = raiseEvent
   ,raiseWindowResizeEvent = raiseWindowResizeEvent
   ,raiseSysDownloadErrorEvent = raiseSysDownloadErrorEvent

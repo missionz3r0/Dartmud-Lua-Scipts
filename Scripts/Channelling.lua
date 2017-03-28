@@ -2,26 +2,29 @@ local Channelling = {}
 
 local sourceName = "channelling"
 
-local currentChannelPower = 1
+local channelHistory = {}
+
 local currentChannelTarget = ''
-local currentChannelCount = 0
 
 local function channel()
-  send("channel "..currentChannelPower.. " "..currentChannelTarget)
-  currentChannelCount = currentChannelCount + currentChannelPower
-  cecho("<yellow>Channelled "..currenChannelCount.." to "..currentChannelTarget.."\n")
+  local power = channelHistory[currentChannelTarget].power
+  local count = channelHistory[currentChannelTarget].count
+  send("channel "..power.. " "..currentChannelTarget)
+  count = count + currentChannelPower
+  cecho("<yellow>Channelled "..count.." to "..currentChannelTarget.."\n")
+  channelHistory[currentChannelTarget].count = count
 end
 
 local function channellingSetup(args)
   local power = args["power"]
   local target = args["target"]
 
-  currentChannelPower = tonumber(power)
   currentChannelTarget = target
-  currentChannelCount = 0
+  channelHistory[target] = {power = tonumber(power), count = 0}
+
   Events.addListener("BEBTconcEvent", sourceName, channel)
   send("conc")
-  cecho("<yellow>Channelling "..currentChannelPower.." to "..currentChannelTarget.."\n")
+  cecho("<yellow>Channelling "..power.." to "..target.."\n")
 end
 
 local function channellingCommands(args)
@@ -41,25 +44,37 @@ local function channellingCommands(args)
   end
 end
 
-local function load(args)
+local function load()
+  Events.raiseEvent("loadEvent",sourceName,
+                   function(sentTable)
+                     channelHistory = sentTable
+                   end)
+end
+
+local function save()
+  Events.raiseEvent("saveEvent",sourceName,channelHistory)
+end
+
+local function setup(args)
   Events.addListener("channellingEvent", sourceName, channellingSetup)
-    Events.addListener("channellingCommandEvent", sourceName, channellingCommands)
+  Events.addListener("channellingCommandEvent", sourceName, channellingCommands)
 end
 
-local function unload(args)
+local function unsetup(args)
   Events.removeListener("channellingEvent", sourceName)
-    Events.removeListener("channellingCommandEvent", sourceName)
+  Events.removeListener("channellingCommandEvent", sourceName)
 end
 
-local function reload(args)
-  unload(args)
-  load(args)
+local function resetup(args)
+  unsetup(args)
+  setup(args)
 end
 
 Channelling = {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
+  ,load = load
 }
 
 return Channelling

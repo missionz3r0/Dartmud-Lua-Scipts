@@ -1,7 +1,7 @@
 local Skill = {}
 local aliases = {}
 
-local function load(args)
+local function setup(args)
   tempAliases = {}
   --Add update skill Alias
   	tempAliases.updateSkill =
@@ -29,22 +29,22 @@ local function load(args)
   --Add announcer alias
 end
 
-local function unload(args)
+local function unsetup(args)
   for i,v in pairs(aliases) do
     killAlias(v)
   end
 end
 
-local function reload(args)
-  unload(args)
-  load(args)
+local function resetup(args)
+  unsetup(args)
+  setup(args)
 end
 
 Skill =
 {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
 }
 
 return Skill

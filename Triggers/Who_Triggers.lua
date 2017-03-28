@@ -2,7 +2,7 @@ local Who_Triggers = {}
 
 local triggers = {}
 
-local function load(args)
+local function setup(args)
   local tempTriggers = {}
 
   tempTriggers.whoTitle =
@@ -51,22 +51,22 @@ local function load(args)
   triggers = tempTriggers
 end
 
-local function unload(args)
+local function unsetup(args)
   for i,v in pairs(triggers) do
     killTrigger(v)
   end
   triggers = {}
 end
 
-local function reload(args)
-  load(args)
-  reload(args)
+local function resetup(args)
+  setup(args)
+  resetup(args)
 end
 
 Who_Triggers = {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
 }
 
 return Who_Triggers

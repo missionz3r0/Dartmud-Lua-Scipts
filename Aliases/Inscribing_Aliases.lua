@@ -2,7 +2,7 @@ local Inscribing_Aliases = {}
 
 local aliases = {}
 
-local function load(args)
+local function setup(args)
   tempAliases = {}
 
   --Practice writing alias
@@ -50,22 +50,22 @@ tempAliases.inscribeAdjustSpell =
   aliases = tempAliases
 end
 
-local function unload(args)
+local function unsetup(args)
   for i,v in pairs(aliases) do
     killAlias(v)
   end
 end
 
-local function reload(args)
-  unload(args)
-  load(args)
+local function resetup(args)
+  unsetup(args)
+  setup(args)
 end
 
 Inscribing_Aliases =
 {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
 }
 
 return Inscribing_Aliases

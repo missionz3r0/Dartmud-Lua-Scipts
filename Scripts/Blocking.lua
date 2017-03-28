@@ -38,27 +38,27 @@ local function onNetworkOutput(args)
     end
 end
 
-local function load(args)
+local function setup(args)
   Events.addListener("unblockEvent",sourceName,unblock)
   Events.addListener("blockEvent",sourceName,block)
   Events.addListener("sysDataSendRequestEvent",sourceName,onNetworkOutput)
 end
 
-local function unload(args)
+local function unsetup(args)
   Events.removeListener("unblockEvent",sourceName)
   Events.removeListener("blockEvent",sourceName)
   Events.removeListener("sysDataSendRequestEvent",sourceName)
 end
 
-local function reload(args)
-  unload(args)
-  load(args)
+local function resetup(args)
+  unsetup(args)
+  setup(args)
 end
 
 Blocking = {
-  load = load
-  ,unload = unload
-  ,reload = reload
+  setup = setup
+  ,unsetup = unsetup
+  ,resetup = resetup
 }
 
 return Blocking
