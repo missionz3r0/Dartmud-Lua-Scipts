@@ -16,16 +16,19 @@ local function announce(args)
 end
 
 local function announceOn(args)
+  cecho("<yellow>Announce on: +\n")
   isAnnounceOn = true
   isAnnounceVerbose = false
 end
 
 local function announceVerbose(args)
+  cecho("<yellow>Announce Verbose on: Skill_Name +\n")
   isAnnounceOn = true
   isAnnounceVerbose = true
 end
 
 local function announceOff(args)
+  cecho("<yellow>Announce off\n")
   isAnnounceOn = false
 end
 
