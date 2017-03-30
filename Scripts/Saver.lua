@@ -5,9 +5,10 @@ local sourceName = "save"
 local saveTable = {}
 
 local function saveFile(args)
+  display(args)
   local sourceNameArg = args["sourceName"]
   local tableToSave = args["tableToSave"]
-  saveTabe[sourceNameArg] = tableToSave
+  saveTable[sourceNameArg] = tableToSave
   table.save(getMudletHomeDir().."/dartmudlet.txt", saveTable)
 end
 
@@ -18,7 +19,13 @@ local function sendData(args)
 end
 
 local function setup(args)
-  table.load(getMudletHomeDir().."/dartmudlet.txt", saveTable)
+  if io.exists(getMudletHomeDir().."/dartmudlet.txt") then
+    table.load(getMudletHomeDir().."/dartmudlet.txt", saveTable)
+  else
+    saveTable = {}
+    table.save(getMudletHomeDir().."/dartmudlet.txt", saveTable)
+  end
+
   Events.addListener("saveEvent", sourceName, saveFile)
   Events.addListener("loadEvent", sourceName, sendData)
 end

@@ -69,7 +69,7 @@ local function imp2lvl(imp)
       return v
     end
   end
-  return -1
+  return levels.NoSkill
 end
 
 local function name2lvl(name)
@@ -80,7 +80,7 @@ local function name2lvl(name)
     end
   end
 
-  return -1
+  return levels.NoSkill
 end
 
 local function skillInfo(args)
@@ -182,8 +182,7 @@ local function shownSkill(args)
   local skill = getSkill({who = who, skill_name = skill_name})
 
   if(skill == -1 ) then
-      local level = args["skill_level"]
-      local imps = name2lvl(level).min
+      local imps = name2lvl(skill_level).min
       dba.execute('INSERT INTO improves (skill, count, who, last_imp) VALUES("'..skill_name..'", '..imps..', "'..who..'", datetime("NOW"))')
       cecho("<red>Adding Skill: "..skill_name.." to database for "..who.." at count: "..imps)
   else
@@ -198,7 +197,7 @@ end
 
 
 local function setup(args)
--- build database if needed
+  -- build database if needed
   dba.execute('CREATE TABLE IF NOT EXISTS "improves" (_row_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, skill TEXT, count INTEGER DEFAULT 1, notes TEXT, last_imp TIMESTAMP, who VARCHAR(16), abbr TEXT, weight TEXT, power INTEGER);');
   local directory = args["directory"]
   directory = directory.."/Scripts/"

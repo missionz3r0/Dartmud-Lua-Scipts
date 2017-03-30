@@ -7,7 +7,7 @@ local function setup(args)
 
   --Practice writing alias
 tempAliases.practiceInscribing =
-  tempAlias("\\/[Ii][Nn][Ss][Cc][Rr][Ii][Bb][Ee] ! (\\w+)(?: @ (\\d+))?"
+  tempAlias("\\/[Ii][Nn][Ss][Cc][Rr][Ii][Bb][Ee] ! (\\w+) @ (\\d+)"
             ,[[
               local spell = matches[2]
               local power = tonumber(matches[3]) or 100
@@ -24,9 +24,12 @@ tempAliases.inscribeOff =
             ]])
 
 tempAliases.inscribeResume =
-  tempAlias("\\/[Ii][Nn][Ss][Cc][Rr][Ii][Bb][Ee] ! [Rr][Ee][Ss][Uu][Mm][Ee]"
+  tempAlias("\\/[Ii][Nn][Ss][Cc][Rr][Ii][Bb][Ee] ! [Rr][Ee][Ss][Uu][Mm][Ee](?: (\\w+))?"
             ,[[
-              local arguments = {}
+              local spellName = matches[2] or ""
+              spellName = string.lower(spell)
+
+              local arguments = {spellName = spellName}
               Events.raiseEvent("practiceInscribingResumeEvent", arguments)
             ]])
 
@@ -38,12 +41,12 @@ tempAliases.inscribeAdjustPower =
               Events.raiseEvent("practiceInscribingAdjustPowerEvent", arguments)
             ]])
 
-tempAliases.inscribeAdjustSpell =
-  tempAlias("\\/[Ii][Nn][Ss][Cc][Rr][Ii][Bb][Ee] ! [Aa][Dd][Jj][Uu][Ss][Tt] [Ss][Pp][Ee][Ll][Ll] ([A-Za-z]+)"
+tempAliases.inscribeStatus =
+  tempAlias("\\/[Ii][Nn][Ss][Cc][Rr][Ii][Bb][Ee] ! [Ss][Tt][Aa][Tt][Uu][Ss](?: [Oo][Ff] (\\w+))?"
             ,[[
-              local spell = string.lower(matches[2])
-              local arguments = {spell = spell}
-              Events.raiseEvent("practiceInscribingAdjustSpellEvent", arguments)
+              local spellName = matches[2] or ""
+              local arguments = {spellName = spellName}
+              Events.raiseEvent("practiceInscribingStatusEvent", arguments)
             ]])
 
 

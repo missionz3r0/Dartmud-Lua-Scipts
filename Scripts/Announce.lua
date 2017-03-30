@@ -19,49 +19,55 @@ local function announceOn(args)
   cecho("<yellow>Announce on: +\n")
   isAnnounce = true
   isVerbose = false
-  save()
+  Announce.save()
 end
 
 local function announceVerbose(args)
   cecho("<yellow>Announce Verbose on: Skill_Name +\n")
   isAnnounce = true
   isVerbose = true
-  save()
+  Announce.save()
 end
 
 local function announceOff(args)
   cecho("<yellow>Announce off\n")
   isAnnounce = false
-  save()
+  Announce.save()
+end
+
+local function loaderFunction(sentTable)
+  if sentTable then
+    isAnnounce = sentTable[isAnnounce]
+    isVerbose = sentTable[isVerbose]
+  end
 end
 
 local function load()
-  Events.raiseEvent("loadEvent",sourceName,
-                   function(sentTable)
-                     isAnnounce = sentTable[isAnnounce]
-                     isVerbose = sentTable[isVerbose]
-                   end)
+  Events.raiseEvent("loadEvent",{sourceName = sourceName, functionToSendData = loaderFunction})
 end
 
 local function save()
-  Events.raiseEvent("saveEvent",sourceName,
+  Events.raiseEvent("saveEvent",
                     {
-                      isAnnounce = isAnnounce
-                      ,isVerbose = isVerbose
+                      sourceName = sourceName
+                      ,tableToSave = {
+                        isAnnounce = isAnnounce or false
+                        ,isVerbose = isVerbose or false
+                      }
                     })
 end
 
 local function setup(args)
   Events.addListener("skillImproveEvent",sourceName,announce)
   Events.addListener("announceOnEvent",sourceName,announceOn)
-  Events.addListener("announceVervoseEvent",sourceName,announceVerbose)
+  Events.addListener("announceVerboseEvent",sourceName,announceVerbose)
   Events.addListener("announceOffEvent",sourceName,announceOff)
 end
 
 local function unsetup(args)
   Events.removeListener("skillImproveEvent",sourceName,announce)
   Events.removeListener("announceOnEvent",sourceName)
-  Events.removeListener("announceVervoseEvent",sourceName)
+  Events.removeListener("announceVerboseEvent",sourceName)
   Events.removeListener("announceOffEvent",sourceName)
 end
 
@@ -75,6 +81,7 @@ Announce = {
   ,unsetup = unsetup
   ,resetup = resetup
   ,load = load
+  ,save = save
 }
 
 return Announce

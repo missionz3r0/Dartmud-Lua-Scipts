@@ -6,27 +6,62 @@ local function setup(args)
   tempAliases = {}
 
   --Channelling alias
-  tempAliases.channelling =
+  tempAliases.channel =
     tempAlias("\\/[Cc][Hh][Aa][Nn][Nn][Ee][Ll] (\\d+) (\\w+)"
               ,[[
                 local power = tonumber(matches[2])
                 local target = string.lower(matches[3])
                 local arguments = {power = power, target = target}
 
-                Events.raiseEvent("channellingEvent", arguments)
+                Events.raiseEvent("channelSetupEvent", arguments)
               ]])
 
-  --Channelling commands
-  tempAliases.channellingCommands =
-    tempAlias("\\/[Cc][Hh][Aa][Nn][Nn][Ee][Ll](?: ([a-zA-Z]+))?"
+  --Channel resume
+  tempAliases.channelResume =
+    tempAlias("\\/[Cc][Hh][Aa][Nn][Nn][Ee][Ll] [Rr][Ee][Ss][Uu][Mm][Ee](?: (\\w+))?"
               ,[[
-                local command = matches[2]
-                if command then
-                  command = string.lower(command)
-                end
-                local arguments = {command = command}
+                local target = matches[2] or ""
+                target = string.lower(target)
+                local arguments = {target = target}
 
-                Events.raiseEvent("channellingCommandEvent", arguments)
+                Events.raiseEvent("channelResumeEvent", arguments)
+              ]])
+
+  --Channel off
+  tempAliases.channelOff =
+    tempAlias("\\/[Cc][Hh][Aa][Nn][Nn][Ee][Ll] [Oo][Ff][Ff]"
+              ,[[
+                Events.raiseEvent("channelOffEvent", arguments)
+              ]])
+
+  --Channel status
+  tempAliases.channelStatus =
+    tempAlias("\\/[Cc][Hh][Aa][Nn][Nn][Ee][Ll] [Ss][Tt][Aa][Tt][Uu][Ss](?: [Oo][Ff] (\\w+))?"
+              ,[[
+                 local target = matches[2] or ""
+                 target = string.lower(target)
+                 arguments {target = target}
+                 Events.raiseEvent("channelStatusEvent", arguments)
+              ]])
+
+  --Channel change target
+  tempAliases.channelTarget =
+    tempAlias("\\/[Cc][Hh][Aa][Nn][Nn][Ee][Ll] [Tt][Aa][Rr][Gg][Ee][Tt] ?= ?(\\w+)"
+              ,[[
+                 local target = matches[2]
+                 target = string.lower(target)
+                 arguments = {target = target}
+                 Events.raiseEvent("channelTargetEvent", arguments)
+              ]])
+
+  --Channel change power
+  tempAliases.channelPower =
+    tempAlias("\\/[Cc][Hh][Aa][Nn][Nn][Ee][Ll] [Pp][Oo][Ww][Ee][Rr] ?= ?(\\w+)"
+              ,[[
+                 local power = matches[2] or ""
+                 power = tonumber(power)
+                 arguments = {power = power}
+                 Events.raiseEvent("channelPowerEvent", arguments)
               ]])
 
   aliases = tempAliases

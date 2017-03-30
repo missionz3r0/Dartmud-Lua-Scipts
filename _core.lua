@@ -39,13 +39,13 @@ local function setup(e, f, g)
 
   for i,module in ipairs(modules) do
     if module.setup then
-      module.setup({})
+      module.setup({directory=directory})
     end
   end
 
   isFirstLoad = false
 
-  load()
+  _Core.load()
 end
 
 local function load()
@@ -54,6 +54,7 @@ local function load()
     if module.load then
       module.load()
     end
+  end
 end
 
 local function unsetup(e, f, g)
@@ -84,6 +85,7 @@ _Core = {
   setup = setup
   ,unsetup = unsetup
   ,resetup = resetup
+  ,load = load
 }
 
 return _Core

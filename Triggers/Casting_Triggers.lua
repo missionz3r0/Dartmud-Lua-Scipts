@@ -6,12 +6,14 @@ local function setup(args)
   local tempTriggers = {}
 
   tempTriggers.finishPracticing =
-    tempRegexTrigger("^(?:> )?You are (?:\\w+) the (?:\\w+)?\\.  You are a ([\\s\\S]+)\\."
+    tempRegexTrigger("^(?:> )?You finish practicing\\."
                      ,[[
                         arguments = {}
                         Events.raiseEvent("finishPracticingEvent", arguments)
                         Events.raiseEvent("unblockEvent", {})
                       ]])
+
+  tempTriggers.
 
   triggers = tempTriggers
 end
