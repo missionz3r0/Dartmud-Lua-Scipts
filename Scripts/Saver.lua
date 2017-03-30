@@ -5,7 +5,6 @@ local sourceName = "save"
 local saveTable = {}
 
 local function saveFile(args)
-  display(args)
   local sourceNameArg = args["sourceName"]
   local tableToSave = args["tableToSave"]
   saveTable[sourceNameArg] = tableToSave
@@ -15,7 +14,7 @@ end
 local function sendData(args)
   local sourceNameArg = args["sourceName"]
   local functionToSendData = args["functionToSendData"]
-  functionToSendData(saveTable[sourceName])
+  functionToSendData(saveTable[sourceNameArg])
 end
 
 local function setup(args)

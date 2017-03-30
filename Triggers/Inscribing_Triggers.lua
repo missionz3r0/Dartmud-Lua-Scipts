@@ -11,6 +11,7 @@ local function setup(args)
                      ,[[
                         local arguments = {}
                         Events.raiseEvent("finishedInscriptionEvent", arguments)
+                        Events.raiseEvent("unblockEvent", arguments)
                       ]])
 
   tempTriggers.invocationFinish =

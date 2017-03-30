@@ -23,7 +23,7 @@ local function announceOn(args)
 end
 
 local function announceVerbose(args)
-  cecho("<yellow>Announce Verbose on: Skill_Name +\n")
+  cecho("<yellow>Announce Verbose: Skill_Name +\n")
   isAnnounce = true
   isVerbose = true
   Announce.save()

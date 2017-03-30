@@ -8,12 +8,11 @@ local currentPower = 100
 
 local function inscribe(args)
   send("inscribe "..currentSpell.. " @ "..currentPower)
-  Events.addListener("finishedInscriptionEvent",sourceName,invoke)
 end
 
 local function invoke(args)
   send("invoke "..currentSpell.." !")
-  Events.removeListener("finishedInscriptionEvent",sourceName)
+  raiseEvent("blockEvent", {})
 end
 
 local function inscribeSetup(args)
@@ -28,6 +27,7 @@ local function inscribeSetup(args)
 
   cecho("<yellow>Inscribing "..currentSpell.." @ "..currentPower.."\n")
   Events.addListener("BEBTconcEvent", sourceName, inscribe)
+  Events.addListener("finishedInscriptionEvent",sourceName,invoke)
   send("conc")
 
   Inscribing.save()
@@ -35,6 +35,7 @@ end
 
 local function inscribeOff(args)
   Events.removeListener("BEBTconcEvent",sourceName)
+  Events.removeListener("finishedInscriptionEvent",sourceName)
   cecho("<yellow>Stopped inscribing\n")
 end
 
