@@ -58,21 +58,19 @@ local function load()
 end
 
 local function unsetup(e, f, g)
-  if(not isFirstLoad) then
-    resetProfile()
-    args = {}
-    args["directory"] = directory
+  resetProfile()
+  args = {}
+  args["directory"] = directory
 
-    print("Unsetup!")
+  print("Unsetup!")
 
-    for k,module in pairs(modules) do
-      if module.unsetup then
-        module.unsetup({directory = directory, isFirstLoad = isFirstLoad})
-        module = nil
-      end
+  for k,module in pairs(modules) do
+    if module.unsetup then
+      module.unsetup({directory = directory, isFirstLoad = isFirstLoad})
+      module = nil
     end
-    modules = {}
   end
+  modules = {}
 end
 
 local function resetup(e, f, g)
