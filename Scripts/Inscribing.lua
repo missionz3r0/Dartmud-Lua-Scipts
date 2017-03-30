@@ -8,6 +8,12 @@ local currentPower = 100
 
 local function inscribe(args)
   send("inscribe "..currentSpell.. " @ "..currentPower)
+  Events.addListener("finishedInscriptionEvent",sourceName,invoke)
+end
+
+local function invoke(args)
+  send("invoke "..currentSpell.." !")
+  Events.removeListener("finishedInscriptionEvent",sourceName)
 end
 
 local function inscribeSetup(args)
