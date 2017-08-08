@@ -6,7 +6,7 @@ local sourceName = "Vote_Timers"
 local function vote()
   cecho("<red>If you enjoy dartmud, please consider voting for it on Top Mud Sites.\n")
   cecho("<red>--Missionz3r0\n")
-  cechoLink("http://www.topmudsites.com/vote/DartMUD.html"
+  cechoLink("http://www.topmudsites.com/vote/DartMUD.html\n"
             ,[[openWebPage("http://www.topmudsites.com/vote/DartMUD.html")]]
             ,"http://www.topmudsites.com/vote/DartMUD.html"
             ,true)

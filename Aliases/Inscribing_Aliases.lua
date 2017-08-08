@@ -27,7 +27,7 @@ tempAliases.inscribeResume =
   tempAlias("\\/[Ii][Nn][Ss][Cc][Rr][Ii][Bb][Ee] ! [Rr][Ee][Ss][Uu][Mm][Ee](?: (\\w+))?"
             ,[[
               local spellName = matches[2] or ""
-              spellName = string.lower(spell)
+              spellName = string.lower(spellName)
 
               local arguments = {spellName = spellName}
               Events.raiseEvent("practiceInscribingResumeEvent", arguments)

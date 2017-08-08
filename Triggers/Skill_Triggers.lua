@@ -10,8 +10,8 @@ local function setup(args)
   tempRegexTrigger("^(?:> )?\\* You think your ([\\w'\\-# ]+) skill has improved\\. \\*$"
    ,[[
       local name = Status.name
-      local skill = matches[2]
-      arguments = {name = name, skill_name = skill}
+      local skill_name = matches[2]
+      arguments = {name = name, skill_name = skill_name}
 
       Events.raiseEvent("skillImproveEvent", arguments)
     ]])
@@ -37,31 +37,6 @@ local function setup(args)
     ]])
 
     triggers = tempTriggers
-
-  --Show skill
-  tempTriggers.shownSkill =
-    tempRegexTrigger("^(?:> )?([A-Za-z'\\-_# ]+):\\s+([A-Za-z ]+)\\."
-                    ,[[
-                      local skill_name = string.lower(matches[2])
-                      local skill_level = string.lower(matches[3])
-
-                      local isStupidOoc = string.find(matches[1], "(ooc)")
-                      local _s, spaces = string.gsub(skill_name, " ", " ")
-                      spaces = spaces or 0
-                      -- collection of possible false triggers due to the common pattern used in show skills output
-                      -- if there is more than 1 space its a false positive
-                      if skill_name == "concentration" or
-                          skill_name == "encumbrance" or
-                          skill_name == "held" or
-                          skill_name == "worn" or
-                          spaces > 1 or
-                          not isStupidOoc == nil then
-                              return
-                      end
-
-                      args = {skill_name = skill_name, skill_level = skill_level}
-                      Events.raiseEvent("shownSkillEvent", args)
-                    ]])
 end
 
 local function unsetup(args)

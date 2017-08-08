@@ -10,14 +10,18 @@ local currentChannelCount = 0
 
 local function channel(args)
   send("channel "..currentChannelPower.. " "..currentChannelTarget)
-  curentChannelCount = curentChannelCount + currentChannelPower
-  cecho("<yellow>Channelled "..count.." to "..currentChannelTarget.."\n")
-  channelHistory[currentChannelTarget].count = count
+  currentChannelCount = currentChannelCount + currentChannelPower
+  cecho("<yellow>Channelled "..currentChannelCount.." to "..currentChannelTarget.."\n")
+  channelHistory[currentChannelTarget].count = currentChannelCount
+
+  Events.raiseEvent("channeledEvent", {power = currentChannelPower
+                                      ,count = currentChannelCount
+                                      ,target = currentChannelTarget})
 
   Channelling.save()
 end
 
-local function channellingSetup(args)
+local function channelSetup(args)
   local power = args["power"]
   local target = args["target"]
 

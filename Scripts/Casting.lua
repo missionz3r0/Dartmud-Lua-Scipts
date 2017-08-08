@@ -42,6 +42,7 @@ local function practiceCastResume(args)
   if spellName == "" and currentSpell ~= "" then
     cecho("<yellow>Practice casting "..currentSpell.." @ "..currentSpellPower.." "..currentSpellArguments.."\n")
     Events.addListener("BEBTconcEvent", sourceName, practiceCast)
+    send("conc")
 
   elseif practiceCastMemory[spellName] then
     currentSpell = spellName
@@ -88,6 +89,7 @@ local function loaderFunction(sentTable)
     practiceCastMemory = sentTable["practiceCastMemory"] or {}
     currentSpell = sentTable["currentSpell"] or ""
     currentSpellPower = sentTable["currentSpellPower"] or 100
+    currentSpellArguments = sentTable["currentSpellArguments"] or ""
   end
 end
 
@@ -104,6 +106,7 @@ local function save()
                         practiceCastMemory = practiceCastMemory
                         ,currentSpell = currentSpell
                         ,currentSpellPower = currentSpellPower
+                        ,currentSpellArguments = currentSpellArguments
                       }
                     })
 end

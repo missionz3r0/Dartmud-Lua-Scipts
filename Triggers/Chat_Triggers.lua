@@ -6,15 +6,7 @@ local function setup(args)
   local tempTriggers = {}
 
   tempTriggers.generalChatTrigger
-    = tempRegexTrigger("^(?:> )?.* (say|says|ask|asks|exclaim|exclaims|shout|shouts|yell|yells|tells) .*"
-                        ,[[
-                          local message = matches[1]
-                          local arguments = {message = message}
-                          Events.raiseEvent("chatEvent", arguments)
-                        ]])
-
-  tempTriggers.szTrigger
-    = tempRegexTrigger("^(?:> )?A voice seems to say:.*"
+    = tempRegexTrigger("^(?:> )?.* (say|says|ask|asks|exclaim|exclaims|shout|shouts|yell|yells|tells)(?: |,|:).*"
                         ,[[
                           local message = matches[1]
                           local arguments = {message = message}

@@ -29,12 +29,11 @@ local function onNetworkOutput(args)
         echo("Queing command: '"..command.."'\n")
         table.insert(queue, command)
         denyCurrentSend()
-    end
-    -- these are what trigger blocking inputs
-    if string.match(command, "^cast ! ") == "cast ! " or
-        string.match(command, "^inscribe ") == "inscribe " or
-        string.match(command, "^invoke ") == "invoke " then
-        block()
+        -- these are what trigger blocking inputs
+    elseif string.match(command, "^cast ! ") == "cast ! " or
+          string.match(command, "^inscribe ") == "inscribe " or
+          string.match(command, "^invoke ") == "invoke " then
+      block()
     end
 end
 

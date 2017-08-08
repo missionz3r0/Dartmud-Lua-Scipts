@@ -173,15 +173,15 @@ end
 
 local function onImprove(args)
   local who = args["name"]
-  local skill = args["skill_name"]
+  local skill_name = args["skill_name"]
   local ts = getTime(true, "hh:mm:ss")
   local container = windows["ImpBox"]["container"]
   local count = 0
   local output = ''
 
-  local skillVar = Skills.getSkill(args)
+  local skillVar = Skills.getSkill({who = who, skill_name = skill_name})
 
-  if skillVar then
+  if skillVar ~= -1 then
     count = tonumber(skillVar.count)+1
   else
     count = 1
@@ -189,11 +189,19 @@ local function onImprove(args)
 
   local level = Skills.imp2lvl(count)
   local nextLevel = level.next_level
-  local tilNext = nextLevel.min - count
-  if(who ~= Status.name) then
-    output = ts.." ("..who..") "..skill.." - "..count.." ("..level.abbr..") - ("..tilNext.." / "..nextLevel.abbr..")"
+  if nextLevel == nil then
+    if(who ~= Status.name) then
+      output = ts.." ("..who..") "..skill_name.." - "..count.." ("..level.abbr..")"
+    else
+      output = ts.." "..skill_name.." - "..count.." ("..level.abbr..")"
+    end
   else
-    output = ts.." "..skill.." - "..count.." ("..level.abbr..") - ("..tilNext.." / "..nextLevel.abbr..")"
+    local tilNext = nextLevel.min - count
+    if(who ~= Status.name) then
+      output = ts.." ("..who..") "..skill_name.." - "..count.." ("..level.abbr..") - ("..tilNext.." / "..nextLevel.abbr..")"
+    else
+      output = ts.." "..skill_name.." - "..count.." ("..level.abbr..") - ("..tilNext.." / "..nextLevel.abbr..")"
+    end
   end
 
   container:echo(output.."\n")

@@ -8,10 +8,10 @@ local function download(path)
   local saveTo = path.."package_download.zip"
   if (getMudletVersion) then
     if io.exists(path) then
-    	downloadFile(saveTo, url)
+    	--downloadFile(saveTo, url)
     else
       lfs.mkdir(path)
-    	downloadFile(saveTo, url)
+    	--downloadFile(saveTo, url)
     end
   end
 end

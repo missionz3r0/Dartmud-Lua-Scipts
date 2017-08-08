@@ -100,13 +100,13 @@ local function skillInfo(args)
 	    tilNext = level.next_level.min - count
 	    output = output.." - ("..tilNext.." / "..nextLevel.abbr..")"
 	end
-	cecho("<yellow>Information for: "..result.skill.."\n")
+	cecho("<yellow>Information for "..who..": "..result.skill.."\n")
 	cecho("<yellow>Improves: "..output.."\n")
 end
 
 local function increaseSkill(args)
   local skill_name = args["skill_name"]
-  local who = argsname
+  local who = args["name"]
 	if not who then
 		who = Status.name
 	end
@@ -134,7 +134,35 @@ local function increaseSkill(args)
 		dba.execute('INSERT INTO improves (skill, count, who, last_imp) VALUES("'..skill_name..'", 1, "'..who..'", datetime("NOW"))')
 	end
 
+
+  --Show skill
+  shownSkill =
+    tempRegexTrigger("^(?:> )?([A-Za-z'\\-_# ]+):\\s+([A-Za-z ]+)\\.$"
+                    ,[[
+                      local skill_name = string.lower(matches[2])
+                      local skill_level = string.lower(matches[3])
+
+                      local isStupidOoc = string.find(matches[1], "(ooc)")
+                      local _s, spaces = string.gsub(skill_name, " ", " ")
+                      spaces = spaces or 0
+                      -- collection of possible false triggers due to the common pattern used in show skills output
+                      -- if there is more than 1 space its a false positive
+                      if skill_name == "concentration" or
+                          skill_name == "encumbrance" or
+                          skill_name == "held" or
+                          skill_name == "worn" or
+                          spaces > 1 or
+                          not isStupidOoc == nil then
+                              return
+                      end
+
+                      args = {skill_name = skill_name, skill_level = skill_level}
+                      Events.raiseEvent("shownSkillEvent", args)
+                    ]])
+
   send("show skills: "..skill_name)
+
+  tempTimer(15, [[disableTrigger(]]..shownSkill..[[)]])
 
 	return count
 end
@@ -165,9 +193,10 @@ local function updateCount(args)
   local skill = getSkill({who = who, skill_name = skill_name})
 
   if skill ~= nil and skill~= 0 and skill ~= -1 then
+    cecho("<red>\nUpdating skill: "..skill_name.." from "..skill.count.." to "..count)
+
     dba.execute('UPDATE improves SET count='..count..' WHERE who="'..who..'" AND skill="'..skill_name..'"')
 
-    cecho("<red>\nUpdating skill: "..skill_name.." from "..skill.count.." to "..count)
   else
     cecho("<red>No skill by name:\n")
     display(skill_name)

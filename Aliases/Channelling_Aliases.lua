@@ -40,7 +40,7 @@ local function setup(args)
               ,[[
                  local target = matches[2] or ""
                  target = string.lower(target)
-                 arguments {target = target}
+                 arguments = {target = target}
                  Events.raiseEvent("channelStatusEvent", arguments)
               ]])
 

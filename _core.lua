@@ -37,6 +37,13 @@ local function setup(e, f, g)
     end
   end
 
+  local personal_directory = directory.."Personal_Scripts/"
+    for file in lfs.dir(personal_directory) do
+      if lfs.attributes(personal_directory..file,"mode") == "file" then
+        table.insert(modules, dofile(personal_directory..file))
+      end
+    end
+
   for i,module in ipairs(modules) do
     if module.setup then
       module.setup({directory=directory})

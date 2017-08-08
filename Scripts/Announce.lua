@@ -8,7 +8,7 @@ local function announce(args)
   local skill_name = args["skill_name"]
   if(isAnnounce) then
     if(isVerbose) then
-      send("ooc "..skill_name.." +")
+      send("ooc "..skill_name.."+")
     else
       send("ooc +")
     end
@@ -23,7 +23,7 @@ local function announceOn(args)
 end
 
 local function announceVerbose(args)
-  cecho("<yellow>Announce Verbose: Skill_Name +\n")
+  cecho("<yellow>Announce Verbose: Skill_Name+\n")
   isAnnounce = true
   isVerbose = true
   Announce.save()
@@ -37,8 +37,8 @@ end
 
 local function loaderFunction(sentTable)
   if sentTable then
-    isAnnounce = sentTable[isAnnounce]
-    isVerbose = sentTable[isVerbose]
+    isAnnounce = sentTable["isAnnounce"]
+    isVerbose = sentTable["isVerbose"]
   end
 end
 
@@ -51,8 +51,8 @@ local function save()
                     {
                       sourceName = sourceName
                       ,tableToSave = {
-                        isAnnounce = isAnnounce or false
-                        ,isVerbose = isVerbose or false
+                        isAnnounce = isAnnounce
+                        ,isVerbose = isVerbose
                       }
                     })
 end
