@@ -37,6 +37,33 @@ local function setup(args)
                           Events.raiseEvent("movementEvent", arguments)
                         ]])
 
+    tempTriggers.MovementAwhile =
+      tempRegexTrigger("^(?:> )?(?:Movement: )?(You can travel a while longer\\.)"
+                       ,[[
+                          local movement = matches[2]
+                          arguments = {movement = movement}
+
+                          Events.raiseEvent("movementEvent", arguments)
+                        ]])
+
+    tempTriggers.StepSpring =
+      tempRegexTrigger("^(?:> )?(?:Movement: )?(You have spring in your step\\.)"
+                       ,[[
+                          local movement = matches[2]
+                          arguments = {movement = movement}
+
+                          Events.raiseEvent("movementEvent", arguments)
+                        ]])
+                        
+    tempTriggers.MovementNotToMuch =
+      tempRegexTrigger("^(?:> )?(?:Movement: )?(Not too much spring in your step\\.)"
+                       ,[[
+                          local movement = matches[2]
+                          arguments = {movement = movement}
+
+                          Events.raiseEvent("movementEvent", arguments)
+                        ]])
+
   triggers = tempTriggers
 end
 

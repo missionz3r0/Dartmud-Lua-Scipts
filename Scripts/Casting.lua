@@ -7,12 +7,15 @@ local practiceCastMemory = {}
 local currentSpell = ''
 local currentSpellPower = 100
 local currentSpellArguments = ''
+local isActive = false
 
 local function practiceCast(args)
   send("cast ! "..currentSpell.." @ ".. currentSpellPower.. " "..currentSpellArguments)
+  Events.removeListener("BEBTconcEvent", sourceName)
 end
 
 local function practiceCastSetup(args)
+  isActive = true
   local spellName = args["spellName"]
   local power = args["power"]
   local spellArguments = args["spellArguments"]
@@ -29,30 +32,28 @@ local function practiceCastSetup(args)
   practiceCastMemory[currentSpell].power = power
 
 
-  cecho("<yellow>Practice casting "..spellName.." @ "..currentSpellPower.." "..currentSpellArguments.."\n")
+  Events.raiseEvent("messageEvent", {message="<yellow>Practice casting "..spellName.." @ "..currentSpellPower.." "..currentSpellArguments.."\n"})
 
   Events.addListener("BEBTconcEvent", sourceName, practiceCast)
-  send("conc")
 
   Casting.save()
 end
 
 local function practiceCastResume(args)
+  isActive = true
   local spellName = args["spellName"]
   if spellName == "" and currentSpell ~= "" then
-    cecho("<yellow>Practice casting "..currentSpell.." @ "..currentSpellPower.." "..currentSpellArguments.."\n")
+    Events.raiseEvent("messageEvent", {message="<yellow>Practice casting "..currentSpell.." @ "..currentSpellPower.." "..currentSpellArguments.."\n"})
     Events.addListener("BEBTconcEvent", sourceName, practiceCast)
-    send("conc")
 
   elseif practiceCastMemory[spellName] then
     currentSpell = spellName
     currentSpellPower = practiceCastMemory[spellName].power
     currentSpellArguments = practiceCastMemory[spellName].arguments
 
-    cecho("<yellow>Practice casting "..spellName.." @ "..currentSpellPower.." "..currentSpellArguments.."\n")
+    Events.raiseEvent("messageEvent", {message="<yellow>Practice casting "..spellName.." @ "..currentSpellPower.." "..currentSpellArguments.."\n"})
 
     Events.addListener("BEBTconcEvent", sourceName, practiceCast)
-    send("conc")
 
     Casting.save()
   end
@@ -61,10 +62,10 @@ end
 local function practiceCastStatus(args)
   local spellName = args["spellName"]
   if spellName == "" then
-    cecho("<yellow>Status: Practice casting "..spellName.." @ "..currentSpellPower.." "..currentSpellArguments.."\n")
+    Events.raiseEvent("messageEvent", {message="<yellow>Status: Practice casting "..spellName.." @ "..currentSpellPower.." "..currentSpellArguments.."\n"})
   elseif practiceCastMemory[spellName] then
     local power = practiceCastMemory[spellName].power
-    cecho("<yellow>Status: Practiced casting "..spellName.." @ "..power.."\n")
+    Events.raiseEvent("messageEvent", {message="<yellow>Status: Practiced casting "..spellName.." @ "..power.."\n"})
   end
 end
 
@@ -73,15 +74,22 @@ local function changePower(args)
 
   currentSpellPower = power
 
-  cecho("<yellow>Practice casting "..currentSpellName.." @ "..currentSpellPower.." "..currentSpellArguments.."\n")
+  Events.raiseEvent("messageEvent", {message="<yellow>Practice casting "..currentSpellName.." @ "..currentSpellPower.." "..currentSpellArguments.."\n"})
   practiceCastMemory[currentSpell].power = power
 
   Casting.save()
 end
 
 local function practiceCastOff(args)
-  cecho("<yellow>Stopped casting\n")
+  isActive = false
+  Events.raiseEvent("messageEvent", {message="<yellow>Stopped casting\n"})
   Events.removeListener("BEBTconcEvent", sourceName)
+end
+
+local function finishPracticing(args)
+  if isActive then
+      Events.addListener("BEBTconcEvent", sourceName, practiceCast)
+  end
 end
 
 local function loaderFunction(sentTable)
@@ -114,15 +122,19 @@ end
 local function setup(args)
   Events.addListener("practiceCastEvent",sourceName, practiceCastSetup)
   Events.addListener("practiceCastResumeEvent",sourceName, practiceCastResume)
+  Events.addListener("practiceCastPauseEvent",sourceName, practiceCastOff)
   Events.addListener("practiceCastOffEvent",sourceName, practiceCastOff)
   Events.addListener("practiceCastStatusEvent",sourceName, practiceCastStatus)
+  Events.addListener("finishPracticingEvent",sourceName, finishedPracticing)
 end
 
 local function unsetup(args)
   Events.removeListener("practiceCastEvent",sourceName)
   Events.removeListener("practiceCastResumeEvent",sourceName)
+  Events.removeListener("practiceCastPauseEvent",sourceName)
   Events.removeListener("practiceCastOffEvent",sourceName)
   Events.removeListener("practiceCastStatusEvent",sourceName)
+  Events.removeListener("finishPracticingEvent",sourceName)
 end
 
 local function resetup(args)

@@ -7,15 +7,6 @@ local triggers = {}
 local function setup(args)
   local tempTriggers = {}
 
-  tempTriggers.HungerAndThirst=
-    tempRegexTrigger("^(?:> )?You are (?:[\s\S]+), and ([\s\S]+)\\."
-                     ,[[
-                        local thirst = matches[2]
-                        local arguments = {thirst = thirst}
-
-                        Events.raiseEvent("thirstEvent", arguments)
-                      ]])
-
 
   tempTriggers.NotThirsty =
     tempRegexTrigger("^(?:> )?You are (not thirsty)\\."

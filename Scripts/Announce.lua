@@ -16,21 +16,21 @@ local function announce(args)
 end
 
 local function announceOn(args)
-  cecho("<yellow>Announce on: +\n")
+  Events.raiseEvent("messageEvent", {message="<yellow>Announce on.\n"})
   isAnnounce = true
   isVerbose = false
   Announce.save()
 end
 
 local function announceVerbose(args)
-  cecho("<yellow>Announce Verbose: Skill_Name+\n")
+  Events.raiseEvent("messageEvent", {message="<yellow>Announce Verbose: Skill_Name+\n"})
   isAnnounce = true
   isVerbose = true
   Announce.save()
 end
 
 local function announceOff(args)
-  cecho("<yellow>Announce off\n")
+  Events.raiseEvent("messageEvent", {message="<yellow>Announce Off.\n"})
   isAnnounce = false
   Announce.save()
 end

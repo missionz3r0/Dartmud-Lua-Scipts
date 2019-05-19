@@ -13,8 +13,6 @@ local function setup(args)
                         Events.raiseEvent("unblockEvent", {})
                       ]])
 
-  tempTriggers.
-
   triggers = tempTriggers
 end
 

@@ -257,12 +257,12 @@ local function setup(args)
                       ]])
 
   tempTriggers.Scintilating =
-    tempRegexTrigger("^(?:> )?Your aura appears to be (scintilating)\\."
+    tempRegexTrigger("^(?:> )?Your aura appears to be (scintillating)\\."
                      ,[[
                         local aura = matches[2]
                         local arguments  = {aura = aura}
 
-                        Events.raiseEvent("ScintilatingauraEvent", arguments)
+                        Events.raiseEvent("ScintillatingauraEvent", arguments)
                         Events.raiseEvent("auraEvent", arguments)
                       ]])
 

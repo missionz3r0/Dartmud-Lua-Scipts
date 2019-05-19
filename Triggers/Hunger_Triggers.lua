@@ -8,12 +8,17 @@ local function setup(args)
   local tempTriggers = {}
 
   tempTriggers.HungerAndThirst=
-    tempRegexTrigger("^(?:> )?You are ([\\s\\S]+), and (?:[\\s\\S]+)\\."
+    tempRegexTrigger("^(?:> )?You are ([\\s\\S]+), and ([\\s\\S]+)\\."
                      ,[[
                         local hunger = matches[2]
                         arguments = {hunger = hunger}
 
-                        Events.raiseEvent("hungerEvent", hunger)
+                        Events.raiseEvent("hungerEvent", arguments)
+
+                        local thirst = matches[3]
+                        local arguments = {thirst = thirst}
+
+                        Events.raiseEvent("thirstEvent", arguments)
                       ]])
 
 
@@ -23,7 +28,7 @@ local function setup(args)
                         local hunger = matches[2]
                         arguments = {hunger = hunger}
 
-                        Events.raiseEvent("hungerEvent", hunger)
+                        Events.raiseEvent("hungerEvent", arguments)
                       ]])
 
   tempTriggers.SlightlyHungry =
@@ -32,7 +37,7 @@ local function setup(args)
                         local hunger = matches[2]
                         arguments = {hunger = hunger}
 
-                        Events.raiseEvent("hungerEvent", hunger)
+                        Events.raiseEvent("hungerEvent", arguments)
                       ]])
 
   tempTriggers.Hungry =
@@ -41,7 +46,7 @@ local function setup(args)
                         local hunger = matches[2]
                         arguments = {hunger = hunger}
 
-                        Events.raiseEvent("hungerEvent", hunger)
+                        Events.raiseEvent("hungerEvent", arguments)
                       ]])
 
   tempTriggers.Famished =
@@ -50,7 +55,7 @@ local function setup(args)
                         local hunger = matches[2]
                         arguments = {hunger = hunger}
 
-                        Events.raiseEvent("hungerEvent", hunger)
+                        Events.raiseEvent("hungerEvent", arguments)
                       ]])
 
   tempTriggers.FaintFromHunger =
@@ -59,7 +64,7 @@ local function setup(args)
                         local hunger = matches[2]
                         arguments = {hunger = hunger}
 
-                        Events.raiseEvent("hungerEvent", hunger)
+                        Events.raiseEvent("hungerEvent", arguments)
                       ]])
 
   tempTriggers.Starving =
@@ -68,7 +73,7 @@ local function setup(args)
                         local hunger = matches[2]
                         arguments = {hunger = hunger}
 
-                        Events.raiseEvent("hungerEvent", hunger)
+                        Events.raiseEvent("hungerEvent", arguments)
                       ]])
 
   tempTriggers.StarvingToDeath =
@@ -77,7 +82,7 @@ local function setup(args)
                        local hunger = matches[2]
                        arguments = {hunger = hunger}
 
-                       Events.raiseEvent("hungerEvent", hunger)
+                       Events.raiseEvent("hungerEvent", arguments)
                      ]])
 
   triggers = tempTriggers

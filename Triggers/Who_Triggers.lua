@@ -6,14 +6,14 @@ local function setup(args)
   local tempTriggers = {}
 
   tempTriggers.whoTitle =
-    tempRegexTrigger("^(?:> )?(?: *Name +Idle(?: Time)?)+"
+    tempRegexTrigger("^(?:> )?(?: *Name +(?:(?:Idle(?: Time)?)|(?:State)))+"
                ,[[
                   args = {}
                   Events.raiseEvent("startWhoEvent", args)
                 ]])
 
   tempTriggers.whoNames =
-    tempRegexTrigger("^(?:> )?(?: {7}| {2}(?:\\[[A-Za-z]+\\] ))(?:([A-Za-z]+ [A-Za-z]+ [A-Za-z]+)( +)(?:\\d+m)? ?(?:\\d+s)?)+ *?"
+    tempRegexTrigger("^(?:> )?(?: {7}| {2}(?:\\[[A-Za-z]+\\] ))(?:([A-Za-z\-]+ [A-Za-z\-]+ [A-Za-z\-]+)( +)(?:(?:Idle *(?:\\d+m)? ?(?:\\d+s)?)|Online)?)+ *?"
                ,[[
                   args = {name = name}
                   Events.raiseEvent("whoEvent", args)
@@ -49,7 +49,7 @@ local function setup(args)
                 ]])
 
   tempTriggers.endWho =
-    tempRegexTrigger("^(?:> )? *Ferdarchi was last renewed (?:\\d+ days )?(?:\\d+ hours )?(?:\\d+ minutes )?(?:\\d+ seconds)? ago\\."
+    tempRegexTrigger("^(?:> )? *Ferdarchi was last renewed (?:\\d+ days? )?(?:\\d+ hours? )?(?:\\d+ minutes? )?(?:\\d+ seconds?)? ago\\."
                ,[[
                  args = {}
                  Events.raiseEvent("endWhoEvent", args)

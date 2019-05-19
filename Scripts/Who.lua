@@ -35,8 +35,8 @@ function setup(args)
                               ]])
 
   Events.addListener("whoTimerEvent", sourceName, whoItUp)
-  Events.addListener("whoOnEvent", sourceName, whoOff)
-  Events.addListener("whoOffEvent", sourceName, whoOn)
+  Events.addListener("whoOnEvent", sourceName, whoOn)
+  Events.addListener("whoOffEvent", sourceName, whoOff)
   timers = temp_timers
 end
 

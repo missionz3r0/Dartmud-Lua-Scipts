@@ -63,7 +63,7 @@ end
 local function removeListener(eventName, sourceName)
   createEventList(eventName)
 
-  eventList[eventName][sourceName] = nil
+  eventList[eventName][sourceName] = function(args) end
 end
 
 Events = {

@@ -11,7 +11,7 @@ local currentChannelCount = 0
 local function channel(args)
   send("channel "..currentChannelPower.. " "..currentChannelTarget)
   currentChannelCount = currentChannelCount + currentChannelPower
-  cecho("<yellow>Channelled "..currentChannelCount.." to "..currentChannelTarget.."\n")
+  Events.raiseEvent("messageEvent", {message="<yellow>Channelled "..currentChannelCount.." to "..currentChannelTarget.."\n"})
   channelHistory[currentChannelTarget].count = currentChannelCount
 
   Events.raiseEvent("channeledEvent", {power = currentChannelPower
@@ -31,8 +31,7 @@ local function channelSetup(args)
   channelHistory[target] = {power = currentChannelPower, count = currentChannelCount}
 
   Events.addListener("BEBTconcEvent", sourceName, channel)
-  cecho("<yellow>Channelling "..currentChannelPower.." to "..currentChannelTarget.."\n")
-  send("conc")
+  Events.raiseEvent("messageEvent", {message="<yellow>Channelling "..currentChannelPower.." to "..currentChannelTarget.."\n"})
   Channelling.save()
 end
 
@@ -41,23 +40,21 @@ local function channelResume(args)
 
   if target == "" and currentChannelTarget ~= "" then
     Events.addListener("BEBTconcEvent", sourceName, channel)
-    cecho("<yellow>Channelling "..currentChannelPower.." to "..currentChannelTarget.."\n")
-    send("conc")
+    Events.raiseEvent("messageEvent", {message="<yellow>Channelling "..currentChannelPower.." to "..currentChannelTarget.."\n"})
   elseif channelHistory[target] then
     currentChannelTarget = target
     currentChannelPower = channelHistory[currentChannelTarget].power
     currentChannelCount = channelHistory[currentChannelTarget].count
 
     Events.addListener("BEBTconcEvent", sourceName, channel)
-    cecho("<yellow>Channelling "..currentChannelPower.." to "..currentChannelTarget.."\n")
-    send("conc")
+    Events.raiseEvent("messageEvent", {message="<yellow>Channelling "..currentChannelPower.." to "..currentChannelTarget.."\n"})
   end
 
   Channelling.save()
 end
 
 local function channelOff(args)
-  cecho("<yellow>Stopped Channelling\n")
+  Events.raiseEvent("messageEvent", {message="<yellow>Stopped Channelling\n"})
   Events.removeListener("BEBTconcEvent", sourceName)
 end
 
@@ -65,14 +62,14 @@ local function changeTarget(args)
   local target = args["target"]
   currentChannelTarget = target
 
-  if channelHistory[currenChannelTarget] then
+  if channelHistory[currentChannelTarget] then
     currentChannelCount = channelHistory[currentChannelTarget].count
   else
     channelHistory[currentChannelTarget] = {}
     currentChannelCount = 0
   end
 
-  cecho("<yellow>Changed target to "..currentChannelTarget.." with current count of "..currentChannelCount.."\n")
+  Events.raiseEvent("messageEvent", {message="<yellow>Changed target to "..currentChannelTarget.." with current count of "..currentChannelCount.."\n"})
   Channelling.save()
 end
 
@@ -80,8 +77,9 @@ local function changePower(args)
   local power = args["power"]
 
   currentChannelPower = power
+  channelHistory[currentChannelTarget].power = power
 
-  cecho("<yellow>Channelling "..currentChannelPower.." to "..currentChannelTarget.."\n")
+  Events.raiseEvent("messageEvent", {message="<yellow>Channelling "..currentChannelPower.." to "..currentChannelTarget.."\n"})
 
   Channelling.save()
 end
@@ -90,12 +88,12 @@ local function channelStatus(args)
   local target = args["target"]
 
   if target == "" and currentChannelTarget ~= "" then
-    cecho("<yellow>Status: Channelling "..currentChannelPower.." to "..currentChannelTarget.."\n")
+    Events.raiseEvent("messageEvent", {message="<yellow>Status: Channelling "..currentChannelPower.." to "..currentChannelTarget.."\n"})
   elseif channelHistory[target] then
     local power = channelHistory[target].power
     local count = channelHistory[target].count
 
-    cecho("<yellow>Status: Channelled "..power.." to "..target.." for a total of "..count.."\n")
+    Events.raiseEvent("messageEvent", {message="<yellow>Status: Channelled "..power.." to "..target.." for a total of "..count.."\n"})
   end
 end
 

@@ -1,17 +1,16 @@
-local Encumberance = {}
+local Any = {}
 
 local triggers = {}
 
 local function setup(args)
   local tempTriggers = {}
 
-  tempTriggers.Encumbrance =
-    tempRegexTrigger("^(?:> )?Encumbrance: (.+)"
+  tempTriggers.any =
+    tempRegexTrigger("^(.{2,})"
                      ,[[
-                        local encumbrance = matches[2]
-                        local arguments = {encumbrance = encumbrance}
-
-                        Events.raiseEvent("encumbranceEvent", arguments)
+                        local text =  matches[2]
+                        local arguments = { text = text }
+                        Events.raiseEvent("anyEvent", arguments)
                       ]])
 
   triggers = tempTriggers
@@ -29,10 +28,10 @@ local function resetup(args)
   resetup(args)
 end
 
-Encumberance = {
+Any = {
   setup = setup
   ,unsetup = unsetup
   ,resetup = resetup
 }
 
-return Encumberance
+return Any

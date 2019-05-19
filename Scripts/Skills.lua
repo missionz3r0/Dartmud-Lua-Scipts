@@ -9,34 +9,35 @@ local previous_skill_value = {}
 
 
 levels = {}
-levels.leggy      = {name = "legendary",      abbr = "leggy",	  	min = "1700",	max = "99999", next_level = nil}
-levels.gm         = {name = "a grand master", abbr = "gm",			  min = "1400",	max = "1699",  next_level = levels.leggy}
-levels.virtuoso   = {name = "a virtuoso",     abbr = "virtuoso",	min = "1200",	max = "1399",  next_level = levels.gm}
-levels.consummate = {name = "consummate",     abbr = "consummate",min = "1050",	max = "1199",  next_level = levels.virtuoso}
-levels.hm         = {name = "a high master",  abbr = "hm",			  min = "920",	max = "1049",  next_level = levels.consummate}
-levels.renowned   = {name = "renowned",       abbr = "renowned",	min = "825",	max = "919",   next_level = levels.hm}
-levels.adept      = {name = "an adept",       abbr = "adept",		  min = "740",	max = "824",   next_level = levels.renowned}
-levels.eminent    = {name = "eminent",        abbr = "eminent",   min = "660",	max = "739",   next_level = levels.adept}
-levels.master     = {name = "a master",       abbr = "master",		min = "585",	max = "659",   next_level = levels.eminent}
-levels.superb     = {name = "superb",         abbr = "superb",		min = "515",	max = "584",   next_level = levels.master}
-levels.expert     = {name = "an expert",      abbr = "expert",		min = "450",	max = "514",   next_level = levels.superb}
-levels.excellent  = {name = "excellent",      abbr = "excellent",	min = "390",	max = "449",   next_level = levels.expert}
-levels.vg         = {name = "very good",      abbr = "vg",			  min = "335",	max = "389",   next_level = levels.excellent}
-levels.adroit     = {name = "adroit",         abbr = "adroit",		min = "285",	max = "334",   next_level = levels.vg}
-levels.good       = {name = "good",           abbr = "good",		  min = "240",	max = "284",   next_level = levels.adroit}
-levels.prof       = {name = "proficient",     abbr = "prof",		  min = "200",	max = "239",   next_level = levels.good}
-levels.fair       = {name = "fair",           abbr = "fair",		  min = "165",	max = "199",   next_level = levels.prof}
-levels.able       = {name = "able",           abbr = "able",	  	min = "135",	max = "164",   next_level = levels.fair}
-levels.aa         = {name = "above average",  abbr = "aa",		  	min = "110",	max = "134",   next_level = levels.able}
-levels.avg        = {name = "average",        abbr = "avg",		    min = "90",		max = "109",   next_level = levels.aa}
-levels.ba         = {name = "below average",  abbr = "ba",			  min = "70",		max = "89",    next_level = levels.avg}
-levels.nvg        = {name = "not very good",  abbr = "nvg",		    min = "50",		max = "69",    next_level = levels.ba}
-levels.poor       = {name = "poor",           abbr = "poor",		  min = "30",		max = "49",    next_level = levels.nvg}
-levels.beginner   = {name = "a beginner",     abbr = "beginner",	min = "18",		max = "29",    next_level = levels.poor}
-levels.novice     = {name = "a novice",       abbr = "novice",		min = "10",		max = "17",    next_level = levels.beginner}
-levels.tyro       = {name = "a tyro",         abbr = "tyro",		  min = "4",		max = "9",     next_level = levels.novice}
-levels.unskilled  = {name = "unskilled",      abbr = "unskilled",	min = "1",		max = "3",     next_level = levels.tyro}
-levels.NoSkill    = {name = "no skill",       abbr = "noskill", 	min = "0",		max = "0",     next_level = levels.unskilled}
+levels.mythic     = {name = "mythic",         abbr = "myth",	  	min = "10000",	max = "99999", next_level = nil}
+levels.leggy      = {name = "legendary",      abbr = "leggy",	  	min = "1700",	  max = "9999",  next_level = levels.mythic}
+levels.gm         = {name = "a grand master", abbr = "gm",			  min = "1400",	  max = "1699",  next_level = levels.leggy}
+levels.virtuoso   = {name = "a virtuoso",     abbr = "virtuoso",	min = "1200",  	max = "1399",  next_level = levels.gm}
+levels.consummate = {name = "consummate",     abbr = "consummate",min = "1050", 	max = "1199",  next_level = levels.virtuoso}
+levels.hm         = {name = "a high master",  abbr = "hm",			  min = "920",	  max = "1049",  next_level = levels.consummate}
+levels.renowned   = {name = "renowned",       abbr = "renowned",	min = "825",  	max = "919",   next_level = levels.hm}
+levels.adept      = {name = "an adept",       abbr = "adept",		  min = "740",	  max = "824",   next_level = levels.renowned}
+levels.eminent    = {name = "eminent",        abbr = "eminent",   min = "660",	  max = "739",   next_level = levels.adept}
+levels.master     = {name = "a master",       abbr = "master",		min = "585",	  max = "659",   next_level = levels.eminent}
+levels.superb     = {name = "superb",         abbr = "superb",		min = "515",	  max = "584",   next_level = levels.master}
+levels.expert     = {name = "an expert",      abbr = "expert",		min = "450",	  max = "514",   next_level = levels.superb}
+levels.excellent  = {name = "excellent",      abbr = "excellent",	min = "390",	  max = "449",   next_level = levels.expert}
+levels.vg         = {name = "very good",      abbr = "vg",			  min = "335",	  max = "389",   next_level = levels.excellent}
+levels.adroit     = {name = "adroit",         abbr = "adroit",		min = "285",	  max = "334",   next_level = levels.vg}
+levels.good       = {name = "good",           abbr = "good",		  min = "240",	  max = "284",   next_level = levels.adroit}
+levels.prof       = {name = "proficient",     abbr = "prof",		  min = "200",	  max = "239",   next_level = levels.good}
+levels.fair       = {name = "fair",           abbr = "fair",		  min = "165",	  max = "199",   next_level = levels.prof}
+levels.able       = {name = "able",           abbr = "able",	  	min = "135",	  max = "164",   next_level = levels.fair}
+levels.aa         = {name = "above average",  abbr = "aa",		  	min = "110",	  max = "134",   next_level = levels.able}
+levels.avg        = {name = "average",        abbr = "avg",		    min = "90",		  max = "109",   next_level = levels.aa}
+levels.ba         = {name = "below average",  abbr = "ba",			  min = "70",		  max = "89",    next_level = levels.avg}
+levels.nvg        = {name = "not very good",  abbr = "nvg",		    min = "50",		  max = "69",    next_level = levels.ba}
+levels.poor       = {name = "poor",           abbr = "poor",		  min = "30",		  max = "49",    next_level = levels.nvg}
+levels.beginner   = {name = "a beginner",     abbr = "beginner",	min = "18",		  max = "29",    next_level = levels.poor}
+levels.novice     = {name = "a novice",       abbr = "novice",		min = "10",		  max = "17",    next_level = levels.beginner}
+levels.tyro       = {name = "a tyro",         abbr = "tyro",		  min = "4",		  max = "9",     next_level = levels.novice}
+levels.unskilled  = {name = "unskilled",      abbr = "unskilled",	min = "1",		  max = "3",     next_level = levels.tyro}
+levels.NoSkill    = {name = "no skill",       abbr = "noskill", 	min = "0",		  max = "0",     next_level = levels.unskilled}
 
 local function getSkill(args)
   local who = args["who"]

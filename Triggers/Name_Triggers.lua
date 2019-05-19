@@ -6,7 +6,7 @@ local function setup(args)
   local tempTriggers = {}
 
   tempTriggers.Name =
-    tempRegexTrigger("^(?:> )?You are (\\w+) the (?:\\w+)?(?: \\(.*\\))?\\.  You are a (?:[\\s\\S]+)\\."
+    tempRegexTrigger("^(?:> )?You are (?:[A-Za-z]* )?(\\w+) the (?:\\w+)?(?: \\(.*\\))?\\.  You are (?:a|an) (?:[\\s\\S]+)\\."
                      ,[[
                         local name = matches[2]
                         arguments = {name = name}
