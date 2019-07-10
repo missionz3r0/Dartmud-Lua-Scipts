@@ -10,6 +10,15 @@ local triggers = {}
 local function setup(args)
   local tempTriggers = {}
 
+    tempTriggers.MovementTravelForever =
+      tempRegexTrigger("^(?:> )?(?:Movement: )?(You can travel forever\\.)"
+                       ,[[
+                          local movement = matches[2]
+                          arguments = {movement = movement}
+
+                          Events.raiseEvent("movementEvent", arguments)
+                        ]])
+
     tempTriggers.MovementHyperBypass =
       tempRegexTrigger("^(?:> )?(?:Movement: )?(Who needs a hyperspacial bypass\\?)"
                        ,[[
