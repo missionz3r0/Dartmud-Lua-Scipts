@@ -30,8 +30,8 @@ local function unsetup(args)
 end
 
 local function resetup(args)
+  unsetup(args)
   setup(args)
-  resetup(args)
 end
 
 Login = {
