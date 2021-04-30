@@ -34,8 +34,8 @@ local function unsetup()
 end
 
 local function resetup()
+  unsetup()
   setup()
-  resetup()
 end
 
 Score = {
