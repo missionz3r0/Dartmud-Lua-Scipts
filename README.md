@@ -11,7 +11,6 @@ Aside from the automatic features described above, there are a few things you ca
 /unsetup - Remove timers and triggers, deactivate display customizations.
 /resetup - Remove then reinitialize timers, triggers, etc.  Makes changes to the scripts active.
 ```
-Some of the rest are:
 ```
 /announce on      - Announce improvements in Brief mode (just a plus, no skill name revealed)
 /announce verbose - Announce improvements including the full name of the skill
