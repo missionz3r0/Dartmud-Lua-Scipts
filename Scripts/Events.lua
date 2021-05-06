@@ -16,8 +16,8 @@ local function unsetup(args)
 end
 
 local function resetup(args)
-  setup(args)
   unsetup(args)
+  setup(args)
 end
 
 local function createEventList(eventName)
